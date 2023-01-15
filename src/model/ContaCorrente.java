@@ -1,8 +1,8 @@
 package model;
 
-public class ContaCorrente extends Conta{
+public class ContaCorrente extends Conta {
 
-    protected ContaCorrente(String numeroConta, double saldo) {
+    public ContaCorrente(String numeroConta, double saldo) {
         super(numeroConta, saldo);
     }
 }
