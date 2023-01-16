@@ -4,6 +4,7 @@ public abstract class Conta {
 
     private String numeroConta;
     private double saldo;
+    private Cliente cliente;
 
     protected Conta(String numeroConta, double saldo) {
         this.numeroConta = numeroConta;
@@ -26,4 +27,11 @@ public abstract class Conta {
         this.saldo = saldo;
     }
 
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
 }

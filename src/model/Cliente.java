@@ -2,10 +2,7 @@ package model;
 
 public class Cliente {
 
-    private String nome;
-    private String documento;
-    private String email;
-    private String dataDeNascimento;
+    private String nome, documento, email, dataDeNascimento;
 
     public Cliente(String nome, String documento, String email, String dataDeNascimento) {
         this.nome = nome;
