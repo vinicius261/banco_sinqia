@@ -2,8 +2,6 @@ package model;
 
 public class ContaPoupanca extends Conta implements Investimento {
 
-    String tipoDeClienteLogado;
-
     public ContaPoupanca(String numeroConta, double saldo) {
         super(numeroConta, saldo);
     }
@@ -13,7 +11,7 @@ public class ContaPoupanca extends Conta implements Investimento {
         /*
         if (pessoa física) {rendimento 1% no depósito}
         else if (pessoa jurídica) {não podem ter conta poupança}
-         */
+        */
     }
 
 }
