@@ -1,17 +1,18 @@
 package model;
 
-public class ContaInvestimento extends Conta implements Investimento {
+import enums.TipoDeConta;
+import interfaces.Investir;
 
-    public ContaInvestimento(String numeroConta, double saldo) {
-        super(numeroConta, saldo);
+public class ContaInvestimento extends Conta  {
+
+    private TipoDeConta tipoDeConta = TipoDeConta.CONTA_INVESTIMENTO;
+    private double rendimento;
+
+    public double getRendimento() {
+        return rendimento;
     }
 
-    @Override
-    public void investir() {
-
-        /*
-        if (pessoa jurídica) {rendimento de 1.5% ao depositar}
-        else if (pessoa jurídica) {rendimento 3.5% ao depositar}
-        */
+    public void setRendimento(double rendimento) {
+        this.rendimento = rendimento;
     }
 }
