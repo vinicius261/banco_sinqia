@@ -1,18 +1,19 @@
 package model;
 
-public class ContaPoupanca extends Conta implements Investimento {
+import enums.TipoDeConta;
+import interfaces.Investir;
 
-    public ContaPoupanca(String numeroConta, double saldo) {
-        super(numeroConta, saldo);
+public class ContaPoupanca extends Conta  {
+    private TipoDeConta tipoDeConta = TipoDeConta.CONTA_POUPANCA;
+    private double rendimento;
+
+
+    public double getRendimento() {
+        return rendimento;
     }
 
-    @Override
-    public void investir() {
-        /*
-        if (pessoa física) {rendimento 1% no depósito}
-        else if (pessoa jurídica) {não podem ter conta poupança}
-        */
+    public void setRendimento(double rendimento) {
+        this.rendimento = rendimento;
     }
-
 }
 

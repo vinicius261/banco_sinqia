@@ -1,8 +1,8 @@
 package model;
 
+import enums.TipoDeConta;
+
 public class ContaCorrente extends Conta {
 
-    public ContaCorrente(String numeroConta, double saldo) {
-        super(numeroConta, saldo);
-    }
+    private TipoDeConta tipoDeConta = TipoDeConta.CONTA_CORRENTE;
 }
