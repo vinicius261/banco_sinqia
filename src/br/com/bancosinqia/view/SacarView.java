@@ -19,15 +19,16 @@ public class SacarView {
 
         Double valorDoSaque = valorDoSaque(conta);
 
-
-
-
+        if (valorDoSaque > 0.00) {
+            conta.atualizaSaldo(valorDoSaque);
+            System.out.println("O saque de " + valorDoSaque + " foi realizado.");
+        }
     }
 
-    public Double valorDoSaque(Conta conta){
+    public Integer valorDoSaque(Conta conta){
         System.out.println("Digite o valor do saque: ");
 
-        Double valorDoSaque = sacarController.validaValorDoSaque(scanner.nextLine());
+        Integer valorDoSaque = sacarController.validaValorDoSaque(scanner.nextLine());
 
         if (sacarController.validaSaldo(conta, valorDoSaque)){
             while (valorDoSaque <= 0){

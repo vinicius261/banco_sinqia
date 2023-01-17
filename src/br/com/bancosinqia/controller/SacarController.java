@@ -2,19 +2,19 @@ package br.com.bancosinqia.controller;
 
 public class SacarController {
 
-    public Double validaValorDoSaque(String valor){
-        Double valorDoSaque = 0.0;
+    public Integer validaValorDoSaque(String valor){
+        Integer valorDoSaque = 0;
 
         try {
-            valorDoSaque = Double.parseDouble(valor);
+            valorDoSaque = Integer.parseInt(valor);
         }catch (NumberFormatException ex){
-            return valorDoSaque;
+            return 0;
         }
 
         return valorDoSaque;
     }
 
-    public boolean validaSaldo(Conta conta, Double valorDoSaque){
+    public boolean validaSaldo(Conta conta, Integer valorDoSaque){
 
         if (conta.getSaldo >= valorDoSaque){
             return true;
@@ -23,7 +23,7 @@ public class SacarController {
         return false;
     }
 
-    public Conta validaContaDoSaque(List<Conta> listaDeContas, String numeroDaConta) {
+    public Conta validaContaDoSaque(List<Conta> listaDeContas,  String numeroDaConta) {
         Conta contaDoSaque = null;
 
         for (Conta conta: listaDeContas) {
