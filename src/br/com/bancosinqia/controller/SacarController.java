@@ -31,25 +31,15 @@ public class SacarController {
         return false;
     }
 
-    public void movimentaConta(Integer valorDoSaque){
+    public boolean movimentaConta(Integer valorDoSaque){
         Conta contaLogada = Banco.contaLogada.getContaLogada();
 
         if (valorDoSaque > 0) {
             Double saldo  = contaLogada.getSaldo();
             contaLogada.setSaldo(saldo - valorDoSaque);
+            return true;
         }
+
+        return false;
     }
-
-    /*public Conta validaContaDoSaque(List<Conta> listaDeContas,  String numeroDaConta) {
-        Conta contaDoSaque = null;
-
-        for (Conta conta: listaDeContas) {
-            if (numeroDaConta.equals(conta.getNumeroConta())){
-                contaDoSaque = conta;
-                break;
-            }
-        }
-
-        return contaDoSaque;
-    }*/
 }

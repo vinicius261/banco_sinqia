@@ -38,13 +38,15 @@ public class SacarView {
             return valorDoSaque;
         }else{
             System.out.println("Saldo insuficiente para o saque. Saldo atual: " + Banco.userLogado.getSaldo + "\n");
+            return 0;
         }
-
-        return valorDoSaque;
     }
 
     public void movimentaConta(Integer valorDoSaque){
-        sacarController.movimentaConta(valorDoSaque);
-        System.out.println("O saque de " + valorDoSaque + " foi realizado.");
+        if (sacarController.movimentaConta(valorDoSaque)) {
+            System.out.println("O saque de " + valorDoSaque + " foi realizado.");
+        }else {
+            System.out.println("Infelizmente não foi possível realizar o saque.\n\nRetornando ao menu.");
+        }
     }
 }
