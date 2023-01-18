@@ -10,6 +10,6 @@ public class ContaPoupancaService implements Investir {
     @Override
     public void investir(double investimento) {
         contaPoupanca.setRendimento(0.01);
-        banco.getUserLogado().setSaldo(banco.getUserLogado().getSaldo()* contaPoupanca.getRendimento());
+        banco.getContaLogada().setSaldo(banco.getContaLogada().getSaldo()* contaPoupanca.getRendimento());
     }
 }

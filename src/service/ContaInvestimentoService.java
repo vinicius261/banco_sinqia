@@ -11,13 +11,13 @@ public class ContaInvestimentoService implements Investir {
 
     @Override
     public void investir(double investimento) {
-        if(banco.getUserLogado().getCliente().getTipoDeCliente().equals(TipoDeCliente.PESSOA_FISICA)){
+        if(banco.getContaLogada().getCliente().getTipoDeCliente().equals(TipoDeCliente.PESSOA_JURIDICA)){
             contaInvestimento.setRendimento(0.035);
-            banco.getUserLogado().setSaldo(banco.getUserLogado().getSaldo()* contaInvestimento.getRendimento());
+            banco.getContaLogada().setSaldo(banco.getContaLogada().getSaldo()* contaInvestimento.getRendimento());
 
-        } else if (banco.getUserLogado().getCliente().getTipoDeCliente().equals(TipoDeCliente.PESSOA_FISICA)){
+        } else if (banco.getContaLogada().getCliente().getTipoDeCliente().equals(TipoDeCliente.PESSOA_FISICA)){
             contaInvestimento.setRendimento(0.015);
-            banco.getUserLogado().setSaldo(banco.getUserLogado().getSaldo()* contaInvestimento.getRendimento());
+            banco.getContaLogada().setSaldo(banco.getContaLogada().getSaldo()* contaInvestimento.getRendimento());
 
         }
     }
