@@ -2,7 +2,7 @@ package br.com.bancosinqia.controller;
 
 public class SacarController {
 
-    public Integer validaValorDoSaque(String valor){
+    public Integer validaInputDoSaque(String valor){
         Integer valorDoSaque = 0;
 
         try {
@@ -14,16 +14,33 @@ public class SacarController {
         return valorDoSaque;
     }
 
-    public boolean validaSaldo(Conta conta, Integer valorDoSaque){
+    public boolean validaValorDoSaque(Integer valorDoSaque){
+        if (valorDoSaque <= 0){
+            return false;
+        }
 
-        if (conta.getSaldo >= valorDoSaque){
+        return true;
+    }
+
+    public boolean validaSaldo(Integer valorDoSaque){
+
+        if (Banco.contaLogada.getContaLogada().getSaldo() >= valorDoSaque){
             return true;
         }
 
         return false;
     }
 
-    public Conta validaContaDoSaque(List<Conta> listaDeContas,  String numeroDaConta) {
+    public void movimentaConta(Integer valorDoSaque){
+        Conta contaLogada = Banco.contaLogada.getContaLogada();
+
+        if (valorDoSaque > 0) {
+            Double saldo  = contaLogada.getSaldo();
+            contaLogada.setSaldo(saldo - valorDoSaque);
+        }
+    }
+
+    /*public Conta validaContaDoSaque(List<Conta> listaDeContas,  String numeroDaConta) {
         Conta contaDoSaque = null;
 
         for (Conta conta: listaDeContas) {
@@ -34,5 +51,5 @@ public class SacarController {
         }
 
         return contaDoSaque;
-    }
+    }*/
 }

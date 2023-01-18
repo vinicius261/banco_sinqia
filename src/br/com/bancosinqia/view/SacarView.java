@@ -14,45 +14,37 @@ public class SacarView {
         this.sacarController = new SacarController();
     }
 
-    public void sacar(List<Conta> listaDeContas){
-        Conta conta = contaDoSaque(List<Conta> listaDeContas);
+    public void sacar(){
+        System.out.println("Você esta na Área e Saque\n");
 
-        Double valorDoSaque = valorDoSaque(conta);
+        movimentaConta(valorDoSaque());
 
-        if (valorDoSaque > 0.00) {
-            conta.atualizaSaldo(valorDoSaque);
-            System.out.println("O saque de " + valorDoSaque + " foi realizado.");
-        }
+        MenuContaView menuContaView = new MenuContaView();
+
+        menuContaView.mostrarMenuConta();
     }
 
-    public Integer valorDoSaque(Conta conta){
-        System.out.println("Digite o valor do saque: ");
+    public Integer valorDoSaque(){
+        System.out.println("Digite o valor do saque: \n");
 
-        Integer valorDoSaque = sacarController.validaValorDoSaque(scanner.nextLine());
+        Integer valorDoSaque = sacarController.validaInputDoSaque(scanner.nextLine());
 
-        if (sacarController.validaSaldo(conta, valorDoSaque)){
-            while (valorDoSaque <= 0){
-                System.out.println("Insira apenas números maiores que zero");
-                valorDoSaque = sacarController.validaValorDoSaque(scanner.nextLine());
-            }
+        while (sacarController.validaValorDoSaque(valorDoSaque)){
+            System.out.println("Insira apenas números maiores que zero: \n");
+            valorDoSaque = sacarController.validaInputDoSaque(scanner.nextLine());
+        }
+
+        if (sacarController.validaSaldo(valorDoSaque)){
+            return valorDoSaque;
         }else{
-            System.out.println("Saldo insuficiente para o saque. Saldo atual: " + conta.getSaldo);
+            System.out.println("Saldo insuficiente para o saque. Saldo atual: " + Banco.userLogado.getSaldo + "\n");
         }
 
         return valorDoSaque;
     }
 
-    public Conta contaDoSaque(List<Conta> listaDeContas) {
-        System.out.println("Digite o número da conta da qual deseja sacar: ");
-
-        Conta contaDoSaque = sacarController.validaContaDoSaque(listaDeContas,scanner.nextLine());
-
-        while (contaDoSaque == null){
-            System.out.println("Essa conta não exite, verifique o número digitado.");
-            contaDoSaque = sacarController.validaContaDoSaque(listaDeContas,scanner.nextLine());
-        }
-
-        return contaDoSaque;
+    public void movimentaConta(Integer valorDoSaque){
+        sacarController.movimentaConta(valorDoSaque);
+        System.out.println("O saque de " + valorDoSaque + " foi realizado.");
     }
-
 }
