@@ -2,14 +2,14 @@ package model;
 
 public class Banco {
 
-    private static Conta userLogado;
+    private static Conta contaLogada;
 
-    public Conta getUserLogado() {
-        return userLogado;
+    public Conta getContaLogada() {
+        return contaLogada;
     }
 
-    public void setUserLogado(Conta userLogado) {
-        this.userLogado = userLogado;
+    public void setContaLogada(Conta contaLogada) {
+        this.contaLogada = contaLogada;
     }
 
 }
