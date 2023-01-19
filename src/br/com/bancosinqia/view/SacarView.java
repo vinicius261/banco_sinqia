@@ -9,19 +9,31 @@ public class SacarView {
     private Scanner scanner;
     private SacarController sacarController;
 
-    public SacarView(){
+    private Conta conta;
+
+    public SacarView(Conta conta){
         this.scanner = new Scanner(System.in);
         this.sacarController = new SacarController();
+        this.conta = conta;
     }
 
     public void sacar(){
-        System.out.println("Você esta na Área e Saque\n");
+        System.out.println("Olá, " + conta.getCliente().getNome() + ". Você esta na Área e Saque\n");
 
-        movimentaConta(valorDoSaque());
+        if(validaSenha()) {
+            movimentaConta(true, valorDoSaque());
+        }else {
+            System.out.println("Senha incorreta.\n");
+        }
 
         MenuContaView menuContaView = new MenuContaView();
 
         menuContaView.mostrarMenuConta();
+    }
+
+    public boolean validaSenha(){
+        System.out.println("Para continuar insira sua senha: ");
+        return sacarController.validaSenha(conta, scanner.nextLine());
     }
 
     public Integer valorDoSaque(){
@@ -34,16 +46,16 @@ public class SacarView {
             valorDoSaque = sacarController.validaInputDoSaque(scanner.nextLine());
         }
 
-        if (sacarController.validaSaldo(valorDoSaque)){
+        if (sacarController.validaSaldo(conta, valorDoSaque)){
             return valorDoSaque;
         }else{
-            System.out.println("Saldo insuficiente para o saque. Saldo atual: " + Banco.userLogado.getSaldo + "\n");
+            System.out.println("Saldo insuficiente para o saque.\n Saldo atual: " + conta.getSaldo + "\n");
             return 0;
         }
     }
 
-    public void movimentaConta(Integer valorDoSaque){
-        if (sacarController.movimentaConta(valorDoSaque)) {
+    public void movimentaConta(boolean senhaValidada, Integer valorDoSaque){
+        if (sacarController.movimentaConta(conta, valorDoSaque) && senhaValidada) {
             System.out.println("O saque de " + valorDoSaque + " foi realizado.");
         }else {
             System.out.println("Infelizmente não foi possível realizar o saque.\n\nRetornando ao menu.");

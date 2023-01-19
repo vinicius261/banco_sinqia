@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cf7984ea-c90e-429c-bf48-b365f4f152c4" name="Changes" comment="Remoção da validação da Conta por conta da lógica de usuário logado na main.&#10;&#10;Complementando o controller e view.">
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/br/com/bancosinqia/controller/SacarController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/br/com/bancosinqia/controller/SacarController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/br/com/bancosinqia/view/SacarView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/br/com/bancosinqia/view/SacarView.java" afterDir="false" />
     </list>
