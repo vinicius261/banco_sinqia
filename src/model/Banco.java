@@ -8,8 +8,8 @@ public class Banco {
         return contaLogada;
     }
 
-    public void setContaLogada(Conta userLogado) {
-        this.contaLogada = userLogado;
+    public void setContaLogada(Conta contaLogada) {
+        this.contaLogada = contaLogada;
     }
 
 }
