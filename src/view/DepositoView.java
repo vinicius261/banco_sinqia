@@ -38,12 +38,12 @@ public class DepositoView {
         System.out.println("Por favor, digite o número da conta.");
         scan.nextLine();
         numeroConta = scan.nextLine();
-//        boolean verificaConta = depositoController.verificaConta(numeroConta);
-//        if (verificaConta) {
-//            System.out.println("Conta localizada com sucesso");
-//        } else
-//            System.out.println("Conta não existente");
-//            contaDeposito();
+        boolean verificaConta = depositoController.verificaConta(numeroConta);
+        if (verificaConta) {
+            System.out.println("Conta localizada com sucesso");
+        } else
+            System.out.println("Conta não existente");
+            contaDeposito();
     }
 
 }
