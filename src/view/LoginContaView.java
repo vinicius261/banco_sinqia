@@ -17,10 +17,22 @@ public class LoginContaView {
         System.out.println("Olá, para entrar no banco, por favor digite seu e-mail cadastrado:");
         clientEmail = entrance.nextLine();
 
+
         System.out.println("Por favor, agora digite sua senha:");
         clientPassword = entrance.nextLine();
 
+        ListaDeClientes listaDeClientes = new ListaDeClientes();
+        listaDeClientes.getClientes();
+
         MenuContaView menuContaView = new MenuContaView();
         menuContaView.mostrarMenuConta();
+    }
+
+    public String getClientEmail() {
+        return clientEmail;
+    }
+
+    public String getClientPassword() {
+        return clientPassword;
     }
 }
