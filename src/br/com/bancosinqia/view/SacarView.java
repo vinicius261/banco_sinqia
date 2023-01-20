@@ -1,6 +1,8 @@
 package br.com.bancosinqia.view;
 
 import br.com.bancosinqia.controller.SacarController;
+import br.com.bancosinqia.exceptions.SaldoInsuficienteException;
+import br.com.bancosinqia.exceptions.ValorDoSaqueInvalidoException;
 
 import java.util.Scanner;
 
@@ -11,18 +13,18 @@ public class SacarView {
 
     private Conta conta;
 
-    public SacarView(Conta conta){
+    public SacarView(Conta conta) {
         this.scanner = new Scanner(System.in);
         this.sacarController = new SacarController();
         this.conta = conta;
     }
 
-    public void sacar(){
+    public void sacar() {
         System.out.println("Olá, " + conta.getCliente().getNome() + ". Você esta na Área e Saque\n");
 
-        if(validaSenha()) {
-            movimentaConta(true, valorDoSaque());
-        }else {
+        if (validaSenha()) {
+            movimentaConta(valorDoSaque());
+        } else {
             System.out.println("Senha incorreta.\n");
         }
 
@@ -31,34 +33,46 @@ public class SacarView {
         menuContaView.mostrarMenuConta();
     }
 
-    public boolean validaSenha(){
+    public boolean validaSenha() {
         System.out.println("Para continuar insira sua senha: ");
         return sacarController.validaSenha(conta, scanner.nextLine());
     }
 
-    public Integer valorDoSaque(){
+    public Integer valorDoSaque() {
+        MenuContaView menuContaView = new MenuContaView();
+
         System.out.println("Digite o valor do saque: \n");
 
-        Integer valorDoSaque = sacarController.validaInputDoSaque(scanner.nextLine());
+        Integer valorDoSaque = 0;
 
-        while (sacarController.validaValorDoSaque(valorDoSaque)){
-            System.out.println("Insira apenas números maiores que zero: \n");
-            valorDoSaque = sacarController.validaInputDoSaque(scanner.nextLine());
+        try {
+            valorDoSaque = Integer.parseInt(scanner.nextLine());
+            sacarController.validaValorDoSaque(valorDoSaque);
+
+        } catch (NumberFormatException ex) {
+            System.out.println("Digite apenas números.");
+            valorDoSaque();
+
+        } catch (ValorDoSaqueInvalidoException ex) {
+            System.out.println(ex.getMessage());
+            valorDoSaque();
         }
 
-        if (sacarController.validaSaldo(conta, valorDoSaque)){
-            return valorDoSaque;
-        }else{
-            System.out.println("Saldo insuficiente para o saque.\n Saldo atual: " + conta.getSaldo + "\n");
-            return 0;
+        try {
+            if (sacarController.validaSaldo(conta, valorDoSaque)) {
+                return valorDoSaque;
+            }
+
+        } catch (SaldoInsuficienteException ex) {
+            System.out.println(ex.getMessage());
+            menuContaView.mostrarMenuConta();
         }
+
+        return valorDoSaque;
     }
 
-    public void movimentaConta(boolean senhaValidada, Integer valorDoSaque){
-        if (sacarController.movimentaConta(conta, valorDoSaque) && senhaValidada) {
-            System.out.println("O saque de " + valorDoSaque + " foi realizado.");
-        }else {
-            System.out.println("Infelizmente não foi possível realizar o saque.\n\nRetornando ao menu.");
-        }
+    public void movimentaConta(Integer valorDoSaque){
+        sacarController.debitaValor(conta, valorDoSaque);
+        System.out.println("O saque de " + valorDoSaque + "R$ foi realizado.");
     }
 }
