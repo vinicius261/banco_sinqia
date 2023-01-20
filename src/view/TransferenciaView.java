@@ -1,9 +1,9 @@
 package view;
 
-<<<<<<< HEAD
 import controller.TransferenciaController;
 import exceptions.SaldoInsuficienteException;
 import exceptions.ValorDaTransferenciaInvalidaException;
+import model.Conta;
 
 import java.util.Scanner;
 
@@ -15,7 +15,7 @@ public class TransferenciaView {
 
     public TransferenciaView(Conta contaLogada) {
         this.scanner = new Scanner(System.in);
-        this.transferenciaController= new TransferenciaController();
+        this.transferenciaController = new TransferenciaController();
         this.contaLogada = contaLogada;
     }
 
@@ -23,7 +23,7 @@ public class TransferenciaView {
         System.out.println("Olá, " + conta.getCliente().getNome() + ". Você esta na Área de Transferências\n");
 
         if (validaSenha()) {
-            movimentaConta(valorDaTransferencia(), contaFavorecida() );
+            movimentaConta(valorDaTransferencia(), contaFavorecida());
         } else {
             System.out.println("Senha incorreta.\n");
         }
@@ -71,7 +71,7 @@ public class TransferenciaView {
         return valorDaTransferencia;
     }
 
-    public void movimentaConta(Double valorDaTransferencia, Conta contaFavorecida){
+    public void movimentaConta(Double valorDaTransferencia, Conta contaFavorecida) {
         transferenciaController.transfereValores(contaLogada, contaFavorecida, valorDaTransferencia);
         System.out.println("A transferência de " + valorDaTransferencia + "R$ para " + favorecido + " foi feita.");
     }
@@ -80,16 +80,10 @@ public class TransferenciaView {
         System.out.println("Insira o número da conta que vai receber a transferência: ");
         try {
             return transferenciaController.buscaContas(scanner.nextLine());
-        }catch (contaNaoEncontradaException ex){
+        } catch (contaNaoEncontradaException ex) {
             System.out.println(ex.getMessage);
             MenuContaView menuContaView = new MenuContaView();
             menuContaView.mostrarMenuConta();
         }
-=======
-public class TransferenciaView {
-
-    public void transferenciaView(){
-        System.out.println("Transferencia realizada");
->>>>>>> origin/vinicius
     }
 }
