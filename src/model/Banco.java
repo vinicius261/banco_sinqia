@@ -1,15 +1,14 @@
 package model;
 
+import java.util.ArrayList;
+
 public class Banco {
 
-    private static Conta contaLogada;
+    public static Conta contaLogada;
 
-    public Conta getContaLogada() {
-        return contaLogada;
-    }
+    public static ArrayList<Conta> contas = new ArrayList<>();
 
-    public void setContaLogada(Conta contaLogada) {
-        this.contaLogada = contaLogada;
-    }
+    public static ArrayList<Cliente> clientes = new ArrayList<>();
+
 
 }

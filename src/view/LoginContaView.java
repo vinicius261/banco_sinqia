@@ -1,6 +1,6 @@
 package view;
 
-import model.ListaDeClientes;
+import static model.Banco.clientes;
 
 import java.util.Scanner;
 
@@ -14,15 +14,13 @@ public class LoginContaView {
 
     public static Scanner entrance = new Scanner(System.in);
     public void loginConta(){
-        System.out.println("Olá, para entrar no banco, por favor digite seu e-mail cadastrado:");
+        System.out.println("Olá, para entrar no banco, por favor digite sua conta cadastrada:");
         clientEmail = entrance.nextLine();
 
 
         System.out.println("Por favor, agora digite sua senha:");
         clientPassword = entrance.nextLine();
 
-        ListaDeClientes listaDeClientes = new ListaDeClientes();
-        listaDeClientes.getClientes();
 
         MenuContaView menuContaView = new MenuContaView();
         menuContaView.mostrarMenuConta();
