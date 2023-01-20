@@ -1,12 +1,8 @@
 package controller;
 
-import model.ListaDeContas;
-import view.DepositoView;
-import static model.ListaDeContas.contas;
+import static model.Banco.contas;
 
 public class DepositoController {
-
-    ListaDeContas listaDeContas = new ListaDeContas();
 
     public boolean verificaValor(double valorRecebido){
         if (valorRecebido <= 0) {
@@ -17,11 +13,14 @@ public class DepositoController {
     }
 
     public boolean verificaConta(String numeroConta){
-        if (true) {
-            return true;
-        } else {
-            return false;
+        boolean verify = false;
+        for (int i = 0; i < contas.size(); i++) {
+            if (contas.get(i).getNumeroConta().equals(numeroConta)) {
+                verify = true;
+                break;
+            }
         }
+        return verify;
     }
 
 }
