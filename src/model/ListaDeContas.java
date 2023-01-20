@@ -4,6 +4,6 @@ import java.util.ArrayList;
 
 public class ListaDeContas {
 
-    private ArrayList<Conta> contas = new ArrayList<>();
+    public static ArrayList<Conta> contas = new ArrayList<>();
 
 }
