@@ -1,5 +1,6 @@
 package view;
 
+<<<<<<< HEAD
 import controller.TransferenciaController;
 import exceptions.SaldoInsuficienteException;
 import exceptions.ValorDaTransferenciaInvalidaException;
@@ -84,5 +85,11 @@ public class TransferenciaView {
             MenuContaView menuContaView = new MenuContaView();
             menuContaView.mostrarMenuConta();
         }
+=======
+public class TransferenciaView {
+
+    public void transferenciaView(){
+        System.out.println("Transferencia realizada");
+>>>>>>> origin/vinicius
     }
 }
