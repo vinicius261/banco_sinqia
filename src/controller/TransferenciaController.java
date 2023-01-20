@@ -1,5 +1,7 @@
 package controller;
 
+import model.Conta;
+
 public class TransferenciaController {
     public boolean validaSenha(Conta conta, String senhaDigitada){
         if (senhaDigitada.equals(conta.getSenha())){
