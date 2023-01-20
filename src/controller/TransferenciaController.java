@@ -1,4 +1,4 @@
-package br.com.bancosinqia.controller;
+package controller;
 
 public class TransferenciaController {
     public boolean validaSenha(Conta conta, String senhaDigitada){

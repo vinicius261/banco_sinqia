@@ -1,5 +1,4 @@
-package br.com.bancosinqia.controller;
-import br.com.bancosinqia.exceptions.SaldoInsuficienteException;
+package controller;
 
 public class SacarController {
 

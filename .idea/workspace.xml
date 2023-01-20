@@ -1,16 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cf7984ea-c90e-429c-bf48-b365f4f152c4" name="Changes" comment="Tirando a dependência do Sacar em relção a classe Banco submetendo o Sacar a validação de senha.">
-      <change afterPath="$PROJECT_DIR$/src/br/com/bancosinqia/controller/TransferenciaController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/br/com/bancosinqia/exceptions/SaldoInsuficienteException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/br/com/bancosinqia/exceptions/ValorDaTransferenciaInvalidaException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/br/com/bancosinqia/exceptions/ValorDoSaqueInvalidoException.java" afterDir="false" />
+    <list default="true" id="af0bb88f-4fef-4d38-b1d2-46ac39834039" name="Changes" comment="Arrumando as pastas pos merge.">
       <change afterPath="$PROJECT_DIR$/src/br/com/bancosinqia/view/TransferenciaView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/br/com/bancosinqia/controller/SacarController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/br/com/bancosinqia/controller/SacarController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/br/com/bancosinqia/view/SacarView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/br/com/bancosinqia/view/SacarView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,7 +73,14 @@
       <option name="project" value="LOCAL" />
       <updated>1674163995861</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Arrumando as pastas pos merge.">
+      <created>1674248126075</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1674248126075</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -98,6 +99,7 @@
     <MESSAGE value="Criando o esboço inicial do view e controller do Saque" />
     <MESSAGE value="Remoção da validação da Conta por conta da lógica de usuário logado na main.&#10;&#10;Complementando o controller e view." />
     <MESSAGE value="Tirando a dependência do Sacar em relção a classe Banco submetendo o Sacar a validação de senha." />
-    <option name="LAST_COMMIT_MESSAGE" value="Tirando a dependência do Sacar em relção a classe Banco submetendo o Sacar a validação de senha." />
+    <MESSAGE value="Arrumando as pastas pos merge." />
+    <option name="LAST_COMMIT_MESSAGE" value="Arrumando as pastas pos merge." />
   </component>
 </project>

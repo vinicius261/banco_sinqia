@@ -1,8 +1,8 @@
-package br.com.bancosinqia.view;
+package view;
 
-import br.com.bancosinqia.controller.TransferenciaController;
-import br.com.bancosinqia.exceptions.SaldoInsuficienteException;
-import br.com.bancosinqia.exceptions.ValorDaTransferenciaInvalidaException;
+import controller.TransferenciaController;
+import exceptions.SaldoInsuficienteException;
+import exceptions.ValorDaTransferenciaInvalidaException;
 
 import java.util.Scanner;
 

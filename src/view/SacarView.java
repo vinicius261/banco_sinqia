@@ -1,8 +1,8 @@
-package br.com.bancosinqia.view;
+package view;
 
-import br.com.bancosinqia.controller.SacarController;
-import br.com.bancosinqia.exceptions.SaldoInsuficienteException;
-import br.com.bancosinqia.exceptions.ValorDoSaqueInvalidoException;
+import controller.SacarController;
+import exceptions.SaldoInsuficienteException;
+import exceptions.ValorDoSaqueInvalidoException;
 
 import java.util.Scanner;
 
