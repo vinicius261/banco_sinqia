@@ -4,7 +4,7 @@ import enums.TipoDeConta;
 
 public abstract class Conta {
 
-    private String numeroConta;
+    private String numeroConta, senha;
     private double saldo;
     private Cliente cliente;
     private TipoDeConta tipoDeConta;
@@ -15,6 +15,18 @@ public abstract class Conta {
 
     public String getNumeroConta() {
         return numeroConta;
+    }
+
+    public void setNumeroConta(String numeroConta) {
+        this.numeroConta = numeroConta;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 
     public double getSaldo() {
