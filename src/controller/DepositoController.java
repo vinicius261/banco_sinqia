@@ -17,7 +17,7 @@ public class DepositoController {
     }
 
     public boolean verificaConta(String numeroConta){
-        if (contas.get(1)) {
+        if (true) {
             return true;
         } else {
             return false;
