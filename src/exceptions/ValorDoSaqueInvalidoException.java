@@ -1,4 +1,4 @@
-package br.com.bancosinqia.exceptions;
+package exceptions;
 
 public class ValorDoSaqueInvalidoException extends RuntimeException{
     public ValorDoSaqueInvalidoException(String msg){

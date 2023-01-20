@@ -1,4 +1,4 @@
-package br.com.bancosinqia.exceptions;
+package exceptions;
 
 public class SaldoInsuficienteException extends RuntimeException{
     public SaldoInsuficienteException(String msg){
