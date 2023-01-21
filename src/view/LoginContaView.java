@@ -22,6 +22,7 @@ public class LoginContaView {
     public static String getClientBankPassword() {
         return clientBankPassword;
     }
+
     /**
      * Método responsável em logar na conta do cliente.
      * @author Rodolfo Lisboa
@@ -44,7 +45,10 @@ public class LoginContaView {
         } while (verify);
 
         entrance.close();
-        // return clientBankAccount - mudar método: void para String
+
+        // lembretes Rodolfo:
+        // bancoDeDados.setContaLogada(clientBankAccount) - view não acessa banco de dados diretamente (verificar)
+        // return clientBankAccount - mudar método: void para String (verificar)
 
         MenuContaView menuContaView = new MenuContaView();
         menuContaView.mostrarMenuConta();
