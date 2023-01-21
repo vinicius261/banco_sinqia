@@ -3,6 +3,7 @@ package view;
 import controller.SacarController;
 import exceptions.SaldoInsuficienteException;
 import exceptions.ValorDoSaqueInvalidoException;
+import model.Conta;
 
 import java.util.Scanner;
 

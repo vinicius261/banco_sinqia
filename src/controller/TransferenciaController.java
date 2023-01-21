@@ -22,7 +22,8 @@ public class TransferenciaController {
         if (conta.getSaldo() >= valorDaTransferencia) {
             return true;
         } else {
-            throw SaldoInsuficienteException("Saldo insuficiente para a transferência.\n Saldo atual: " + conta.getSaldo + "\n");
+            return false;
+//            throw SaldoInsuficienteException("Saldo insuficiente para a transferência.\n Saldo atual: " + conta.getSaldo + "\n");
         }
     }
 
@@ -36,7 +37,7 @@ public class TransferenciaController {
         }
     }
 
-    public Conta buscaContas(String nextLine) {
-
-    }
+//    public Conta buscaContas(String nextLine) {
+//
+//    }
 }

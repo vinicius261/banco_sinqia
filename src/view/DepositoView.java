@@ -8,12 +8,15 @@ import java.util.Scanner;
 public class DepositoView {
     static final Scanner scan = new Scanner(System.in);
     DepositoController depositoController = new DepositoController();
+    MenuContaView menuContaView = new MenuContaView();
     public void depositoView() {
 
         System.out.println("Bem vindo a area de depósito!");
         valorDeposito();
         contaDeposito();
+        depositoController.deposita(valorDeposito, numeroConta);
         System.out.println("R$ " + valorDeposito + " depositado na conta " + numeroConta);
+        menuContaView.mostrarMenuConta();
     }
 
     private double valorRecebido;
