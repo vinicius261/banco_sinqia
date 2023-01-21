@@ -79,13 +79,13 @@ public class TransferenciaView {
 
     public Conta contaFavorecida() {
         System.out.println("Insira o número da conta que vai receber a transferência: ");
-        try {
-            return transferenciaController.buscaContas(scanner.nextLine());
-        }catch (AccountNotFoundException ex){
-            System.out.println(ex.getMessage());
-            MenuContaView menuContaView = new MenuContaView();
-            menuContaView.mostrarMenuConta();
-        }
+//        try {
+//            return transferenciaController.buscaContas(scanner.nextLine());
+//        }catch (AccountNotFoundException ex){
+//            System.out.println(ex.getMessage());
+//            MenuContaView menuContaView = new MenuContaView();
+//            menuContaView.mostrarMenuConta();
+//        }
         return null;
     }
 }
