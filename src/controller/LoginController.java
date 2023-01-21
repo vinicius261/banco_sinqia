@@ -1,8 +1,7 @@
 package controller;
 
-import static model.Banco.clientes;
+import static model.Banco.contas;
 
-import exceptions.UserNotFoundException;
 import view.LoginContaView;
 
 public class LoginController {
@@ -13,15 +12,18 @@ public class LoginController {
 
     public void verificarEmail() {
 
-        for (i = 0; i < clientes.size(); i++) {
-            if (loginContaView.getClientEmail().equals(clientes.get(i).getEmail())) {
+        for (i = 0; i < contas.size(); i++) {
+            if (loginContaView.getClientEmail().equals(contas.get(i).getNumeroConta())) {
                 count = i;
-                verify = false;
                 break;
             }
         }
 
+        while (verify) {
+            try {
 
+            } catch ( )
+        }
        /* if (count == -1) {
             throw new UserNotFoundException();
             } */

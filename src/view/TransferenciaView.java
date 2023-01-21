@@ -1,6 +1,7 @@
 package view;
 
 import controller.TransferenciaController;
+import exceptions.AccountNotFoundException;
 import exceptions.SaldoInsuficienteException;
 import exceptions.ValorDaTransferenciaInvalidaException;
 import model.Conta;
@@ -80,8 +81,8 @@ public class TransferenciaView {
         System.out.println("Insira o número da conta que vai receber a transferência: ");
         try {
             return transferenciaController.buscaContas(scanner.nextLine());
-        }catch (contaNaoEncontradaException ex){
-            System.out.println(ex.getMessage);
+        }catch (AccountNotFoundException ex){
+            System.out.println(ex.getMessage());
             MenuContaView menuContaView = new MenuContaView();
             menuContaView.mostrarMenuConta();
         }
