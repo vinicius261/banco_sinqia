@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class BancoDeDados {
 
-    private Conta contaLogada;
+    private static Conta contaLogada;
 
     private static ArrayList<Conta> contas = new ArrayList<>();
 
@@ -16,12 +16,12 @@ public class BancoDeDados {
     public BancoDeDados() {
     }
 
-    public Conta getContaLogada() {
+    public static Conta getContaLogada() {
         return contaLogada;
     }
 
-    public void setContaLogada(Conta contaLogada) {
-        this.contaLogada = contaLogada;
+    public static void setContaLogada(Conta contaLogada) {
+        BancoDeDados.contaLogada = contaLogada;
     }
 
     public static ArrayList<Conta> getContas() {
@@ -31,6 +31,9 @@ public class BancoDeDados {
     public void setContas(ArrayList<Conta> contas) {
         this.contas = contas;
     }
+    public static void addConta(Conta conta){
+        contas.add(conta);
+    }
 
     public static ArrayList<Cliente> getClientes() {
         return clientes;
@@ -38,5 +41,8 @@ public class BancoDeDados {
 
     public void setClientes(ArrayList<Cliente> clientes) {
         this.clientes = clientes;
+    }
+    public static void addCliente(Cliente cliente){
+        clientes.add(cliente);
     }
 }

@@ -2,10 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="35a64872-cf5a-420b-a98a-962230773c24" name="Changes" comment="Atualização no método verificaConta da classe DepositoController">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/controller/AbrirContaController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/controller/ConsultarSaldoController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/controller/ProcurarOutraContaController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/service/CriarContasClientes.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/view/ConsultarSaldoContaAtualView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/view/ConsultarSaldoOutrasContasView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/DepositoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/DepositoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/DepositoView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/DepositoView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Aplicacao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Aplicacao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/database/BancoDeDados.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/BancoDeDados.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Cliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Cliente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Conta.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Conta.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/MenuInicialView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/MenuInicialView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,13 +45,14 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SONARLINT_PRECOMMIT_ANALYSIS&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SONARLINT_PRECOMMIT_ANALYSIS": "true",
+    "last_opened_file_path": "C:/Users/lucas/IdeaProjects/DevMakers"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="Aplicacao" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Aplicacao" />
