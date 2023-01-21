@@ -1,6 +1,6 @@
 package controller;
 
-import static model.Banco.contas;
+import static database.BancoDeDados.getContas;
 
 public class DepositoController {
 
@@ -14,8 +14,8 @@ public class DepositoController {
 
     public boolean verificaConta(String numeroConta){
         boolean verify = false;
-        for (int i = 0; i < contas.size(); i++) {
-            if (contas.get(i).getNumeroConta().equals(numeroConta)) {
+        for (int i = 0; i < getContas().size(); i++) {
+            if (getContas().get(i).getNumeroConta().equals(numeroConta)) {
                 verify = true;
                 break;
             }

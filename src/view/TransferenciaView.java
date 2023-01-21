@@ -1,6 +1,7 @@
 package view;
 
 import controller.TransferenciaController;
+import exceptions.AccountNotFoundException;
 import exceptions.SaldoInsuficienteException;
 import exceptions.ValorDaTransferenciaInvalidaException;
 import model.Conta;
@@ -20,7 +21,7 @@ public class TransferenciaView {
     }
 
     public void transferir() {
-        System.out.println("Olá, " + conta.getCliente().getNome() + ". Você esta na Área de Transferências\n");
+        System.out.println("Olá, " + contaLogada.getCliente().getNome() + ". Você esta na Área de Transferências\n");
 
         if (validaSenha()) {
             movimentaConta(valorDaTransferencia(), contaFavorecida() );
@@ -73,17 +74,18 @@ public class TransferenciaView {
 
     public void movimentaConta(Double valorDaTransferencia, Conta contaFavorecida){
         transferenciaController.transfereValores(contaLogada, contaFavorecida, valorDaTransferencia);
-        System.out.println("A transferência de " + valorDaTransferencia + "R$ para " + favorecido + " foi feita.");
+        System.out.println("A transferência de " + valorDaTransferencia + "R$ para " + contaFavorecida + " foi feita.");
     }
 
     public Conta contaFavorecida() {
         System.out.println("Insira o número da conta que vai receber a transferência: ");
         try {
             return transferenciaController.buscaContas(scanner.nextLine());
-        }catch (contaNaoEncontradaException ex){
-            System.out.println(ex.getMessage);
+        }catch (AccountNotFoundException ex){
+            System.out.println(ex.getMessage());
             MenuContaView menuContaView = new MenuContaView();
             menuContaView.mostrarMenuConta();
         }
+        return null;
     }
 }
