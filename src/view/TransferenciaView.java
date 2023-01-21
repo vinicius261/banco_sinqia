@@ -21,7 +21,7 @@ public class TransferenciaView {
     }
 
     public void transferir() {
-        System.out.println("Olá, " + conta.getCliente().getNome() + ". Você esta na Área de Transferências\n");
+        System.out.println("Olá, " + contaLogada.getCliente().getNome() + ". Você esta na Área de Transferências\n");
 
         if (validaSenha()) {
             movimentaConta(valorDaTransferencia(), contaFavorecida() );
@@ -74,7 +74,7 @@ public class TransferenciaView {
 
     public void movimentaConta(Double valorDaTransferencia, Conta contaFavorecida){
         transferenciaController.transfereValores(contaLogada, contaFavorecida, valorDaTransferencia);
-        System.out.println("A transferência de " + valorDaTransferencia + "R$ para " + favorecido + " foi feita.");
+        System.out.println("A transferência de " + valorDaTransferencia + "R$ para " + contaFavorecida + " foi feita.");
     }
 
     public Conta contaFavorecida() {
@@ -86,5 +86,6 @@ public class TransferenciaView {
             MenuContaView menuContaView = new MenuContaView();
             menuContaView.mostrarMenuConta();
         }
+        return null;
     }
 }
