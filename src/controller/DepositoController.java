@@ -23,4 +23,12 @@ public class DepositoController {
         return verify;
     }
 
+    public void deposita (double valor, String numeroConta) {
+        for (int i = 0; i < getContas().size(); i++) {
+            if (getContas().get(i).getNumeroConta().equals(numeroConta)) {
+                getContas().get(i).setSaldo(getContas().get(i).getSaldo() + valor);
+                break;
+            }
+        }
+    }
 }

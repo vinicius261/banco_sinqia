@@ -1,5 +1,10 @@
 package controller;
 
+import exceptions.SaldoInsuficienteException;
+import model.Conta;
+
+
+
 public class SacarController {
 
     public boolean validaSenha(Conta conta, String senhaDigitada){
@@ -21,7 +26,8 @@ public class SacarController {
         if (conta.getSaldo() >= valorDoSaque) {
             return true;
         } else {
-            throw SaldoInsuficienteException("Saldo insuficiente para o saque.\n Saldo atual: " + conta.getSaldo + "\n");
+            return false;
+//            throw SaldoInsuficienteException("Saldo insuficiente para o saque.\n Saldo atual: " + conta.getSaldo + "\n");
         }
     }
 
