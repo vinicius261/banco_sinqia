@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="af0bb88f-4fef-4d38-b1d2-46ac39834039" name="Changes" comment="Arrumando as pastas pos merge.">
-      <change afterPath="$PROJECT_DIR$/src/br/com/bancosinqia/view/TransferenciaView.java" afterDir="false" />
+    <list default="true" id="af0bb88f-4fef-4d38-b1d2-46ac39834039" name="Changes" comment="Alterações em LoginController e método loginconta de LoginContaView">
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -31,7 +31,9 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2KT9KKh2BaSAgJ29AavJFNSGOMe" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -53,7 +55,7 @@
       <updated>1673908530040</updated>
     </task>
     <task active="true" id="Default" summary="Default task">
-      <changelist id="cf7984ea-c90e-429c-bf48-b365f4f152c4" name="Changes" comment="Criando o esboço inicial do view e controller do Saque" />
+      <changelist id="af0bb88f-4fef-4d38-b1d2-46ac39834039" name="Changes" comment="Alterações em LoginController e LoginContaView" />
       <created>1673987646877</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -80,7 +82,35 @@
       <option name="project" value="LOCAL" />
       <updated>1674248126075</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Correção de exceção">
+      <created>1674260593223</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1674260593223</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Alteração nova classe BancoDeDados e atualizações referentes">
+      <created>1674265153053</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1674265153053</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Alterações em LoginController e LoginContaView">
+      <created>1674273476616</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1674273476616</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Alterações em LoginController e método loginconta de LoginContaView">
+      <created>1674296617257</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1674296617257</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -100,6 +130,10 @@
     <MESSAGE value="Remoção da validação da Conta por conta da lógica de usuário logado na main.&#10;&#10;Complementando o controller e view." />
     <MESSAGE value="Tirando a dependência do Sacar em relção a classe Banco submetendo o Sacar a validação de senha." />
     <MESSAGE value="Arrumando as pastas pos merge." />
-    <option name="LAST_COMMIT_MESSAGE" value="Arrumando as pastas pos merge." />
+    <MESSAGE value="Correção de exceção" />
+    <MESSAGE value="Alteração nova classe BancoDeDados e atualizações referentes" />
+    <MESSAGE value="Alterações em LoginController e LoginContaView" />
+    <MESSAGE value="Alterações em LoginController e método loginconta de LoginContaView" />
+    <option name="LAST_COMMIT_MESSAGE" value="Alterações em LoginController e método loginconta de LoginContaView" />
   </component>
 </project>
