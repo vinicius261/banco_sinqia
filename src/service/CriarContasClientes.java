@@ -23,6 +23,8 @@ public class CriarContasClientes {
         contaCorrente.setCliente(cliente);
         contaCorrente.setSaldo(100);
         contaCorrente.setTipoDeConta(TipoDeConta.CONTA_CORRENTE);
+        contaCorrente.setNumeroConta("1");
+        contaCorrente.setSenha("1");
         BancoDeDados.addConta(contaCorrente);
 
         ContaPoupanca contaPoupanca = new ContaPoupanca();

@@ -18,17 +18,16 @@ public class MenuInicialView {
                 switch (opcao) {
                     case 1:
                         System.out.println("-------------------------- ABRIR CONTA ---------------------------");
-//                        AbrirContaView abrirContaView = new AbrirContaView();
-//                        abrirContaView.abrirConta();
-                        ConsultarSaldoContaAtualView consultarSaldoContaAtualView = new ConsultarSaldoContaAtualView();
-                        consultarSaldoContaAtualView.SaldoContaAtual();
+                        AbrirContaView abrirContaView = new AbrirContaView();
+                        abrirContaView.abrirConta();
+
                         mostrarMenuInicial();
                         break;
 
                     case 2:
                         System.out.println("-------------------------- LOGIN ---------------------------");
                         LoginContaView loginContaView = new LoginContaView();
-//                        loginContaView.logarContaView();
+                        loginContaView.logarContaView();
                         break;
 
                     case 3:
