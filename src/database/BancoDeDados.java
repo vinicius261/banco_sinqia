@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class BancoDeDados {
 
     private static BancoDeDados bancoDeDados = new BancoDeDados();
-    private Conta contaLogada;
+    private static Conta contaLogada;
 
 
     private static ArrayList<Cliente> clientes;
@@ -18,7 +18,7 @@ public class BancoDeDados {
     private BancoDeDados() {
         contas = new ArrayList<>();
         clientes = new ArrayList<>();
-        this.contaLogada = null;
+        contaLogada = null;
     }
 
     public static BancoDeDados banco() {
@@ -56,10 +56,6 @@ public class BancoDeDados {
         this.clientes = clientes;
     }
 
-
-    public static void addConta(Conta conta) {
-        contas.add(conta);
-    }
 
     public static void addCliente(Cliente cliente) {
 
