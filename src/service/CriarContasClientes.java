@@ -5,7 +5,7 @@ import enums.TipoDeCliente;
 import enums.TipoDeConta;
 import model.Cliente;
 import model.ContaCorrente;
-import database.BancoDeDados.*;
+import model.ContaInvestimento;
 import model.ContaPoupanca;
 
 public class CriarContasClientes {
@@ -27,6 +27,12 @@ public class CriarContasClientes {
         contaPoupanca.setSaldo(50);
         contaPoupanca.setTipoDeConta(TipoDeConta.CONTA_POUPANCA);
         BancoDeDados.addConta(contaPoupanca);
+
+        ContaInvestimento contaInvestimento = new ContaInvestimento();
+        contaInvestimento.setCliente(cliente);
+        contaInvestimento.setSaldo(1000);
+        contaInvestimento.setTipoDeConta((TipoDeConta.CONTA_INVESTIMENTO));
+        BancoDeDados.addConta(contaInvestimento);
 
         BancoDeDados.setContaLogada(contaPoupanca);
     }

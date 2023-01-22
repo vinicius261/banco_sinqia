@@ -5,6 +5,7 @@ import model.Conta;
 import enums.TipoDeConta;
 
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class ConsultarSaldoOutrasContasView {
@@ -32,11 +33,13 @@ public class ConsultarSaldoOutrasContasView {
             }
             System.out.println(contaSelecionada);
         }
-        opcao = input.nextLine();
+        opcao = input.nextLine().toUpperCase();
 
         switch (opcao) {
             case "POUPANCA" -> {
-
+//                for(Conta conta : contas){
+//                    if(Objects.equals(conta.getTipoDeConta(),))
+//                }
                 System.out.println("O saldo da sua conta poupanca e de: " + saldo);
             }
             case "CORRENTE" -> {

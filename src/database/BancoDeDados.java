@@ -35,8 +35,8 @@ public class BancoDeDados {
         contas.add(conta);
     }
 
-    public static ArrayList<Cliente> getClientes() {
-        return clientes;
+    public ArrayList<Cliente> getClientes() {
+        return this.clientes;
     }
 
     public void setClientes(ArrayList<Cliente> clientes) {
