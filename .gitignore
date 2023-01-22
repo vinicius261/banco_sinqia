@@ -30,3 +30,4 @@ hs_err_pid*
 out/
 !**/src/main/**/out/
 !**/src/test/**/out/
+/.idea/

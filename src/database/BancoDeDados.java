@@ -7,36 +7,58 @@ import java.util.ArrayList;
 
 public class BancoDeDados {
 
-    private Conta contaLogada;
+    private static BancoDeDados bancoDeDados = new BancoDeDados();
+    private static Conta contaLogada;
 
-    private static ArrayList<Conta> contas = new ArrayList<>();
 
-    private static ArrayList<Cliente> clientes = new ArrayList<>();
+    private static ArrayList<Cliente> clientes;
 
-    public BancoDeDados() {
+    private static ArrayList<Conta> contas;
+
+    private BancoDeDados() {
+        contas = new ArrayList<>();
+        clientes = new ArrayList<>();
+        contaLogada = null;
     }
 
-    public Conta getContaLogada() {
+    public static BancoDeDados banco() {
+        return bancoDeDados;
+    }
+
+    public static Conta getContaLogada() {
         return contaLogada;
     }
 
-    public void setContaLogada(Conta contaLogada) {
-        this.contaLogada = contaLogada;
+    public static void setContaLogada(Conta contaLogada) {
+
+        bancoDeDados.contaLogada = contaLogada;
+
     }
 
     public static ArrayList<Conta> getContas() {
-        return contas;
+        return bancoDeDados.contas;
     }
 
     public void setContas(ArrayList<Conta> contas) {
         this.contas = contas;
     }
+    public static void addConta(Conta conta){
+        contas.add(conta);
+    }
+
 
     public static ArrayList<Cliente> getClientes() {
-        return clientes;
+        return bancoDeDados.clientes;
+
     }
 
     public void setClientes(ArrayList<Cliente> clientes) {
         this.clientes = clientes;
+    }
+
+
+    public static void addCliente(Cliente cliente) {
+
+        clientes.add(cliente);
     }
 }

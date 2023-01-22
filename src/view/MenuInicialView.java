@@ -20,13 +20,17 @@ public class MenuInicialView {
                         System.out.println("-------------------------- ABRIR CONTA ---------------------------");
                         AbrirContaView abrirContaView = new AbrirContaView();
                         abrirContaView.abrirConta();
+
                         mostrarMenuInicial();
                         break;
 
                     case 2:
                         System.out.println("-------------------------- LOGIN ---------------------------");
-                        LoginContaView loginContaView = new LoginContaView();
-                        loginContaView.loginConta();
+                        ConsultarSaldoContaAtualView consultarSaldoContaAtualView = new ConsultarSaldoContaAtualView();
+                        consultarSaldoContaAtualView.SaldoContaAtual();
+
+//                        LoginContaView loginContaView = new LoginContaView();
+//                        loginContaView.logarContaView();
                         break;
 
                     case 3:

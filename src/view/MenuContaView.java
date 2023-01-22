@@ -26,7 +26,8 @@ public class MenuContaView {
 
                     case 2:
                         System.out.println("-------------------------- SALDO ---------------------------");
-
+                        ConsultarSaldoContaAtualView consultarSaldoContaAtualView = new ConsultarSaldoContaAtualView();
+                        consultarSaldoContaAtualView.SaldoContaAtual();
                         break;
                     case 3:
                         System.out.println("-------------------------- TRANSFERIR ---------------------------");
