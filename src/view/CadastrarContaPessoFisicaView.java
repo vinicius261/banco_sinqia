@@ -1,6 +1,7 @@
 package view;
 
 import controller.AbrirContaController;
+import controller.ValidarSenhaController;
 import database.BancoDeDados;
 import enums.TipoDeConta;
 import model.Cliente;
@@ -12,7 +13,6 @@ public class CadastrarContaPessoFisicaView {
     static final Scanner input = new Scanner(System.in);
     public void cadastrarContaPessoFisica(){
         TipoDeConta tipoDeConta = null;
-        System.out.println("Cadastrando conta de pessoa fisica");
         System.out.println("Deseja abrir uma conta:" +
                 "\n1 - CORRENTE" +
                 "\n2 - POUPANCA" +
@@ -31,6 +31,7 @@ public class CadastrarContaPessoFisicaView {
                         System.out.println("-----------------------------------------------------");
                         tipoDeConta = TipoDeConta.CONTA_POUPANCA;
                         break;
+
                     case 3:
                         System.out.println("-----------------------------------------------------");
                         tipoDeConta = TipoDeConta.CONTA_INVESTIMENTO;
@@ -49,8 +50,18 @@ public class CadastrarContaPessoFisicaView {
             cadastrarContaPessoFisica();
         }
 
-        System.out.println("Digite uma senha para sua conta");
+        System.out.println("Digite uma senha para sua conta" +
+                "\nA senha deve conte pelo menos:" +
+                        "\n8 caracteres" +
+                        "\n1 letra maiuscula" +
+                        "\n1 letra minuscula");
         String senha = input.nextLine();
+        ValidarSenhaController validarSenhaController = new ValidarSenhaController();
+
+        if(!validarSenhaController.validarSenha(senha)){
+            System.out.println("Digite uma senha valida");
+            cadastrarContaPessoFisica();
+        }
 
         Cliente cliente = BancoDeDados.getClientes().get(0);
 

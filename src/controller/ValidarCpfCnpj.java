@@ -3,7 +3,7 @@ package controller;
 import java.util.InputMismatchException;
 import java.util.Random;
 
-public class GeraCpfCnpj {
+public class ValidarCpfCnpj {
 
     private int randomiza(int n) {
         int ranNum = (int) (Math.random() * n);
@@ -121,7 +121,7 @@ public class GeraCpfCnpj {
 
 
     public void main(String[] args) {
-        GeraCpfCnpj gerador = new GeraCpfCnpj();
+        ValidarCpfCnpj gerador = new ValidarCpfCnpj();
         String cpf = gerador.cpf(true);
         System.out.printf("CPF: %s, Valido: %s\n", cpf, gerador.isCPF(cpf));
 

@@ -2,7 +2,7 @@ package view;
 
 import java.util.Scanner;
 
-import controller.GeraCpfCnpj;
+import controller.ValidarCpfCnpj;
 import controller.VerificarSeClienteExisteController;
 
 public class AbrirContaView {
@@ -48,8 +48,8 @@ public class AbrirContaView {
         System.out.println("Digite seu CPF");
         String CPF = input.nextLine();
         System.out.println(CPF);
-        GeraCpfCnpj geraCpfCnpj = new GeraCpfCnpj();
-        if(geraCpfCnpj.isCPF(CPF)){
+        ValidarCpfCnpj validarCpfCnpj = new ValidarCpfCnpj();
+        if(validarCpfCnpj.isCPF(CPF)){
             VerificarSeClienteExisteController verificarSeClienteExisteController = new VerificarSeClienteExisteController();
             if(verificarSeClienteExisteController.verificarSeClienteExiste(CPF)){
                 CadastrarContaPessoFisicaView cadastrarContaPessoFisicaView = new CadastrarContaPessoFisicaView();
@@ -68,8 +68,8 @@ public class AbrirContaView {
     public void abrirContaPessoaJuridica(){
         System.out.println("Digite seu CNPJ");
         String CNPJ = input.nextLine();
-        GeraCpfCnpj geraCpfCnpj = new GeraCpfCnpj();
-        if(geraCpfCnpj.isCNPJ(CNPJ)){
+        ValidarCpfCnpj validarCpfCnpj = new ValidarCpfCnpj();
+        if(validarCpfCnpj.isCNPJ(CNPJ)){
             VerificarSeClienteExisteController verificarSeClienteExisteController = new VerificarSeClienteExisteController();
             if(verificarSeClienteExisteController.verificarSeClienteExiste(CNPJ)){
                 CadastrarContaPessoaJuridicaView cadastrarContaPessoaJuridicaView = new CadastrarContaPessoaJuridicaView();

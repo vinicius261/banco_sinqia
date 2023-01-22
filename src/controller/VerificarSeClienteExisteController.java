@@ -8,7 +8,6 @@ import java.util.ArrayList;
 
 public class VerificarSeClienteExisteController {
     public boolean verificarSeClienteExiste(String documento){
-        System.out.println("VerificarSeClienteExisteController");
         boolean clienteExiste = false;
         ArrayList<Cliente> listaDeclientes;
         listaDeclientes = BancoDeDados.getClientes();
