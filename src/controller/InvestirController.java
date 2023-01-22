@@ -6,7 +6,7 @@ import service.ContaInvestimentoService;
 import service.ContaPoupancaService;
 
 public class InvestirController {
-    BancoDeDados bancoDeDados = new BancoDeDados();
+    BancoDeDados bancoDeDados = BancoDeDados.banco();
 
     public void tipoInvestimento(double investimento){
         if(bancoDeDados.getContaLogada().getTipoDeConta().equals(TipoDeConta.CONTA_INVESTIMENTO)){

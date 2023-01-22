@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="35a64872-cf5a-420b-a98a-962230773c24" name="Changes" comment="Atualização no método verificaConta da classe DepositoController">
-      <change afterPath="$PROJECT_DIR$/src/controller/ConsultarSaldoOutraContaController.java" afterDir="false" />
+
+    <list default="true" id="af0bb88f-4fef-4d38-b1d2-46ac39834039" name="Changes" comment="Alterações em LoginController e método loginconta de LoginContaView">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/database/BancoDeDados.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/BancoDeDados.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/CriarContasClientes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/CriarContasClientes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/ConsultarSaldoOutrasContasView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/ConsultarSaldoOutrasContasView.java" afterDir="false" />
+
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,7 +33,9 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2KT9KKh2BaSAgJ29AavJFNSGOMe" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -46,20 +48,6 @@
     &quot;last_opened_file_path&quot;: &quot;C:/Users/lucas/IdeaProjects/DevMakers&quot;
   }
 }</component>
-  <component name="RunManager">
-    <configuration name="Aplicacao" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Aplicacao" />
-      <module name="banco_sinqia" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Application.Aplicacao" />
-      </list>
-    </recent_temporary>
-  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task id="LOCAL-00001" summary="Criando o esboço inicial do view e controller do Saque">
@@ -70,7 +58,7 @@
       <updated>1673908530040</updated>
     </task>
     <task active="true" id="Default" summary="Default task">
-      <changelist id="35a64872-cf5a-420b-a98a-962230773c24" name="Changes" comment="DepositoView e DepositoController" />
+      <changelist id="af0bb88f-4fef-4d38-b1d2-46ac39834039" name="Changes" comment="Alterações em LoginController e LoginContaView" />
       <created>1673987646877</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -97,14 +85,35 @@
       <option name="project" value="LOCAL" />
       <updated>1674248126075</updated>
     </task>
-    <task id="LOCAL-00005" summary="Atualização no método verificaConta da classe DepositoController">
-      <created>1674256837066</created>
+    <task id="LOCAL-00005" summary="Correção de exceção">
+      <created>1674260593223</created>
       <option name="number" value="00005" />
       <option name="presentableId" value="LOCAL-00005" />
       <option name="project" value="LOCAL" />
-      <updated>1674256837066</updated>
+      <updated>1674260593223</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Alteração nova classe BancoDeDados e atualizações referentes">
+      <created>1674265153053</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1674265153053</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Alterações em LoginController e LoginContaView">
+      <created>1674273476616</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1674273476616</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Alterações em LoginController e método loginconta de LoginContaView">
+      <created>1674296617257</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1674296617257</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -124,7 +133,10 @@
     <MESSAGE value="Remoção da validação da Conta por conta da lógica de usuário logado na main.&#10;&#10;Complementando o controller e view." />
     <MESSAGE value="Tirando a dependência do Sacar em relção a classe Banco submetendo o Sacar a validação de senha." />
     <MESSAGE value="Arrumando as pastas pos merge." />
-    <MESSAGE value="Atualização no método verificaConta da classe DepositoController" />
-    <option name="LAST_COMMIT_MESSAGE" value="Atualização no método verificaConta da classe DepositoController" />
+    <MESSAGE value="Correção de exceção" />
+    <MESSAGE value="Alteração nova classe BancoDeDados e atualizações referentes" />
+    <MESSAGE value="Alterações em LoginController e LoginContaView" />
+    <MESSAGE value="Alterações em LoginController e método loginconta de LoginContaView" />
+    <option name="LAST_COMMIT_MESSAGE" value="Alterações em LoginController e método loginconta de LoginContaView" />
   </component>
 </project>
