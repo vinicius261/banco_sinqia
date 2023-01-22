@@ -1,14 +1,17 @@
 package controller;
 
 import static database.BancoDeDados.getContas;
+import static database.BancoDeDados.setContaLogada;
 import static view.LoginContaView.getClientBankAccount;
 import static view.LoginContaView.getClientBankPassword;
 
 import exceptions.AccountNotFoundException;
 import exceptions.PasswordNotFoundException;
+import model.Conta;
 
 public class LoginController {
 
+    private String clientBankAccountControl;
     private int i, count = -1;
     private boolean verify;
 
@@ -33,8 +36,10 @@ public class LoginController {
             System.out.println(e.getMessage());
             System.out.println("Por favor, tente novamente.");
             verify = true;
-        }
+        } finally {
+        clientBankAccountControl = getClientBankAccount();
         return verify;
+        }
     }
 
     /**
@@ -55,10 +60,19 @@ public class LoginController {
             System.out.println(e.getMessage());
             System.out.println("Por favor, tente novamente.");
             verify = true;
+        } finally {
+            return verify;
         }
-        return verify;
     }
 
-
+    /**
+     * Método responsável por informar em qual o número da conta o cliente fez o login
+     * @return String contendo o número da conta que foi logada
+     * @author Rodolfo Lisboa
+     */
+    public void loginContaController(){
+        Conta c = getContas().get(count);
+        setContaLogada(c);
+    }
 
 }

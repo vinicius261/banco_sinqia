@@ -26,7 +26,7 @@ public class MenuInicialView {
                     case 2:
                         System.out.println("-------------------------- LOGIN ---------------------------");
                         LoginContaView loginContaView = new LoginContaView();
-                        loginContaView.loginConta();
+                        loginContaView.logarContaView();
                         break;
 
                     case 3:

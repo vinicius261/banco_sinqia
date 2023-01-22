@@ -27,7 +27,7 @@ public class LoginContaView {
      * Método responsável em logar na conta do cliente.
      * @author Rodolfo Lisboa
      */
-    public void loginConta() {
+    public void logarContaView() {
         do {
             System.out.println("Olá, para entrar no banco, por favor digite sua conta cadastrada:");
             clientBankAccount = entrance.nextLine();
@@ -44,11 +44,9 @@ public class LoginContaView {
 
         } while (verify);
 
-        entrance.close();
+        loginController.loginContaController();
 
-        // lembretes Rodolfo:
-        // bancoDeDados.setContaLogada(clientBankAccount) - view não acessa banco de dados diretamente (verificar)
-        // return clientBankAccount - mudar método: void para String (verificar)
+        entrance.close();
 
         MenuContaView menuContaView = new MenuContaView();
         menuContaView.mostrarMenuConta();
