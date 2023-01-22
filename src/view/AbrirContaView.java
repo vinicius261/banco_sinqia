@@ -2,7 +2,8 @@ package view;
 
 import java.util.Scanner;
 
-import controller.ValidarDocumentoController;
+import controller.GeraCpfCnpj;
+import controller.VerificarSeClienteExisteController;
 
 public class AbrirContaView {
 
@@ -47,18 +48,39 @@ public class AbrirContaView {
         System.out.println("Digite seu CPF");
         String CPF = input.nextLine();
         System.out.println(CPF);
-        ValidarDocumentoController validarDocumentoController = new ValidarDocumentoController();
-//        validarDocumentoController.validarDocumento();
-        if(validarDocumentoController.isCPF(CPF) == true){
-            validarDocumentoController.imprimeCPF(CPF);
+        GeraCpfCnpj geraCpfCnpj = new GeraCpfCnpj();
+        if(geraCpfCnpj.isCPF(CPF)){
+            VerificarSeClienteExisteController verificarSeClienteExisteController = new VerificarSeClienteExisteController();
+            if(verificarSeClienteExisteController.verificarSeClienteExiste(CPF)){
+                CadastrarContaPessoFisicaView cadastrarContaPessoFisicaView = new CadastrarContaPessoFisicaView();
+                cadastrarContaPessoFisicaView.cadastrarContaPessoFisica();
+            } else{
+                System.out.println("Ir para cadastrar cliente");
+                // chamar a view para cadastrar cliente
+            }
         } else{
-            System.out.println("Não é CPF");
+            System.out.println("CPF invalido");
+            MenuInicialView menuInicialView = new MenuInicialView();
+            menuInicialView.mostrarMenuInicial();
         }
-
-
     }
 
     public void abrirContaPessoaJuridica(){
-
+        System.out.println("Digite seu CNPJ");
+        String CNPJ = input.nextLine();
+        GeraCpfCnpj geraCpfCnpj = new GeraCpfCnpj();
+        if(geraCpfCnpj.isCNPJ(CNPJ)){
+            VerificarSeClienteExisteController verificarSeClienteExisteController = new VerificarSeClienteExisteController();
+            if(verificarSeClienteExisteController.verificarSeClienteExiste(CNPJ)){
+                CadastrarContaPessoaJuridicaView cadastrarContaPessoaJuridicaView = new CadastrarContaPessoaJuridicaView();
+                cadastrarContaPessoaJuridicaView.cadastrarContaPessoaJuridica();
+            } else{
+                // chamar a view para cadastrar cliente
+            }
+        } else{
+            System.out.println("CNPJ invalido");
+            MenuInicialView menuInicialView = new MenuInicialView();
+            menuInicialView.mostrarMenuInicial();
+        }
     }
 }

@@ -15,7 +15,7 @@ public class CriarContasClientes {
     public void CriarContasClientes(){
         Cliente cliente = new Cliente();
         cliente.setTipoDeCliente(TipoDeCliente.PESSOA_FISICA);
-        cliente.setDocumento("111");
+        cliente.setDocumento("38129476843");
         cliente.SetNome("Lucas");
         BancoDeDados.addCliente(cliente);
 
@@ -33,11 +33,11 @@ public class CriarContasClientes {
         contaPoupanca.setTipoDeConta(TipoDeConta.CONTA_POUPANCA);
         BancoDeDados.addConta(contaPoupanca);
 
-        ContaInvestimento contaInvestimento = new ContaInvestimento();
-        contaInvestimento.setCliente(cliente);
-        contaInvestimento.setSaldo(1000);
-        contaInvestimento.setTipoDeConta((TipoDeConta.CONTA_INVESTIMENTO));
-        BancoDeDados.addConta(contaInvestimento);
+//        ContaInvestimento contaInvestimento = new ContaInvestimento();
+//        contaInvestimento.setCliente(cliente);
+//        contaInvestimento.setSaldo(1000);
+//        contaInvestimento.setTipoDeConta((TipoDeConta.CONTA_INVESTIMENTO));
+//        BancoDeDados.addConta(contaInvestimento);
 
         BancoDeDados.setContaLogada(contaPoupanca);
     }
