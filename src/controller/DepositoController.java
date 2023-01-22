@@ -15,7 +15,7 @@ public class DepositoController {
     public boolean verificaConta(String numeroConta){
         boolean verify = false;
         for (int i = 0; i < getContas().size(); i++) {
-            if (getContas().get(i).getNumeroConta().equals(numeroConta)) {
+            if (getContas().get(i).getNumeroConta().equals(numeroConta)){
                 verify = true;
                 break;
             }

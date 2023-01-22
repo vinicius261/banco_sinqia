@@ -5,18 +5,15 @@ import controller.DepositoController;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import static database.BancoDeDados.getContas;
+
 public class DepositoView {
     static final Scanner scan = new Scanner(System.in);
     DepositoController depositoController = new DepositoController();
-    MenuContaView menuContaView = new MenuContaView();
     public void depositoView() {
 
         System.out.println("Bem vindo a area de depósito!");
         valorDeposito();
-        contaDeposito();
-        depositoController.deposita(valorDeposito, numeroConta);
-        System.out.println("R$ " + valorDeposito + " depositado na conta " + numeroConta);
-        menuContaView.mostrarMenuConta();
     }
 
     private double valorRecebido;
@@ -32,9 +29,10 @@ public class DepositoView {
         boolean verificaValor = depositoController.verificaValor(valorRecebido);
         if (verificaValor) {
             valorDeposito = valorRecebido;
+            contaDeposito();
         } else
             System.out.println("Necessario depositar um valor maior que zero.");
-            valorDeposito();
+        valorDeposito();
     }
 
     public void contaDeposito() {
@@ -44,9 +42,17 @@ public class DepositoView {
         boolean verificaConta = depositoController.verificaConta(numeroConta);
         if (verificaConta) {
             System.out.println("Conta localizada com sucesso");
+            depositoController.deposita(valorDeposito, numeroConta);
+            System.out.println("R$ " + valorDeposito + " depositado na conta " + numeroConta);
+
+            for (int i = 0; i < getContas().size(); i++) {
+                System.out.println(getContas().get(i).getSaldo());
+            }
+
+            depositoView();
         } else
             System.out.println("Conta não existente");
-            contaDeposito();
+        contaDeposito();
     }
 
 }
