@@ -6,10 +6,7 @@ import controller.ValidarCpfCnpj;
 import controller.VerificarSeClienteExisteController;
 
 public class AbrirContaView {
-
     static final Scanner input = new Scanner(System.in);
-
-    //completar classe-metodo - coloquei um sout pra ver se funcionava
     public void abrirConta(){
         System.out.println("abrindo conta");
         System.out.println("Deseja abrir uma conta para pessoa:" +
@@ -73,8 +70,9 @@ public class AbrirContaView {
             VerificarSeClienteExisteController verificarSeClienteExisteController = new VerificarSeClienteExisteController();
             if(verificarSeClienteExisteController.verificarSeClienteExiste(CNPJ)){
                 CadastrarContaPessoaJuridicaView cadastrarContaPessoaJuridicaView = new CadastrarContaPessoaJuridicaView();
-                cadastrarContaPessoaJuridicaView.cadastrarContaPessoaJuridica();
+                cadastrarContaPessoaJuridicaView.cadastrarContaPessoJuridica();
             } else{
+                System.out.println("Chamar a view de cadastrar cliente");
                 // chamar a view para cadastrar cliente
             }
         } else{
