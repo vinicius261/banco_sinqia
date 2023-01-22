@@ -37,15 +37,27 @@ public class ConsultarSaldoOutrasContasView {
 
         switch (opcao) {
             case "POUPANCA" -> {
-//                for(Conta conta : contas){
-//                    if(Objects.equals(conta.getTipoDeConta(),))
-//                }
+                for(Conta conta : contas){
+                    if(conta.getTipoDeConta().equals(TipoDeConta.CONTA_POUPANCA)){
+                        saldo = conta.getSaldo();
+                    }
+                }
                 System.out.println("O saldo da sua conta poupanca e de: " + saldo);
             }
             case "CORRENTE" -> {
+                for(Conta conta : contas){
+                    if(conta.getTipoDeConta().equals(TipoDeConta.CONTA_CORRENTE)){
+                        saldo = conta.getSaldo();
+                    }
+                }
                 System.out.println("O saldo da sua conta corrente e de: " + saldo);
             }
             case "INVESTIMENTO" -> {
+                for(Conta conta : contas){
+                    if(conta.getTipoDeConta().equals(TipoDeConta.CONTA_INVESTIMENTO)){
+                        saldo = conta.getSaldo();
+                    }
+                }
                 System.out.println("O saldo da sua conta investimento e de: " + saldo);
             }
         }
