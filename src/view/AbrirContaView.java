@@ -7,7 +7,12 @@ import controller.VerificarSeClienteExisteController;
 
 public class AbrirContaView {
     static final Scanner input = new Scanner(System.in);
+
+
     public void abrirConta(){
+        CadastrarContaPessoFisicaView cadastrarContaPessoFisicaView = new CadastrarContaPessoFisicaView();
+        CadastrarContaPessoaJuridicaView cadastrarContaPessoaJuridicaView = new CadastrarContaPessoaJuridicaView();
+
         System.out.println("abrindo conta");
         System.out.println("Deseja abrir uma conta para pessoa:" +
                 "\n1 -  FISICA" +
@@ -19,12 +24,13 @@ public class AbrirContaView {
                 switch (opcao) {
                     case 1:
                         System.out.println("-------------------------- PESSOA FISICA ---------------------------");
-                        abrirContaPessoaFisica();
+                        cadastrarContaPessoFisicaView.cadastrarContaPessoFisica();
                         break;
 
                     case 2:
                         System.out.println("-------------------------- PESSOA JURIDICA ---------------------------");
-                        abrirContaPessoaJuridica();
+                        System.out.println("Digite seu CNPJ");
+                        cadastrarContaPessoaJuridicaView.cadastrarContaPessoJuridica();
                         break;
 
                     default:
@@ -41,42 +47,22 @@ public class AbrirContaView {
         }
     }
 
-    public void abrirContaPessoaFisica(){
-        System.out.println("Digite seu CPF");
-        String CPF = input.nextLine();
-        System.out.println(CPF);
-        ValidarCpfCnpj validarCpfCnpj = new ValidarCpfCnpj();
-        if(validarCpfCnpj.isCPF(CPF)){
-            VerificarSeClienteExisteController verificarSeClienteExisteController = new VerificarSeClienteExisteController();
-            if(verificarSeClienteExisteController.verificarSeClienteExiste(CPF)){
-                CadastrarContaPessoFisicaView cadastrarContaPessoFisicaView = new CadastrarContaPessoFisicaView();
-                cadastrarContaPessoFisicaView.cadastrarContaPessoFisica();
-            } else{
-                System.out.println("Ir para cadastrar cliente");
-                // chamar a view para cadastrar cliente
-            }
-        } else{
-            System.out.println("CPF invalido");
-            MenuInicialView menuInicialView = new MenuInicialView();
-            menuInicialView.mostrarMenuInicial();
-        }
-    }
+    public void VerificarTipoPessoa(){
+        String numeroDocumento = input.nextLine();
 
-    public void abrirContaPessoaJuridica(){
-        System.out.println("Digite seu CNPJ");
-        String CNPJ = input.nextLine();
         ValidarCpfCnpj validarCpfCnpj = new ValidarCpfCnpj();
-        if(validarCpfCnpj.isCNPJ(CNPJ)){
-            VerificarSeClienteExisteController verificarSeClienteExisteController = new VerificarSeClienteExisteController();
-            if(verificarSeClienteExisteController.verificarSeClienteExiste(CNPJ)){
-                CadastrarContaPessoaJuridicaView cadastrarContaPessoaJuridicaView = new CadastrarContaPessoaJuridicaView();
-                cadastrarContaPessoaJuridicaView.cadastrarContaPessoJuridica();
+        VerificarSeClienteExisteController verificarSeClienteExisteController = new VerificarSeClienteExisteController();
+
+
+         if(validarCpfCnpj.isCNPJ(numeroDocumento)){
+            if(verificarSeClienteExisteController.verificarSeClienteExiste(numeroDocumento)){
+
             } else{
-                System.out.println("Chamar a view de cadastrar cliente");
+                System.out.println("Cadastrando cliente");
                 // chamar a view para cadastrar cliente
             }
         } else{
-            System.out.println("CNPJ invalido");
+            System.out.println("Documento invalido");
             MenuInicialView menuInicialView = new MenuInicialView();
             menuInicialView.mostrarMenuInicial();
         }
