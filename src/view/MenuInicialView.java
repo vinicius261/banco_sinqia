@@ -18,8 +18,10 @@ public class MenuInicialView {
                 switch (opcao) {
                     case 1:
                         System.out.println("-------------------------- ABRIR CONTA ---------------------------");
-                        AbrirContaView abrirContaView = new AbrirContaView();
-                        abrirContaView.abrirConta();
+//                        AbrirContaView abrirContaView = new AbrirContaView();
+//                        abrirContaView.abrirConta();
+                        ConsultarSaldoContaAtualView consultarSaldoContaAtualView = new ConsultarSaldoContaAtualView();
+                        consultarSaldoContaAtualView.SaldoContaAtual();
                         mostrarMenuInicial();
                         break;
 
