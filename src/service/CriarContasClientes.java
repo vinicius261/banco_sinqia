@@ -1,5 +1,8 @@
 package service;
 
+import static database.BancoDeDados.addConta;
+import static database.BancoDeDados.addCliente;
+
 import database.BancoDeDados;
 import enums.TipoDeCliente;
 import enums.TipoDeConta;

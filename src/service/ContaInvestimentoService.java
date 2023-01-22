@@ -6,7 +6,7 @@ import database.BancoDeDados;
 import model.ContaInvestimento;
 
 public class ContaInvestimentoService implements Investir {
-    BancoDeDados bancoDeDados = new BancoDeDados();
+    BancoDeDados bancoDeDados = BancoDeDados.banco();
     ContaInvestimento contaInvestimento = new ContaInvestimento();
 
     @Override
