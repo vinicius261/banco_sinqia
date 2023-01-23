@@ -6,6 +6,7 @@ import exceptions.SaldoInsuficienteException;
 import exceptions.ValorDaTransferenciaInvalidaException;
 import model.Conta;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class TransferenciaView {
@@ -14,17 +15,20 @@ public class TransferenciaView {
     private TransferenciaController transferenciaController;
     private Conta contaLogada;
 
-    public TransferenciaView(Conta contaLogada) {
+    private ArrayList<Conta> contas;
+
+    public TransferenciaView(Conta contaLogada, ArrayList<Conta> contas) {
         this.scanner = new Scanner(System.in);
         this.transferenciaController= new TransferenciaController();
         this.contaLogada = contaLogada;
+        this.contas = contas;
     }
 
     public void transferir() {
         System.out.println("Olá, " + contaLogada.getCliente().getNome() + ". Você esta na Área de Transferências\n");
 
         if (validaSenha()) {
-            movimentaConta(valorDaTransferencia(), contaFavorecida() );
+            movimentaConta(valorDaTransferencia(), contaFavorecida(contas) );
         } else {
             System.out.println("Senha incorreta.\n");
         }
@@ -79,13 +83,14 @@ public class TransferenciaView {
 
     public Conta contaFavorecida() {
         System.out.println("Insira o número da conta que vai receber a transferência: ");
-//        try {
-//            return transferenciaController.buscaContas(scanner.nextLine());
-//        }catch (AccountNotFoundException ex){
-//            System.out.println(ex.getMessage());
-//            MenuContaView menuContaView = new MenuContaView();
-//            menuContaView.mostrarMenuConta();
-//        }
+        try {
+            Conta contaFavorecida = transferenciaController.buscaContas(scanner.nextLine(), contas);
+            return contaFavorecida;
+        }catch (AccountNotFoundException ex){
+            System.out.println(ex.getMessage());
+            MenuContaView menuContaView = new MenuContaView();
+            menuContaView.mostrarMenuConta();
+        }
         return null;
     }
 }

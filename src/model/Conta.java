@@ -17,8 +17,6 @@ public abstract class Conta {
         this.senha = senha;
     }
 
-    private String senha;
-
     protected Conta() {
     }
 
@@ -34,13 +32,6 @@ public abstract class Conta {
     }
     public String getNumeroConta() {
         return numeroConta;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
-    public String getSenha() {
-        return senha;
     }
 
     public void setCliente(Cliente cliente){
