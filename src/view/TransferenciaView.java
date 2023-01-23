@@ -1,13 +1,11 @@
 package view;
 
 import controller.TransferenciaController;
-import exceptions.ContaNaoEncontradaException;
+import exceptions.AccountNotFoundException;
 import exceptions.SaldoInsuficienteException;
-import exceptions.UserNotFoundException;
 import exceptions.ValorDaTransferenciaInvalidaException;
 import model.Conta;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class TransferenciaView {
@@ -18,7 +16,7 @@ public class TransferenciaView {
 
     public TransferenciaView(Conta contaLogada) {
         this.scanner = new Scanner(System.in);
-        this.transferenciaController = new TransferenciaController();
+        this.transferenciaController= new TransferenciaController();
         this.contaLogada = contaLogada;
     }
 
@@ -26,7 +24,7 @@ public class TransferenciaView {
         System.out.println("Olá, " + contaLogada.getCliente().getNome() + ". Você esta na Área de Transferências\n");
 
         if (validaSenha()) {
-            movimentaConta(valorDaTransferencia(), contaFavorecida());
+            movimentaConta(valorDaTransferencia(), contaFavorecida() );
         } else {
             System.out.println("Senha incorreta.\n");
         }
@@ -74,22 +72,20 @@ public class TransferenciaView {
         return valorDaTransferencia;
     }
 
-    public void movimentaConta(Double valorDaTransferencia, Conta contaFavorecida) {
+    public void movimentaConta(Double valorDaTransferencia, Conta contaFavorecida){
         transferenciaController.transfereValores(contaLogada, contaFavorecida, valorDaTransferencia);
-        System.out.println("A transferência de " + valorDaTransferencia + "R$ para "
-                + contaFavorecida.getCliente().getNome() + " foi feita.");
+        System.out.println("A transferência de " + valorDaTransferencia + "R$ para " + contaFavorecida + " foi feita.");
     }
 
-    public Conta contaFavorecida(ArrayList<Conta> contas) { //em desenvolvimento
+    public Conta contaFavorecida() {
         System.out.println("Insira o número da conta que vai receber a transferência: ");
-        try {
-            Conta contaFavorecida = transferenciaController.buscaContas(scanner.nextLine(), contas);
-            return contaFavorecida;
-        } catch (UserNotFoundException ex) {
-            System.out.println(ex.getMessage());
-            MenuContaView menuContaView = new MenuContaView();
-            menuContaView.mostrarMenuConta();
-            return null;
-        }
+//        try {
+//            return transferenciaController.buscaContas(scanner.nextLine());
+//        }catch (AccountNotFoundException ex){
+//            System.out.println(ex.getMessage());
+//            MenuContaView menuContaView = new MenuContaView();
+//            menuContaView.mostrarMenuConta();
+//        }
+        return null;
     }
 }

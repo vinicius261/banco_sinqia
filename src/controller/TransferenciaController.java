@@ -1,16 +1,10 @@
 package controller;
 
-import exceptions.UserNotFoundException;
-import exceptions.ValorDaTransferenciaInvalidaException;
 import model.Conta;
-import model.ContaCorrente;
-import exceptions.SaldoInsuficienteException;
-
-import java.util.ArrayList;
 
 public class TransferenciaController {
     public boolean validaSenha(Conta conta, String senhaDigitada){
-        if (senhaDigitada.equals(conta.getSenha())){ // criar conta.getSenha
+        if (senhaDigitada.equals(conta.getSenha())){
             return true;
         }else {
             return false;
@@ -19,7 +13,7 @@ public class TransferenciaController {
 
     public boolean validaValorDaTransferencia(Double valorDaTransferencia){
         if (valorDaTransferencia < 0){
-            throw new ValorDaTransferenciaInvalidaException("Insira valores maiores que zero.");
+            return false;
         }
         return true;
     }
@@ -28,7 +22,8 @@ public class TransferenciaController {
         if (conta.getSaldo() >= valorDaTransferencia) {
             return true;
         } else {
-            throw new SaldoInsuficienteException("Saldo insuficiente para a transferência.\n Saldo atual: " + conta.getSaldo() + "\n");
+            return false;
+//            throw SaldoInsuficienteException("Saldo insuficiente para a transferência.\n Saldo atual: " + conta.getSaldo + "\n");
         }
     }
 
@@ -42,12 +37,7 @@ public class TransferenciaController {
         }
     }
 
-    public Conta buscaContas(String numeroDaConta, ArrayList<Conta> contas) {
-        for (Conta conta : contas) {
-            if (conta.getNumeroConta().equals(conta.getNumeroConta())) {
-                return conta;
-            }
-        }
-        throw new UserNotFoundException();
-    }
+//    public Conta buscaContas(String nextLine) {
+//
+//    }
 }
