@@ -28,7 +28,6 @@ public class AbrirContaView {
 
                     case 2:
                         System.out.println("-------------------------- PESSOA JURIDICA ---------------------------");
-                        System.out.println("Digite seu CNPJ");
                         cadastrarContaPessoaJuridicaView.cadastrarContaPessoJuridica();
                         break;
 

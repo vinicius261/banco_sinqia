@@ -1,10 +1,10 @@
 package view;
 
 import controller.AbrirContaController;
-import controller.ValidarSenhaController;
 import controller.ValidarCpfCnpj;
+import controller.ValidarSenhaController;
 import controller.VerificarSeClienteExisteController;
-import database.BancoDeDados;
+import enums.TipoDeCliente;
 import enums.TipoDeConta;
 import model.Cliente;
 
@@ -17,6 +17,7 @@ public class CadastrarContaPessoFisicaView {
         ValidarCpfCnpj validarCpfCnpj = new ValidarCpfCnpj();
         VerificarSeClienteExisteController verificarSeClienteExisteController = new VerificarSeClienteExisteController();
 
+        TipoDeCliente tipoDeCliente = TipoDeCliente.PESSOA_FISICA;
         TipoDeConta tipoDeConta = null;
         String senhaValidada;
         Cliente cliente = null;
@@ -27,8 +28,8 @@ public class CadastrarContaPessoFisicaView {
             if(verificarSeClienteExisteController.verificarSeClienteExiste(numeroDocumento)){
                 cliente = verificarSeClienteExisteController.procurarCliente(numeroDocumento);
             } else{
-                System.out.println("Cadastrando cliente");
-                // chamar a view para cadastrar cliente
+                CadastrarClienteView cadastrarClienteView = new CadastrarClienteView();
+                cadastrarClienteView.cadastrarCliente(numeroDocumento, tipoDeCliente);
             }
         } else{
             System.out.println("Documento invalido");
