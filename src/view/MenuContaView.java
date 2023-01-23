@@ -1,6 +1,11 @@
 package view;
 
+import database.BancoDeDados;
+
 import java.util.Scanner;
+
+import static database.BancoDeDados.banco;
+import static database.BancoDeDados.getContaLogada;
 
 public class MenuContaView {
     static final Scanner input = new Scanner(System.in);
@@ -21,7 +26,8 @@ public class MenuContaView {
                 switch (opcao) {
                     case 1:
                         System.out.println("-------------------------- SACAR ---------------------------");
-
+                        SacarView sacarView = new SacarView(BancoDeDados.getContaLogada());
+                        sacarView.sacar();
                         break;
 
                     case 2:
@@ -31,7 +37,8 @@ public class MenuContaView {
                         break;
                     case 3:
                         System.out.println("-------------------------- TRANSFERIR ---------------------------");
-
+                        TransferenciaView transferenciaView = new TransferenciaView(BancoDeDados.getContaLogada());
+                        transferenciaView.transferir();
                         break;
                     case 4:
                         System.out.println("-------------------------- INVESTIR ---------------------------");
@@ -40,7 +47,8 @@ public class MenuContaView {
                         break;
                     case 5:
                         System.out.println("-------------------------- DEPOSITAR ---------------------------");
-
+                        DepositoView depositoView = new DepositoView();
+                        depositoView.depositoView();
                         break;
                     case 6:
                         System.out.println("Banco fechado. Volte Sempre!");
