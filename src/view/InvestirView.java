@@ -1,6 +1,7 @@
 package view;
 
 import controller.InvestirController;
+import model.Banco;
 
 import java.util.Scanner;
 
@@ -48,8 +49,8 @@ public class InvestirView {
 
                     case 2:
                         System.out.println("-------------------------- TRANSFERENCIA ---------------------------");
-                        TransferenciaView transferenciaView = new TransferenciaView();
-                        transferenciaView.transferenciaView();
+                        TransferenciaView transferenciaView = new TransferenciaView(Banco.contaLogada);
+                        transferenciaView.transferir();
                         break;
 
                     default:

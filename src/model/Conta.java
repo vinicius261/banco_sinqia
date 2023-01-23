@@ -9,6 +9,19 @@ public abstract class Conta {
     private Cliente cliente;
     private TipoDeConta tipoDeConta;
 
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+    private String senha;
+
+    protected Conta() {
+    }
+
     public void setSaldo(double saldo) {
         this.saldo = saldo;
     }

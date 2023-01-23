@@ -1,10 +1,13 @@
 package view;
 
 import controller.TransferenciaController;
+import exceptions.ContaNaoEncontradaException;
 import exceptions.SaldoInsuficienteException;
+import exceptions.UserNotFoundException;
 import exceptions.ValorDaTransferenciaInvalidaException;
 import model.Conta;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class TransferenciaView {
@@ -20,7 +23,7 @@ public class TransferenciaView {
     }
 
     public void transferir() {
-        System.out.println("Olá, " + conta.getCliente().getNome() + ". Você esta na Área de Transferências\n");
+        System.out.println("Olá, " + contaLogada.getCliente().getNome() + ". Você esta na Área de Transferências\n");
 
         if (validaSenha()) {
             movimentaConta(valorDaTransferencia(), contaFavorecida());
@@ -73,17 +76,20 @@ public class TransferenciaView {
 
     public void movimentaConta(Double valorDaTransferencia, Conta contaFavorecida) {
         transferenciaController.transfereValores(contaLogada, contaFavorecida, valorDaTransferencia);
-        System.out.println("A transferência de " + valorDaTransferencia + "R$ para " + favorecido + " foi feita.");
+        System.out.println("A transferência de " + valorDaTransferencia + "R$ para "
+                + contaFavorecida.getCliente().getNome() + " foi feita.");
     }
 
-    public Conta contaFavorecida() {
+    public Conta contaFavorecida(ArrayList<Conta> contas) { //em desenvolvimento
         System.out.println("Insira o número da conta que vai receber a transferência: ");
         try {
-            return transferenciaController.buscaContas(scanner.nextLine());
-        } catch (contaNaoEncontradaException ex) {
-            System.out.println(ex.getMessage);
+            Conta contaFavorecida = transferenciaController.buscaContas(scanner.nextLine(), contas);
+            return contaFavorecida;
+        } catch (UserNotFoundException ex) {
+            System.out.println(ex.getMessage());
             MenuContaView menuContaView = new MenuContaView();
             menuContaView.mostrarMenuConta();
+            return null;
         }
     }
 }
