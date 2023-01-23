@@ -1,14 +1,10 @@
 package service;
 
-import static database.BancoDeDados.addConta;
-import static database.BancoDeDados.addCliente;
-
 import database.BancoDeDados;
 import enums.TipoDeCliente;
 import enums.TipoDeConta;
 import model.Cliente;
 import model.ContaCorrente;
-import model.ContaInvestimento;
 import model.ContaPoupanca;
 
 public class CriarContasClientes {
@@ -16,7 +12,7 @@ public class CriarContasClientes {
         Cliente cliente = new Cliente();
         cliente.setTipoDeCliente(TipoDeCliente.PESSOA_FISICA);
         cliente.setDocumento("38129476843");
-        cliente.SetNome("Lucas");
+        cliente.setNome("Lucas");
         BancoDeDados.addCliente(cliente);
 
         ContaCorrente contaCorrente = new ContaCorrente();

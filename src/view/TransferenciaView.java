@@ -28,7 +28,7 @@ public class TransferenciaView {
         System.out.println("Olá, " + contaLogada.getCliente().getNome() + ". Você esta na Área de Transferências\n");
 
         if (validaSenha()) {
-            movimentaConta(valorDaTransferencia(), contaFavorecida(contas) );
+            movimentaConta(valorDaTransferencia(), contaFavorecida() );
         } else {
             System.out.println("Senha incorreta.\n");
         }

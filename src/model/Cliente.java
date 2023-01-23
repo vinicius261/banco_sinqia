@@ -11,7 +11,7 @@ public class Cliente {
         return nome;
     }
 
-    public void SetNome(String nome){
+    public void setNome(String nome){
         this.nome = nome;
     }
 
