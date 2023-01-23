@@ -23,6 +23,16 @@ public class DepositoController {
         return verify;
     }
 
+    public int retornaPosicaoNoArray(String numeroConta) {
+        int i;
+        for (i = 0; i < getContas().size(); i++) {
+            if (getContas().get(i).getNumeroConta().equals(numeroConta)) {
+                break;
+            }
+        }
+        return i;
+    }
+
     public void deposita(double valor, String numeroConta) {
         for (int i = 0; i < getContas().size(); i++) {
             if (getContas().get(i).getNumeroConta().equals(numeroConta)) {
