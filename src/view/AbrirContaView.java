@@ -1,9 +1,9 @@
 package view;
 
-import java.util.Scanner;
-
 import controller.ValidarCpfCnpj;
 import controller.VerificarSeClienteExisteController;
+
+import java.util.Scanner;
 
 public class AbrirContaView {
     static final Scanner input = new Scanner(System.in);
@@ -13,7 +13,6 @@ public class AbrirContaView {
         CadastrarContaPessoFisicaView cadastrarContaPessoFisicaView = new CadastrarContaPessoFisicaView();
         CadastrarContaPessoaJuridicaView cadastrarContaPessoaJuridicaView = new CadastrarContaPessoaJuridicaView();
 
-        System.out.println("abrindo conta");
         System.out.println("Deseja abrir uma conta para pessoa:" +
                 "\n1 -  FISICA" +
                 "\n2 - JURIDICA");
