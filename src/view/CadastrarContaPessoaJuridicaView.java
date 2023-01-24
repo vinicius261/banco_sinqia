@@ -11,6 +11,8 @@ import java.util.Scanner;
 public class CadastrarContaPessoaJuridicaView {
     static final Scanner input = new Scanner(System.in);
     public void cadastrarContaPessoJuridica(){
+        System.out.println("Digite seu CNPJ");
+        String numeroDocumento = input.nextLine();
         TipoDeConta tipoDeConta = null;
         System.out.println("Deseja abrir uma conta:" +
                 "\n1 - CORRENTE" +
