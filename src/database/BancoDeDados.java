@@ -39,9 +39,6 @@ public class BancoDeDados {
         return bancoDeDados.contas;
     }
 
-    public void setContas(ArrayList<Conta> contas) {
-        this.contas = contas;
-    }
     public static void addConta(Conta conta){
         contas.add(conta);
     }
@@ -51,11 +48,6 @@ public class BancoDeDados {
         return bancoDeDados.clientes;
 
     }
-
-    public void setClientes(ArrayList<Cliente> clientes) {
-        this.clientes = clientes;
-    }
-
 
     public static void addCliente(Cliente cliente) {
 

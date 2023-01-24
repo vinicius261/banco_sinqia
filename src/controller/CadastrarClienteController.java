@@ -43,6 +43,7 @@ public class CadastrarClienteController {
             ArrayList<Conta> contasDoCliente
     ) {
         Cliente cliente = new Cliente(nome, documento, email, tipoDeCliente, contasDoCliente);
+        BancoDeDados.addCliente(cliente);
         return cliente;
     }
 }
