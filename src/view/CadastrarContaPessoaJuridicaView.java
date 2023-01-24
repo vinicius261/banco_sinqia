@@ -13,6 +13,7 @@ import java.util.Scanner;
 
 public class CadastrarContaPessoaJuridicaView {
     static final Scanner input = new Scanner(System.in);
+
     public void cadastrarContaPessoJuridica() {
         ValidarCpfCnpj validarCpfCnpj = new ValidarCpfCnpj();
         VerificarSeClienteExisteController verificarSeClienteExisteController = new VerificarSeClienteExisteController();
@@ -35,7 +36,18 @@ public class CadastrarContaPessoaJuridicaView {
             MenuInicialView menuInicialView = new MenuInicialView();
             menuInicialView.mostrarMenuInicial();
         }
-        public TipoDeConta escolherTipoDeConta(){
+
+        TipoDeConta tipoDeConta = escolherTipoDeConta();
+
+        senhaValidada = escolherSenha();
+
+        AbrirContaController abrirContaController = new AbrirContaController();
+        abrirContaController.abrirConta(senhaValidada, cliente, tipoDeConta);
+
+        MenuInicialView menuInicialView = new MenuInicialView();
+        menuInicialView.mostrarMenuInicial();
+    }
+    public TipoDeConta escolherTipoDeConta () {
             TipoDeConta tipoDeConta = null;
 
             System.out.println("Deseja abrir uma conta:" +
@@ -76,7 +88,7 @@ public class CadastrarContaPessoaJuridicaView {
             }
             return tipoDeConta;
         }
-        public String escolherSenha(){
+        public String escolherSenha() {
 
             ValidarSenhaController validarSenhaController = new ValidarSenhaController();
             String senhaValidada = null;
@@ -90,7 +102,7 @@ public class CadastrarContaPessoaJuridicaView {
 
             String senhaDigitada = input.nextLine();
 
-            if(!validarSenhaController.validarSenha(senhaDigitada)){
+            if (!validarSenhaController.validarSenha(senhaDigitada)) {
                 System.out.println("Digite uma senha valida");
                 escolherSenha();
             } else {
@@ -98,5 +110,4 @@ public class CadastrarContaPessoaJuridicaView {
             }
             return senhaValidada;
         }
-
-    }
+}
