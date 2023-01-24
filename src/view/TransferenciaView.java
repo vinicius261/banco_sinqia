@@ -3,6 +3,7 @@ package view;
 import controller.TransferenciaController;
 import exceptions.AccountNotFoundException;
 import exceptions.SaldoInsuficienteException;
+import exceptions.SameAccountException;
 import exceptions.ValorDaTransferenciaInvalidaException;
 import model.Conta;
 
@@ -84,9 +85,13 @@ public class TransferenciaView {
     public Conta contaFavorecida() {
         System.out.println("Insira o número da conta que vai receber a transferência: ");
         try {
-            Conta contaFavorecida = transferenciaController.buscaContas(scanner.nextLine(), contas);
+            Conta contaFavorecida = transferenciaController.buscaContas(scanner.nextLine(), contas, contaLogada);
             return contaFavorecida;
         }catch (AccountNotFoundException ex){
+            System.out.println(ex.getMessage());
+            MenuContaView menuContaView = new MenuContaView();
+            menuContaView.mostrarMenuConta();
+        }catch (SameAccountException ex){
             System.out.println(ex.getMessage());
             MenuContaView menuContaView = new MenuContaView();
             menuContaView.mostrarMenuConta();
