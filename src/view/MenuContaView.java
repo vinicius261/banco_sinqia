@@ -48,8 +48,10 @@ public class MenuContaView {
                         depositoView.depositoLogadoView();
                         break;
                     case 6:
-                        System.out.println("Banco fechado. Volte Sempre!");
-                        break;
+//                        System.out.println("Banco fechado. Volte Sempre!");
+//                        break;
+                        MenuInicialView menuInicialView = new MenuInicialView();
+                        menuInicialView.mostrarMenuInicial();
 
                     default:
                         System.out.println("Opcao invalida. Tente novamente.");

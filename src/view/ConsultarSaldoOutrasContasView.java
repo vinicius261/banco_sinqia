@@ -15,7 +15,7 @@ public class ConsultarSaldoOutrasContasView {
         double saldo = 0;
         ArrayList<Conta> contas = consultarSaldoController.SaldoOutraConta();
 
-        if(!contas.isEmpty()){
+
             System.out.println("Digite o tipo da conta de que deseja consultar o saldo");
             for(int i = 0; i < contas.size(); i++){
                 switch (contas.get(i).getTipoDeConta()) {
@@ -60,9 +60,6 @@ public class ConsultarSaldoOutrasContasView {
                     System.out.println("O saldo da sua conta investimento e de: " + saldo);
                 }
             }
-        } else {
-            System.out.println("Você não possui outra(s) conta(s).");
-        }
 
 
     }

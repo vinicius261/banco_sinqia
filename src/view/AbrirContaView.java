@@ -55,10 +55,10 @@ public class AbrirContaView {
         TipoDeConta tipoDeConta = null;
 
         System.out.println("Deseja abrir uma conta:" +
-                "\n1 - CORRENTE" +
-                "\n2 - POUPANCA");
+                "\n1 - CORRENTE");
+        System.out.println("2 - INVESTIMENTO");
         if(tipoDeCliente.equals(TipoDeCliente.PESSOA_FISICA)){
-            System.out.println("3 - Investimento");
+            System.out.println("3 - POUPANCA");
         }
 
         try {
@@ -72,17 +72,16 @@ public class AbrirContaView {
                     }
                     case 2 -> {
                         System.out.println("-----------------------------------------------------");
-                        tipoDeConta = TipoDeConta.CONTA_POUPANCA;
+                        tipoDeConta = TipoDeConta.CONTA_INVESTIMENTO;
                     }
                     case 3 -> {
                         if(tipoDeCliente.equals(TipoDeCliente.PESSOA_FISICA)){
                             System.out.println("-----------------------------------------------------");
-                            tipoDeConta = TipoDeConta.CONTA_INVESTIMENTO;
+                            tipoDeConta = TipoDeConta.CONTA_POUPANCA;
                         } else {
                             System.out.println("Opcao invalida. Tente novamente.");
                             escolherTipoDeConta(tipoDeCliente);
                         }
-
                     }
                     default -> {
                         System.out.println("Opcao invalida. Tente novamente.");
