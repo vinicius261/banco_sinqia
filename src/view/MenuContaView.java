@@ -4,9 +4,6 @@ import database.BancoDeDados;
 
 import java.util.Scanner;
 
-import static database.BancoDeDados.banco;
-import static database.BancoDeDados.getContaLogada;
-
 public class MenuContaView {
     static final Scanner input = new Scanner(System.in);
 
@@ -48,7 +45,7 @@ public class MenuContaView {
                     case 5:
                         System.out.println("-------------------------- DEPOSITAR ---------------------------");
                         DepositoView depositoView = new DepositoView();
-                        depositoView.depositoView();
+                        depositoView.depositoLogadoView();
                         break;
                     case 6:
                         System.out.println("Banco fechado. Volte Sempre!");

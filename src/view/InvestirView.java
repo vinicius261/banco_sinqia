@@ -43,7 +43,7 @@ public class InvestirView {
                     case 1:
                         System.out.println("-------------------------- DEPOSITO ---------------------------");
                         DepositoView depositoView = new DepositoView();
-                        depositoView.depositoView();
+                        depositoView.depositoDeslogadoView();
                         break;
 
                     case 2:

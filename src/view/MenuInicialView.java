@@ -37,7 +37,7 @@ public class MenuInicialView {
                     case 3:
                         System.out.println("-------------------------- DEPOSITO ---------------------------");
                         DepositoView depositoView = new DepositoView();
-                        depositoView.depositoView();
+                        depositoView.depositoDeslogadoView();
                         break;
 
                     case 4:
