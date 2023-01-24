@@ -18,7 +18,6 @@ public class CadastrarContaPessoFisicaView {
         VerificarSeClienteExisteController verificarSeClienteExisteController = new VerificarSeClienteExisteController();
 
         TipoDeCliente tipoDeCliente = TipoDeCliente.PESSOA_FISICA;
-        TipoDeConta tipoDeConta = null;
         String senhaValidada;
         Cliente cliente = null;
 
@@ -37,16 +36,12 @@ public class CadastrarContaPessoFisicaView {
             menuInicialView.mostrarMenuInicial();
         }
 
-        tipoDeConta = escolherTipoDeConta();
+        TipoDeConta tipoDeConta = escolherTipoDeConta();
 
         senhaValidada = escolherSenha();
 
         AbrirContaController abrirContaController = new AbrirContaController();
-        abrirContaController.abrirConta(senhaValidada, cliente, tipoDeConta);
-
-        System.out.println(senhaValidada);
-        System.out.println(cliente.getNome());
-        System.out.println(tipoDeConta);
+        abrirContaController.abrirConta(senhaValidada, cliente, tipoDeConta);        
 
         MenuInicialView menuInicialView = new MenuInicialView();
         menuInicialView.mostrarMenuInicial();
@@ -104,7 +99,9 @@ public class CadastrarContaPessoFisicaView {
                 "\nA senha deve conte pelo menos:" +
                 "\n8 caracteres" +
                 "\n1 letra maiuscula" +
-                "\n1 letra minuscula");
+                "\n1 letra minuscula" +
+                "\n1 Caractere especial");
+
         String senhaDigitada = input.nextLine();
 
         if(!validarSenhaController.validarSenha(senhaDigitada)){

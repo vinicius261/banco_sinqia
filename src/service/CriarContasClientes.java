@@ -1,23 +1,23 @@
 package service;
 
-import static database.BancoDeDados.addConta;
-import static database.BancoDeDados.addCliente;
-
 import database.BancoDeDados;
 import enums.TipoDeCliente;
 import enums.TipoDeConta;
-import model.Cliente;
-import model.ContaCorrente;
-import model.ContaInvestimento;
-import model.ContaPoupanca;
+import model.*;
+
+import java.util.ArrayList;
 
 public class CriarContasClientes {
     public void CriarContasClientes(){
-        Cliente cliente = new Cliente();
-        cliente.setTipoDeCliente(TipoDeCliente.PESSOA_FISICA);
-        cliente.setDocumento("38129476843");
-        cliente.SetNome("Lucas");
-        BancoDeDados.addCliente(cliente);
+        ArrayList<Conta> ContasDoCLiente= new ArrayList<>();
+
+        Cliente cliente = new Cliente(
+                "Lucas",
+                "38129476843",
+                "lucas@email.com",
+                TipoDeCliente.PESSOA_FISICA,
+                ContasDoCLiente);
+       BancoDeDados.addCliente(cliente);
 
         ContaCorrente contaCorrente = new ContaCorrente();
         contaCorrente.setCliente(cliente);
