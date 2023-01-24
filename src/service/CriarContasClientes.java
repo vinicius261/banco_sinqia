@@ -34,11 +34,11 @@ public class CriarContasClientes {
         contaPoupanca.setNumeroConta("2");
         BancoDeDados.addConta(contaPoupanca);
 
-//        ContaInvestimento contaInvestimento = new ContaInvestimento();
-//        contaInvestimento.setCliente(cliente);
-//        contaInvestimento.setSaldo(1000);
-//        contaInvestimento.setTipoDeConta((TipoDeConta.CONTA_INVESTIMENTO));
-//        BancoDeDados.addConta(contaInvestimento);
+        ContaInvestimento contaInvestimento = new ContaInvestimento();
+        contaInvestimento.setCliente(cliente);
+        contaInvestimento.setSaldo(1000);
+        contaInvestimento.setTipoDeConta((TipoDeConta.CONTA_INVESTIMENTO));
+        BancoDeDados.addConta(contaInvestimento);
 
         BancoDeDados.setContaLogada(contaPoupanca);
     }
