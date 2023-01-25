@@ -2,11 +2,10 @@ package view;
 
 import controller.AbrirContaController;
 import controller.ValidarCpfCnpj;
-import controller.ValidarSenhaController;
+import controller.ValidarFormatoSenhaController;
 import controller.VerificarSeClienteExisteController;
 import enums.TipoDeCliente;
 import enums.TipoDeConta;
-import model.Cliente;
 
 import java.util.Scanner;
 
@@ -100,7 +99,7 @@ public class AbrirContaView {
     }
     public String escolherSenha() {
 
-        ValidarSenhaController validarSenhaController = new ValidarSenhaController();
+        ValidarFormatoSenhaController validarFormatoSenhaController = new ValidarFormatoSenhaController();
         String senhaValidada = null;
 
         System.out.println("Digite uma senha para sua conta" +
@@ -112,7 +111,7 @@ public class AbrirContaView {
 
         String senhaDigitada = input.nextLine();
 
-        if (!validarSenhaController.validarSenha(senhaDigitada)) {
+        if (!validarFormatoSenhaController.validarSenha(senhaDigitada)) {
             System.out.println("Digite uma senha valida");
             escolherSenha();
         } else {

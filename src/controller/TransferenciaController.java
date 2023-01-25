@@ -1,6 +1,12 @@
 package controller;
 
+import exceptions.AccountNotFoundException;
+import exceptions.SameAccountException;
+import exceptions.ValorDaTransferenciaInvalidaException;
 import model.Conta;
+import exceptions.SaldoInsuficienteException;
+
+import java.util.ArrayList;
 
 public class TransferenciaController {
     public boolean validaSenha(Conta conta, String senhaDigitada){
@@ -15,15 +21,14 @@ public class TransferenciaController {
         if (valorDaTransferencia < 0){
             return false;
         }
-        return true;
+        throw new ValorDaTransferenciaInvalidaException("Insira apenas números maiores que zero.");
     }
 
     public boolean validaSaldo(Conta conta, Double valorDaTransferencia) {
         if (conta.getSaldo() >= valorDaTransferencia) {
             return true;
         } else {
-            return false;
-//            throw SaldoInsuficienteException("Saldo insuficiente para a transferência.\n Saldo atual: " + conta.getSaldo + "\n");
+            throw new SaldoInsuficienteException("Saldo insuficiente para a transferência.\n Saldo atual: " + conta.getSaldo() + "\n");
         }
     }
 
@@ -37,7 +42,19 @@ public class TransferenciaController {
         }
     }
 
-//    public Conta buscaContas(String nextLine) {
-//
-//    }
+    public Conta buscaContas(String numeroDaConta, ArrayList<Conta> contas, Conta contaLogada) {
+        RuntimeException excecao = new RuntimeException();
+
+        for (Conta conta: contas) {
+            if (conta.getNumeroConta().equals(numeroDaConta)
+                    && (!conta.getNumeroConta().equals(contaLogada.getNumeroConta()))){
+                return conta;
+            }else if (conta.getNumeroConta().equals(contaLogada.getNumeroConta())){
+                excecao = new SameAccountException("Este é o número de sua conta, insira outro número.");
+            }else{
+                excecao = new AccountNotFoundException();
+            }
+        }
+        throw excecao;
+    }
 }
