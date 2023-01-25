@@ -4,9 +4,17 @@ import enums.TipoDeConta;
 import interfaces.Investir;
 
 public class ContaPoupanca extends Conta  {
-    private TipoDeConta tipoDeConta = TipoDeConta.CONTA_POUPANCA;
+
     private double rendimento;
 
+    public ContaPoupanca(String numeroConta, String senha, double saldo, Cliente cliente) {
+        super(numeroConta, senha, saldo, cliente);
+        TipoDeConta tipoDeConta = TipoDeConta.CONTA_POUPANCA;
+    }
+
+    public ContaPoupanca(){
+
+    }
 
     public double getRendimento() {
         return rendimento;

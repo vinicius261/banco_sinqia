@@ -4,6 +4,22 @@ import enums.TipoDeConta;
 
 public abstract class Conta {
 
+    public Conta(
+            String numeroConta,
+            String senha,
+            double saldo,
+            Cliente cliente
+    ){
+        this.numeroConta = numeroConta;
+        this.senha = senha;
+        this.saldo = saldo;
+        this.cliente = cliente;
+    }
+
+    public Conta(){
+
+    }
+
     private String numeroConta, senha;
     private double saldo;
     private Cliente cliente;
