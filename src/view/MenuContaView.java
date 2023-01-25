@@ -1,5 +1,7 @@
 package view;
 
+import database.BancoDeDados;
+
 import java.util.Scanner;
 
 public class MenuContaView {
@@ -21,7 +23,8 @@ public class MenuContaView {
                 switch (opcao) {
                     case 1:
                         System.out.println("-------------------------- SACAR ---------------------------");
-
+                        SacarView sacarView = new SacarView(BancoDeDados.getContaLogada());
+                        sacarView.sacar();
                         break;
 
                     case 2:
@@ -31,7 +34,8 @@ public class MenuContaView {
                         break;
                     case 3:
                         System.out.println("-------------------------- TRANSFERIR ---------------------------");
-
+                        TransferenciaView transferenciaView = new TransferenciaView(BancoDeDados.getContaLogada());
+                        transferenciaView.transferir();
                         break;
                     case 4:
                         System.out.println("-------------------------- INVESTIR ---------------------------");
@@ -40,11 +44,14 @@ public class MenuContaView {
                         break;
                     case 5:
                         System.out.println("-------------------------- DEPOSITAR ---------------------------");
-
+                        DepositoView depositoView = new DepositoView();
+                        depositoView.depositoLogadoView();
                         break;
                     case 6:
-                        System.out.println("Banco fechado. Volte Sempre!");
-                        break;
+//                        System.out.println("Banco fechado. Volte Sempre!");
+//                        break;
+                        MenuInicialView menuInicialView = new MenuInicialView();
+                        menuInicialView.mostrarMenuInicial();
 
                     default:
                         System.out.println("Opcao invalida. Tente novamente.");

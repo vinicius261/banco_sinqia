@@ -13,20 +13,23 @@ public class AbrirContaController {
     Random gerarNumero = new Random();
 
     public void abrirConta(
+            String numeroDocumento,
             String Senha,
-            Cliente Cliente,
             TipoDeConta TipoDeConta
     ) {
         String numeroConta = String.valueOf(gerarNumero.nextInt(100));
         System.out.println(numeroConta);
         double saldo = 0;
 
+        VerificarSeClienteExisteController verificarSeClienteExisteController = new VerificarSeClienteExisteController();
+        Cliente cliente = verificarSeClienteExisteController.procurarCliente(numeroDocumento);
+
         if (TipoDeConta.equals(enums.TipoDeConta.CONTA_CORRENTE)){
             ContaCorrente contaCorrente = new ContaCorrente();
             contaCorrente.setNumeroConta(numeroConta);
             contaCorrente.setSenha(Senha);
             contaCorrente.setSaldo(saldo);
-            contaCorrente.setCliente(Cliente);
+            contaCorrente.setCliente(cliente);
             contaCorrente.setTipoDeConta(TipoDeConta);
             BancoDeDados.addConta(contaCorrente);
 
@@ -35,7 +38,7 @@ public class AbrirContaController {
             contaPoupanca.setNumeroConta(numeroConta);
             contaPoupanca.setSenha(Senha);
             contaPoupanca.setSaldo(saldo);
-            contaPoupanca.setCliente(Cliente);
+            contaPoupanca.setCliente(cliente);
             contaPoupanca.setTipoDeConta(TipoDeConta);
             BancoDeDados.addConta(contaPoupanca);
 
@@ -44,7 +47,7 @@ public class AbrirContaController {
             contaInvestimento.setNumeroConta(numeroConta);
             contaInvestimento.setSenha(Senha);
             contaInvestimento.setSaldo(saldo);
-            contaInvestimento.setCliente(Cliente);
+            contaInvestimento.setCliente(cliente);
             contaInvestimento.setTipoDeConta(TipoDeConta);
             BancoDeDados.addConta(contaInvestimento);
         }
