@@ -1,10 +1,10 @@
 package view;
 
 import controller.DepositoController;
-import enums.TipoDeCliente;
 import enums.TipoDeConta;
 import model.Conta;
 
+import java.text.DecimalFormat;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -16,10 +16,13 @@ public class DepositoView {
     DepositoController depositoController = new DepositoController();
     MenuInicialView menuInicialView = new MenuInicialView();
 
+    String padrao = "###,##0.00";
+    DecimalFormat df = new DecimalFormat(padrao);
+
     public void depositoDeslogadoView() {
         System.out.println();
         System.out.println("Digite 1 para fazer um depósito.");
-        System.out.println("Para voltar ao menu anterior digite 0.");
+        System.out.println("Para voltar ao menu inicial digite 0.");
         System.out.println();
         String opcao = scan.next();
         if (opcao.equals("1")) {
@@ -110,7 +113,7 @@ public class DepositoView {
         System.out.println("Tipo de conta: " + conta.getTipoDeConta());
         System.out.println("Número da conta: " + conta.getNumeroConta());
         System.out.println("Nome do beneficiário: " + conta.getCliente().getNome());
-        System.out.println("Valor: R$" + valorDeposito);
+        System.out.println("Valor: R$" + df.format(valorDeposito));
         System.out.println();
         System.out.println("Digite 1 para confirmar.");
         System.out.println("Para cancelar e voltar ao menu anterior digite 0.");
@@ -125,11 +128,11 @@ public class DepositoView {
             System.out.println("Tipo de conta: " + conta.getTipoDeConta());
             System.out.println("Número da conta: " + conta.getNumeroConta());
             System.out.println("Nome do beneficiário: " + conta.getCliente().getNome());
-            System.out.println("Valor: R$" + valorDeposito);
+            System.out.println("Valor: R$" + df.format(valorDeposito));
             System.out.println();
             if (conta.getTipoDeConta().equals(TipoDeConta.CONTA_CORRENTE)) {
             } else {
-                rendimento(conta);
+                rendimentoView(conta);
             }
 
         } else {
@@ -137,25 +140,8 @@ public class DepositoView {
         }
     }
 
-    public void rendimento(Conta conta) {
-        if (conta.getTipoDeConta().equals(TipoDeConta.CONTA_INVESTIMENTO)) {
-            if (conta.getCliente().getTipoDeCliente().equals(TipoDeCliente.PESSOA_FISICA)) {
-                double valorRendimento = valorDeposito * 0.015;
-                depositoController.deposita(valorRendimento, numeroConta);
-                System.out.println("O seu depósito na conta investimento rendeu R$ " + valorRendimento + " .");
-                System.out.println("O rendimento já está disponível na conta.");
-            } else if (conta.getCliente().getTipoDeCliente().equals(TipoDeCliente.PESSOA_JURIDICA)) {
-                double valorRendimento = valorDeposito * 0.035;
-                depositoController.deposita(valorRendimento, numeroConta);
-                System.out.println("O seu depósito na conta investimento rendeu R$ " + valorRendimento + " .");
-                System.out.println("O rendimento já está disponível na conta.");
-            }
-        } else if (conta.getTipoDeConta().equals(TipoDeConta.CONTA_POUPANCA)) {
-            double valorRendimento = valorDeposito * 0.01;
-            depositoController.deposita(valorRendimento, numeroConta);
-            System.out.println("O seu depósito na conta poupança rendeu R$ " + valorRendimento + " .");
-            System.out.println("O rendimento já está disponível na conta.");
-            System.out.println();
-        }
+    public void rendimentoView(Conta conta) {
+        System.out.println("O seu depósito rendeu R$" + df.format(depositoController.calculaRendimentoDeposito(conta, valorDeposito, numeroConta)) + ".");
+        System.out.println("O rendimento já está disponível na conta.");
     }
 }
