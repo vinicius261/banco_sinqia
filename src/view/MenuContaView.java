@@ -34,7 +34,7 @@ public class MenuContaView {
                         break;
                     case 3:
                         System.out.println("-------------------------- TRANSFERIR ---------------------------");
-                        TransferenciaView transferenciaView = new TransferenciaView(BancoDeDados.getContaLogada());
+                        TransferenciaView transferenciaView = new TransferenciaView(BancoDeDados.getContaLogada(), BancoDeDados.getContas());
                         transferenciaView.transferir();
                         break;
                     case 4:
