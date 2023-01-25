@@ -11,10 +11,10 @@ public class MenuInicialView {
                 "\n1 - ABRIR CONTA " +
                 "\n2 - LOGAR" +
                 "\n3 - DEPOSITO" +
-                "\n4 - SAIR");
+                "\n0 - SAIR");
         try {
             int escolha = Integer.parseInt(input.nextLine());
-            if (escolha == 1 || escolha == 2 || escolha == 3 || escolha == 4) {
+            if (escolha == 1 || escolha == 2 || escolha == 3 || escolha == 0) {
                 int opcao = escolha;
                 switch (opcao) {
                     case 1:
@@ -40,7 +40,7 @@ public class MenuInicialView {
                         depositoView.depositoDeslogadoView();
                         break;
 
-                    case 4:
+                    case 0:
                         System.out.println("Banco fechado. Volte Sempre!");
                         break;
 
