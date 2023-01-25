@@ -11,6 +11,14 @@ import java.util.regex.Pattern;
 
 public class CadastrarClienteController {
 
+    private BancoDeDados bancoDeDados;
+    private Conta contaLogada;
+
+    public CadastrarClienteController(BancoDeDados bancoDeDados, Conta contaLogada){
+        this.bancoDeDados = bancoDeDados;
+        this.contaLogada = contaLogada;
+    }
+
     public boolean validaEmail(String email) {
         boolean validacaoEmail = false;
         if (email != null && email.length() > 0) {
@@ -26,8 +34,8 @@ public class CadastrarClienteController {
 
     public boolean buscaEmail(String email) {
         boolean emailExiste = false;
-        for (int i = 0; i < BancoDeDados.getClientes().size(); i++) {
-            if (BancoDeDados.getClientes().get(i).getEmail().equals(email)) {
+        for (int i = 0; i < bancoDeDados.getClientes().size(); i++) {
+            if (bancoDeDados.getClientes().get(i).getEmail().equals(email)) {
                 emailExiste = true;
                 System.out.println("Email já cadastrado.");
             }
@@ -43,7 +51,7 @@ public class CadastrarClienteController {
             ArrayList<Conta> contasDoCliente
     ) {
         Cliente cliente = new Cliente(nome, documento, email, tipoDeCliente, contasDoCliente);
-        BancoDeDados.addCliente(cliente);
+        bancoDeDados.addCliente(cliente);
         return cliente;
     }
 }

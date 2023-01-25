@@ -6,51 +6,29 @@ import model.Conta;
 import java.util.ArrayList;
 
 public class BancoDeDados {
+    private ArrayList<Cliente> clientes;
+    private ArrayList<Conta> contas;
 
-    private static BancoDeDados bancoDeDados = new BancoDeDados();
-    private static Conta contaLogada;
-
-
-    private static ArrayList<Cliente> clientes;
-
-    private static ArrayList<Conta> contas;
-
-    private BancoDeDados() {
-        contas = new ArrayList<>();
-        clientes = new ArrayList<>();
-        contaLogada = null;
-    }
-
-    public static BancoDeDados banco() {
-        return bancoDeDados;
-    }
-
-    public static Conta getContaLogada() {
-        return contaLogada;
-    }
-
-    public static void setContaLogada(Conta contaLogada) {
-
-        bancoDeDados.contaLogada = contaLogada;
-
-    }
-
-    public static ArrayList<Conta> getContas() {
-        return bancoDeDados.contas;
-    }
-
-    public static void addConta(Conta conta){
-        contas.add(conta);
+    public BancoDeDados() {
+        this.contas = new ArrayList<>();
+        this.clientes = new ArrayList<>();
     }
 
 
-    public static ArrayList<Cliente> getClientes() {
-        return bancoDeDados.clientes;
-
+    public ArrayList<Conta> getContas() {
+        return this.contas;
     }
 
-    public static void addCliente(Cliente cliente) {
+    public void addConta(Conta conta){
+        this.contas.add(conta);
+    }
 
-        clientes.add(cliente);
+
+    public ArrayList<Cliente> getClientes() {
+        return this.clientes;
+    }
+
+    public void addCliente(Cliente cliente) {
+        this.clientes.add(cliente);
     }
 }

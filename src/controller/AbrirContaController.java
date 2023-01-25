@@ -2,15 +2,19 @@ package controller;
 
 import database.BancoDeDados;
 import enums.TipoDeConta;
-import model.Cliente;
-import model.ContaCorrente;
-import model.ContaInvestimento;
-import model.ContaPoupanca;
+import model.*;
 
 import java.util.Random;
 
 public class AbrirContaController {
     Random gerarNumero = new Random();
+    private BancoDeDados bancoDeDados;
+    private Conta contaLogada;
+
+    public AbrirContaController(BancoDeDados bancoDeDados, Conta contaLogada){
+        this.bancoDeDados = bancoDeDados;
+        this.contaLogada = contaLogada;
+    }
 
     public void abrirConta(
             String numeroDocumento,
@@ -21,7 +25,7 @@ public class AbrirContaController {
         System.out.println(numeroConta);
         double saldo = 0;
 
-        VerificarSeClienteExisteController verificarSeClienteExisteController = new VerificarSeClienteExisteController();
+        VerificarSeClienteExisteController verificarSeClienteExisteController = new VerificarSeClienteExisteController(bancoDeDados, contaLogada);
         Cliente cliente = verificarSeClienteExisteController.procurarCliente(numeroDocumento);
 
         if (tipoDeConta.equals(TipoDeConta.CONTA_CORRENTE)){
@@ -29,24 +33,27 @@ public class AbrirContaController {
                     numeroConta,
                     Senha,
                     saldo,
-                    cliente);
-            BancoDeDados.addConta(contaCorrente);
+                    cliente
+            );
+            bancoDeDados.addConta(contaCorrente);
 
         } else if(tipoDeConta.equals(TipoDeConta.CONTA_POUPANCA)){
             ContaPoupanca contaPoupanca = new ContaPoupanca(
                     numeroConta,
                     Senha,
                     saldo,
-                    cliente);
-            BancoDeDados.addConta(contaPoupanca);
+                    cliente
+            );
+            bancoDeDados.addConta(contaPoupanca);
 
         } else if(tipoDeConta.equals(TipoDeConta.CONTA_INVESTIMENTO)){
             ContaInvestimento contaInvestimento = new ContaInvestimento(
                     numeroConta,
                     Senha,
                     saldo,
-                    cliente);
-            BancoDeDados.addConta(contaInvestimento);
+                    cliente
+            );
+            bancoDeDados.addConta(contaInvestimento);
         }
     }
 }

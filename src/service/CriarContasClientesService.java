@@ -8,8 +8,18 @@ import model.*;
 import java.util.ArrayList;
 
 public class CriarContasClientesService {
+
+    private BancoDeDados bancoDeDados;
+    private Conta contaLogada;
+
+    public CriarContasClientesService(BancoDeDados bancoDeDados, Conta contaLogada){
+        this.bancoDeDados = bancoDeDados;
+        this.contaLogada = contaLogada;
+    }
     public void CriarContasClientes(){
         ArrayList<Conta> ContasDoCLiente= new ArrayList<>();
+
+
 
         Cliente cliente = new Cliente(
                 "Lucas",
@@ -17,30 +27,30 @@ public class CriarContasClientesService {
                 "lucas@email.com",
                 TipoDeCliente.PESSOA_FISICA,
                 ContasDoCLiente);
-        BancoDeDados.addCliente(cliente);
+        bancoDeDados.addCliente(cliente);
 
         ContaCorrente contaCorrente = new ContaCorrente(
                 "1",
                 "1",
                 100,
                 cliente);
-        BancoDeDados.addConta(contaCorrente);
+        bancoDeDados.addConta(contaCorrente);
 
         ContaPoupanca contaPoupanca = new ContaPoupanca(
                 "2",
                 "2",
                 50,
                 cliente);
-        BancoDeDados.addConta(contaPoupanca);
+        bancoDeDados.addConta(contaPoupanca);
 
         ContaInvestimento contaInvestimento = new ContaInvestimento(
                 "3",
                 "3",
                 1000,
                 cliente);
-        BancoDeDados.addConta(contaInvestimento);
+        bancoDeDados.addConta(contaInvestimento);
 
-        BancoDeDados.setContaLogada(contaPoupanca);
+       /* bancoDeDados.setContaLogada(contaPoupanca);*/
     }
 }
 

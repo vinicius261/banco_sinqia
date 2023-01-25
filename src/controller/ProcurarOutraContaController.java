@@ -1,16 +1,25 @@
 package controller;
 
+import database.BancoDeDados;
 import model.Conta;
-import static database.BancoDeDados.*;
 
 import java.util.Objects;
 
 public class ProcurarOutraContaController {
+
+    private BancoDeDados bancoDeDados;
+    private  Conta contaLogada;
+
+    public ProcurarOutraContaController(BancoDeDados bancoDeDados, Conta contaLogada){
+        this.bancoDeDados = bancoDeDados;
+        this.contaLogada = contaLogada;
+    }
+
     public boolean verificarSeClientePossuiOutraConta(){
         boolean existeOutraConta = false;
-        for(Conta conta : getContas()){
-            if(Objects.equals(conta.getCliente(), getContaLogada().getCliente())){
-                if(!conta.equals(getContaLogada())){
+        for(Conta conta : bancoDeDados.getContas()){
+            if(Objects.equals(conta.getCliente(), this.contaLogada.getCliente())){
+                if(!conta.equals(this.contaLogada)){
                     existeOutraConta = true;
                     break;
                 }

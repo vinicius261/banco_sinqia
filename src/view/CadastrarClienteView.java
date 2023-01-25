@@ -1,6 +1,7 @@
 package view;
 
 import controller.CadastrarClienteController;
+import database.BancoDeDados;
 import enums.TipoDeCliente;
 import model.Cliente;
 import model.Conta;
@@ -10,9 +11,17 @@ import java.util.Scanner;
 
 public class CadastrarClienteView {
     static final Scanner input = new Scanner(System.in);
-    CadastrarClienteController controller = new CadastrarClienteController();
+    CadastrarClienteController controller;
     private String cadastroNome;
     private String cadastroEmail;
+    private BancoDeDados bancoDeDados;
+    private Conta contaLogada;
+
+    public CadastrarClienteView(BancoDeDados bancoDeDados, Conta contaLogada){
+        this.controller = new CadastrarClienteController(bancoDeDados, contaLogada);
+        this.bancoDeDados = bancoDeDados;
+        this.contaLogada = contaLogada;
+    }
 
 
     public void cadastrarCliente(String documento, TipoDeCliente tipoDeCliente){

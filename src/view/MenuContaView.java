@@ -1,11 +1,19 @@
 package view;
 
 import database.BancoDeDados;
+import model.Conta;
 
 import java.util.Scanner;
 
 public class MenuContaView {
     static final Scanner input = new Scanner(System.in);
+    private BancoDeDados bancoDeDados;
+    private Conta contaLogada;
+
+    public MenuContaView(BancoDeDados bancoDeDados, Conta contaLogada){
+        this.bancoDeDados = bancoDeDados;
+        this.contaLogada = contaLogada;
+    }
 
     public void mostrarMenuConta() {
         System.out.println("-------------------------- MENU CONTA ---------------------------");
@@ -23,32 +31,32 @@ public class MenuContaView {
                 switch (opcao) {
                     case 1:
                         System.out.println("-------------------------- SACAR ---------------------------");
-                        SacarView sacarView = new SacarView(BancoDeDados.getContaLogada());
+                        SacarView sacarView = new SacarView(bancoDeDados, contaLogada);
                         sacarView.sacar();
                         break;
 
                     case 2:
                         System.out.println("-------------------------- SALDO ---------------------------");
-                        ConsultarSaldoContaAtualView consultarSaldoContaAtualView = new ConsultarSaldoContaAtualView();
+                        ConsultarSaldoContaAtualView consultarSaldoContaAtualView = new ConsultarSaldoContaAtualView(bancoDeDados, contaLogada);
                         consultarSaldoContaAtualView.SaldoContaAtual();
                         break;
                     case 3:
                         System.out.println("-------------------------- TRANSFERIR ---------------------------");
-                        TransferenciaView transferenciaView = new TransferenciaView(BancoDeDados.getContaLogada(), BancoDeDados.getContas());
+                        TransferenciaView transferenciaView = new TransferenciaView(bancoDeDados, contaLogada);
                         transferenciaView.transferir();
                         break;
                     case 4:
                         System.out.println("-------------------------- INVESTIR ---------------------------");
-                        InvestirView investirView = new InvestirView();
+                        InvestirView investirView = new InvestirView(bancoDeDados, contaLogada);
                         investirView.investirView();
                         break;
                     case 5:
                         System.out.println("-------------------------- DEPOSITAR ---------------------------");
-                        DepositoView depositoView = new DepositoView();
+                        DepositoView depositoView = new DepositoView(bancoDeDados, contaLogada);
                         depositoView.depositoLogadoView();
                         break;
                     case 0:
-                        MenuInicialView menuInicialView = new MenuInicialView();
+                        MenuInicialView menuInicialView = new MenuInicialView(bancoDeDados);
                         menuInicialView.mostrarMenuInicial();
 
                     default:

@@ -1,14 +1,21 @@
 package controller;
 
+import database.BancoDeDados;
 import exceptions.SaldoInsuficienteException;
+import exceptions.ValorDoSaqueInvalidoException;
 import model.Conta;
 
-
-
 public class SacarController {
+    private BancoDeDados bancoDeDados;
+    private Conta contaLogada;
 
-    public boolean validaSenha(Conta conta, String senhaDigitada){
-        if (senhaDigitada.equals(conta.getSenha())){
+    public SacarController(BancoDeDados bancoDeDados, Conta contaLogada){
+        this.bancoDeDados = bancoDeDados;
+        this.contaLogada = contaLogada;
+    }
+
+    public boolean validaSenha(String senhaDigitada){
+        if (senhaDigitada.equals(contaLogada.getSenha())){
             return true;
         }else {
             return false;
@@ -17,17 +24,16 @@ public class SacarController {
 
     public boolean validaValorDoSaque(Integer valorDoSaque){
         if (valorDoSaque < 0){
-            return false;
+            throw new ValorDoSaqueInvalidoException("Digite apenas valores maiores que zero.");
         }
         return true;
     }
 
-    public boolean validaSaldo(Conta conta, Integer valorDoSaque) {
-        if (conta.getSaldo() >= valorDoSaque) {
+    public boolean validaSaldo(Integer valorDoSaque) {
+        if (contaLogada.getSaldo() >= valorDoSaque) {
             return true;
         } else {
-            return false;
-//            throw SaldoInsuficienteException("Saldo insuficiente para o saque.\n Saldo atual: " + conta.getSaldo + "\n");
+            throw new SaldoInsuficienteException("Saldo insuficiente para o saque.\n Saldo atual: " + contaLogada.getSaldo() + "\n");
         }
     }
 

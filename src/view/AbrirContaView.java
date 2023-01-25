@@ -4,18 +4,26 @@ import controller.AbrirContaController;
 import controller.ValidarCpfCnpj;
 import controller.ValidarFormatoSenhaController;
 import controller.VerificarSeClienteExisteController;
+import database.BancoDeDados;
 import enums.TipoDeCliente;
 import enums.TipoDeConta;
+import model.Conta;
 
 import java.util.Scanner;
 
 public class AbrirContaView {
     static final Scanner input = new Scanner(System.in);
+    private BancoDeDados bancoDeDados;
+    private Conta contaLogada;
 
+    public AbrirContaView(BancoDeDados bancoDeDados, Conta contaLogada){
+        this.bancoDeDados = bancoDeDados;
+        this.contaLogada = contaLogada;
+    }
 
     public void abrirConta(){
         ValidarCpfCnpj validarCpfCnpj = new ValidarCpfCnpj();
-        VerificarSeClienteExisteController verificarSeClienteExisteController = new VerificarSeClienteExisteController();
+        VerificarSeClienteExisteController verificarSeClienteExisteController = new VerificarSeClienteExisteController(bancoDeDados, contaLogada);
 
         TipoDeCliente tipoDeCliente = null;
         TipoDeConta tipoDeConta;
@@ -34,19 +42,19 @@ public class AbrirContaView {
             }
         } else {
             System.out.println("Documento invalido");
-            MenuInicialView menuInicialView = new MenuInicialView();
+            MenuInicialView menuInicialView = new MenuInicialView(bancoDeDados);
             menuInicialView.mostrarMenuInicial();
         }
 
         if(!verificarSeClienteExisteController.verificarSeClienteExiste(numeroDocumento)) {
-            CadastrarClienteView cadastrarClienteView = new CadastrarClienteView();
+            CadastrarClienteView cadastrarClienteView = new CadastrarClienteView(bancoDeDados, contaLogada);
             cadastrarClienteView.cadastrarCliente(numeroDocumento, tipoDeCliente);
         }
 
         tipoDeConta = escolherTipoDeConta(tipoDeCliente);
         senhaEscolhida = escolherSenha();
 
-        AbrirContaController abrirContaController = new AbrirContaController();
+        AbrirContaController abrirContaController = new AbrirContaController(bancoDeDados, contaLogada);
         abrirContaController.abrirConta(numeroDocumento, senhaEscolhida, tipoDeConta);
     }
 
