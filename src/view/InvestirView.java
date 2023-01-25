@@ -1,16 +1,25 @@
 package view;
 
 import controller.InvestirController;
+import database.BancoDeDados;
+import model.Conta;
 
 import java.util.Scanner;
 
 public class InvestirView {
     static final Scanner input = new Scanner(System.in);
+    private BancoDeDados bancoDeDados;
+    private Conta contaLogada;
+
+    public InvestirView(BancoDeDados bancoDeDados, Conta contaLogada){
+        this.bancoDeDados = bancoDeDados;
+        this.contaLogada = contaLogada;
+    }
     public void investirView() {
         System.out.println("Bem vindo a sua area de investimentos!");
         valorInvestimento();
         formaInvestimento();
-        InvestirController investirController = new InvestirController();
+        InvestirController investirController = new InvestirController(bancoDeDados, contaLogada);
         investirController.tipoInvestimento(valorInvestimento);
     }
         private double valorInvestimento;
@@ -42,7 +51,7 @@ public class InvestirView {
                 switch (opcao) {
                     case 1:
                         System.out.println("-------------------------- DEPOSITO ---------------------------");
-                        DepositoView depositoView = new DepositoView();
+                        DepositoView depositoView = new DepositoView(bancoDeDados, contaLogada);
                         depositoView.depositoDeslogadoView();
                         break;
 

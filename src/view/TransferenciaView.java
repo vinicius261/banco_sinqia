@@ -1,6 +1,7 @@
 package view;
 
 import controller.TransferenciaController;
+import database.BancoDeDados;
 import exceptions.AccountNotFoundException;
 import exceptions.SaldoInsuficienteException;
 import exceptions.SameAccountException;
@@ -14,15 +15,14 @@ public class TransferenciaView {
 
     private Scanner scanner;
     private TransferenciaController transferenciaController;
+    private BancoDeDados bancoDeDados;
     private Conta contaLogada;
 
-    private ArrayList<Conta> contas;
-
-    public TransferenciaView(Conta contaLogada, ArrayList<Conta> contas) {
+    public TransferenciaView(BancoDeDados bancoDeDados, Conta contaLogada) {
         this.scanner = new Scanner(System.in);
         this.transferenciaController= new TransferenciaController();
+        this.bancoDeDados = bancoDeDados;
         this.contaLogada = contaLogada;
-        this.contas = contas;
     }
 
     public void transferir() {
@@ -34,7 +34,7 @@ public class TransferenciaView {
             System.out.println("Senha incorreta.\n");
         }
 
-        MenuContaView menuContaView = new MenuContaView();
+        MenuContaView menuContaView = new MenuContaView(bancoDeDados, contaLogada);
 
         menuContaView.mostrarMenuConta();
     }
@@ -45,7 +45,7 @@ public class TransferenciaView {
     }
 
     public Double valorDaTransferencia() {
-        MenuContaView menuContaView = new MenuContaView();
+        MenuContaView menuContaView = new MenuContaView(bancoDeDados, contaLogada);
 
         System.out.println("Digite o valor da transferência: \n");
 
@@ -85,15 +85,15 @@ public class TransferenciaView {
     public Conta contaFavorecida() {
         System.out.println("Insira o número da conta que vai receber a transferência: ");
         try {
-            Conta contaFavorecida = transferenciaController.buscaContas(scanner.nextLine(), contas, contaLogada);
+            Conta contaFavorecida = transferenciaController.buscaContas(scanner.nextLine(), bancoDeDados.getContas(), contaLogada);
             return contaFavorecida;
         }catch (AccountNotFoundException ex){
             System.out.println(ex.getMessage());
-            MenuContaView menuContaView = new MenuContaView();
+            MenuContaView menuContaView = new MenuContaView(bancoDeDados, contaLogada);
             menuContaView.mostrarMenuConta();
         }catch (SameAccountException ex){
             System.out.println(ex.getMessage());
-            MenuContaView menuContaView = new MenuContaView();
+            MenuContaView menuContaView = new MenuContaView(bancoDeDados, contaLogada);
             menuContaView.mostrarMenuConta();
         }
         return null;

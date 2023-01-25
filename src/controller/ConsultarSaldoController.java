@@ -3,22 +3,27 @@ package controller;
 import database.BancoDeDados;
 import model.Conta;
 
-import static database.BancoDeDados.*;
-
 import java.util.ArrayList;
 import java.util.Objects;
 
 public class ConsultarSaldoController {
 
+    private BancoDeDados bancoDeDados;
+    private Conta contaLogada;
+
+    public ConsultarSaldoController(BancoDeDados bancoDeDados, Conta contaLogada){
+        this.bancoDeDados = bancoDeDados;
+        this.contaLogada = contaLogada;
+    }
     public double SaldoContaLogada(){
-        return getContaLogada().getSaldo();
+        return this.contaLogada.getSaldo();
     }
 
     public ArrayList<Conta> SaldoOutraConta(){
         ArrayList<Conta> contasDoCliente = new ArrayList<>();
-        Conta contaLogada = getContaLogada();
+        Conta contaLogada = this.contaLogada;
 
-        for (Conta conta : BancoDeDados.getContas()){
+        for (Conta conta : this.bancoDeDados.getContas()){
             if(Objects.equals(contaLogada.getCliente(), conta.getCliente())){
                 if(!Objects.equals(conta, contaLogada)){
                     contasDoCliente.add(conta);

@@ -1,13 +1,22 @@
 package view;
 
 import controller.ConsultarSaldoController;
+import database.BancoDeDados;
 import model.Conta;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ConsultarSaldoOutrasContasView {
     static final Scanner input = new Scanner(System.in);
-    ConsultarSaldoController consultarSaldoController = new ConsultarSaldoController();
+    ConsultarSaldoController consultarSaldoController;
+    private BancoDeDados bancoDeDados;
+    private Conta contaLogada;
+
+    public ConsultarSaldoOutrasContasView(BancoDeDados bancoDeDados, Conta contaLogada){
+        this. consultarSaldoController = new ConsultarSaldoController(bancoDeDados, contaLogada);
+        this.bancoDeDados = bancoDeDados;
+        this.contaLogada = contaLogada;
+    }
     public void SaldoOutraConta() {
         String opcao;
         ArrayList<Conta> contas = consultarSaldoController.SaldoOutraConta();

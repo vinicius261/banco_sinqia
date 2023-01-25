@@ -8,7 +8,7 @@ import model.*;
 import java.util.ArrayList;
 
 public class CriarContasClientes {
-    public void CriarContasClientes(){
+    public void CriarContasClientes(BancoDeDados bancoDeDados){
         ArrayList<Conta> ContasDoCLiente= new ArrayList<>();
 
         Cliente cliente = new Cliente(
@@ -17,7 +17,7 @@ public class CriarContasClientes {
                 "lucas@email.com",
                 TipoDeCliente.PESSOA_FISICA,
                 ContasDoCLiente);
-       BancoDeDados.addCliente(cliente);
+       bancoDeDados.addCliente(cliente);
 
         ContaCorrente contaCorrente = new ContaCorrente();
         contaCorrente.setCliente(cliente);
@@ -25,23 +25,23 @@ public class CriarContasClientes {
         contaCorrente.setTipoDeConta(TipoDeConta.CONTA_CORRENTE);
         contaCorrente.setNumeroConta("1");
         contaCorrente.setSenha("1");
-        BancoDeDados.addConta(contaCorrente);
+        bancoDeDados.addConta(contaCorrente);
 
         ContaPoupanca contaPoupanca = new ContaPoupanca();
         contaPoupanca.setCliente(cliente);
         contaPoupanca.setSaldo(50);
         contaPoupanca.setTipoDeConta(TipoDeConta.CONTA_POUPANCA);
         contaPoupanca.setNumeroConta("2");
-        BancoDeDados.addConta(contaPoupanca);
+        bancoDeDados.addConta(contaPoupanca);
 
         ContaInvestimento contaInvestimento = new ContaInvestimento();
         contaInvestimento.setCliente(cliente);
         contaInvestimento.setSaldo(1000);
         contaInvestimento.setTipoDeConta((TipoDeConta.CONTA_INVESTIMENTO));
         contaInvestimento.setNumeroConta("3");
-        BancoDeDados.addConta(contaInvestimento);
+        bancoDeDados.addConta(contaInvestimento);
 
-        BancoDeDados.setContaLogada(contaPoupanca);
+        /*bancoDeDados.setContaLogada(contaPoupanca);*/
     }
 }
 

@@ -1,6 +1,7 @@
 package view;
 
 import controller.DepositoController;
+import database.BancoDeDados;
 import enums.TipoDeConta;
 import model.Conta;
 
@@ -8,13 +9,19 @@ import java.text.DecimalFormat;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import static database.BancoDeDados.getContas;
-import static database.BancoDeDados.getContaLogada;
-
 public class DepositoView {
     static final Scanner scan = new Scanner(System.in);
-    DepositoController depositoController = new DepositoController();
-    MenuInicialView menuInicialView = new MenuInicialView();
+    DepositoController depositoController;
+    MenuInicialView menuInicialView;
+    private BancoDeDados bancoDeDados;
+    private Conta contaLogada;
+
+    public DepositoView(BancoDeDados bancoDeDados, Conta contaLogada){
+        this.bancoDeDados = bancoDeDados;
+        this.contaLogada = contaLogada;
+        this.depositoController = new DepositoController(bancoDeDados,contaLogada);
+        this.menuInicialView = new MenuInicialView(bancoDeDados);
+    }
 
     String padrao = "###,##0.00";
     DecimalFormat df = new DecimalFormat(padrao);
@@ -42,11 +49,11 @@ public class DepositoView {
         System.out.println("Para voltar ao menu anterior digite 0.");
         System.out.println();
         String opcao = scan.next();
-        numeroConta = getContaLogada().getNumeroConta();
+        numeroConta = this.contaLogada.getNumeroConta();
         if (opcao.equals("1")) {
             valorDeposito();
             confirmaDeposito();
-            MenuContaView menuContaView = new MenuContaView();
+            MenuContaView menuContaView = new MenuContaView(bancoDeDados, contaLogada);
             menuContaView.mostrarMenuConta();
         } else if (opcao.equals("0")) {
             menuInicialView.mostrarMenuInicial();
@@ -107,7 +114,7 @@ public class DepositoView {
 
     public void confirmaDeposito() {
         int i = depositoController.retornaPosicaoNoArray(numeroConta);
-        Conta conta = getContas().get(i);
+        Conta conta = bancoDeDados.getContas().get(i);
         System.out.println();
         System.out.println("CONFIRMAÇÃO DOS DADOS DE DEPÓSITO");
         System.out.println("Tipo de conta: " + conta.getTipoDeConta());

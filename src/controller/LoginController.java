@@ -1,13 +1,13 @@
 package controller;
 
+import database.BancoDeDados;
 import exceptions.AccountNotFoundException;
 import exceptions.PasswordNotFoundException;
 import model.Conta;
+import service.ContaLogadaService;
 import view.LoginContaView;
 import view.MenuContaView;
 
-import static database.BancoDeDados.getContas;
-import static database.BancoDeDados.setContaLogada;
 import static view.LoginContaView.getClientBankAccount;
 import static view.LoginContaView.getClientBankPassword;
 
@@ -17,6 +17,13 @@ public class LoginController {
     private boolean verify = true;
 
     // private LoginContaView loginContaView= new LoginContaView();
+
+    private BancoDeDados bancoDeDados;
+    private Conta contaLogada;
+
+    public LoginController(BancoDeDados bancoDeDados){
+        this.bancoDeDados = bancoDeDados;
+    }
 
     /**
      * Método responsável por verificar a existência da conta fornecida para login.
@@ -29,8 +36,8 @@ public class LoginController {
     public int verificaSeContaDigitadaFoiCadastrada(String clientBankAccount) {
         clientBankAccount = getClientBankAccount();
 
-        for (int i = 0; i < getContas().size(); i++) {
-            if (clientBankAccount.equals(getContas().get(i).getNumeroConta())) {
+        for (int i = 0; i < bancoDeDados.getContas().size(); i++) {
+            if (clientBankAccount.equals(bancoDeDados.getContas().get(i).getNumeroConta())) {
                 verify = false;
                 index = i;
                 break;
@@ -39,7 +46,7 @@ public class LoginController {
 
         if (verify) {
             System.out.println("A conta informada não confere.\n");
-            LoginContaView loginContaView = new LoginContaView();
+            LoginContaView loginContaView = new LoginContaView(bancoDeDados);
             loginContaView.decidirLogarOuIrParaMenuView();
         }
         return index;
@@ -57,13 +64,13 @@ public class LoginController {
     public void VerificaSeSenhaDigitadaConfere(String clientBankPassword, int indexConta) {
         clientBankPassword = getClientBankPassword();
 
-        if (clientBankPassword.equals(getContas().get(indexConta).getSenha())) {
-            logarNaConta(indexConta);
-            MenuContaView menuContaView = new MenuContaView();
+        if (clientBankPassword.equals(bancoDeDados.getContas().get(indexConta).getSenha())) {
+            contaLogada = logarNaConta(indexConta);
+            MenuContaView menuContaView = new MenuContaView(bancoDeDados, contaLogada);
             menuContaView.mostrarMenuConta();
         } else {
             System.out.println("A senha não confere.\n");
-            LoginContaView loginContaView = new LoginContaView();
+            LoginContaView loginContaView = new LoginContaView(bancoDeDados);
             loginContaView.decidirLogarOuIrParaMenuView();
         }
     }
@@ -74,9 +81,10 @@ public class LoginController {
      * @return String contendo o número da conta que foi logada
      * @author Rodolfo Lisboa
      */
-    public void logarNaConta(int indexConta) {
-        Conta contaDigitadaAoLogar = getContas().get(indexConta);
-        setContaLogada(contaDigitadaAoLogar);
+    public Conta logarNaConta(int indexConta) {
+        Conta contaDigitadaAoLogar = bancoDeDados.getContas().get(indexConta);
+        ContaLogadaService service = new ContaLogadaService(contaDigitadaAoLogar);
+        return service.getContaLogada();
     }
 
 }

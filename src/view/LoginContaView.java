@@ -1,6 +1,8 @@
 package view;
 
 import controller.LoginController;
+import database.BancoDeDados;
+import model.Conta;
 
 import java.util.Scanner;
 
@@ -15,6 +17,11 @@ public class LoginContaView {
     private static String clientBankAccount, clientBankPassword;
     private boolean verify;
     private static Scanner entrance = new Scanner(System.in);
+    private BancoDeDados bancoDeDados;
+
+    public LoginContaView(BancoDeDados bancoDeDados){
+        this.bancoDeDados = bancoDeDados;
+    }
 
     public static String getClientBankAccount() {
         return clientBankAccount;
@@ -30,7 +37,7 @@ public class LoginContaView {
      * @author Rodolfo Lisboa
      */
     public void logarContaView() {
-        LoginController loginController = new LoginController();
+        LoginController loginController = new LoginController(bancoDeDados);
 
         System.out.println("Olá, para entrar no banco, por favor digite sua conta cadastrada:");
         clientBankAccount = entrance.nextLine();
@@ -50,7 +57,7 @@ public class LoginContaView {
 
         clientBankPassword = entrance.nextLine();
 
-        LoginController loginController = new LoginController();
+        LoginController loginController = new LoginController(bancoDeDados);
         loginController.VerificaSeSenhaDigitadaConfere(clientBankPassword, index);
     }
 
@@ -71,7 +78,7 @@ public class LoginContaView {
                     verify = false;
                     break;
                 case 2:
-                    MenuInicialView menuInicialView = new MenuInicialView();
+                    MenuInicialView menuInicialView = new MenuInicialView(bancoDeDados);
                     menuInicialView.mostrarMenuInicial();
                     verify = false;
                     break;

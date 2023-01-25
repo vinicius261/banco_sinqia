@@ -2,15 +2,19 @@ package controller;
 
 import database.BancoDeDados;
 import enums.TipoDeConta;
-import model.Cliente;
-import model.ContaCorrente;
-import model.ContaInvestimento;
-import model.ContaPoupanca;
+import model.*;
 
 import java.util.Random;
 
 public class AbrirContaController {
     Random gerarNumero = new Random();
+    private BancoDeDados bancoDeDados;
+    private Conta contaLogada;
+
+    public AbrirContaController(BancoDeDados bancoDeDados, Conta contaLogada){
+        this.bancoDeDados = bancoDeDados;
+        this.contaLogada = contaLogada;
+    }
 
     public void abrirConta(
             String numeroDocumento,
@@ -21,7 +25,7 @@ public class AbrirContaController {
         System.out.println(numeroConta);
         double saldo = 0;
 
-        VerificarSeClienteExisteController verificarSeClienteExisteController = new VerificarSeClienteExisteController();
+        VerificarSeClienteExisteController verificarSeClienteExisteController = new VerificarSeClienteExisteController(bancoDeDados, contaLogada);
         Cliente cliente = verificarSeClienteExisteController.procurarCliente(numeroDocumento);
 
         if (TipoDeConta.equals(enums.TipoDeConta.CONTA_CORRENTE)){
@@ -31,7 +35,7 @@ public class AbrirContaController {
             contaCorrente.setSaldo(saldo);
             contaCorrente.setCliente(cliente);
             contaCorrente.setTipoDeConta(TipoDeConta);
-            BancoDeDados.addConta(contaCorrente);
+            bancoDeDados.addConta(contaCorrente);
 
         } else if(TipoDeConta.equals(enums.TipoDeConta.CONTA_POUPANCA)){
             ContaPoupanca contaPoupanca = new ContaPoupanca();
@@ -40,7 +44,7 @@ public class AbrirContaController {
             contaPoupanca.setSaldo(saldo);
             contaPoupanca.setCliente(cliente);
             contaPoupanca.setTipoDeConta(TipoDeConta);
-            BancoDeDados.addConta(contaPoupanca);
+            bancoDeDados.addConta(contaPoupanca);
 
         } else if(TipoDeConta.equals(enums.TipoDeConta.CONTA_INVESTIMENTO)){
             ContaInvestimento contaInvestimento = new ContaInvestimento();
@@ -49,7 +53,7 @@ public class AbrirContaController {
             contaInvestimento.setSaldo(saldo);
             contaInvestimento.setCliente(cliente);
             contaInvestimento.setTipoDeConta(TipoDeConta);
-            BancoDeDados.addConta(contaInvestimento);
+            bancoDeDados.addConta(contaInvestimento);
         }
     }
 }
