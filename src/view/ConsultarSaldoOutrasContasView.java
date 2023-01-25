@@ -5,7 +5,6 @@ import model.Conta;
 import enums.TipoDeConta;
 
 import java.util.ArrayList;
-import java.util.Objects;
 import java.util.Scanner;
 
 public class ConsultarSaldoOutrasContasView {
@@ -13,7 +12,6 @@ public class ConsultarSaldoOutrasContasView {
     ConsultarSaldoController consultarSaldoController = new ConsultarSaldoController();
     public void SaldoOutraConta() {
         String contaSelecionada = null;
-        String tipoDeConta = null;
         String opcao;
         double saldo = 0;
         ArrayList<Conta> contas = consultarSaldoController.SaldoOutraConta();
