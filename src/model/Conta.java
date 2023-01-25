@@ -14,7 +14,6 @@ public abstract class Conta {
         this.senha = senha;
         this.saldo = saldo;
         this.cliente = cliente;
-        this.tipoDeConta = tipoDeConta;
     }
 
     public Conta(){
@@ -54,7 +53,7 @@ public abstract class Conta {
         return cliente;
     }
 
-    public void setTipoDeConta(TipoDeConta tipoDeConta){
+    protected void setTipoDeConta(TipoDeConta tipoDeConta){
         this.tipoDeConta = tipoDeConta;
     }
     public TipoDeConta getTipoDeConta() {
