@@ -14,7 +14,7 @@ public class ConsultarSaldoContaAtualView {
     public void SaldoContaAtual() {
         double saldo = consultarSaldoController.SaldoContaLogada();
         MenuContaView menuContaView = new MenuContaView();
-        System.out.println("Saldo disponivel: " + saldo);
+        System.out.println("Saldo disponivel: R$" + saldo);
         if(procurarOutraContaController.verificarSeClientePossuiOutraConta()){
             System.out.println("Deseja consultar o saldo de suas demais contas?" +
                     "\n1 - Sim " +
@@ -29,6 +29,9 @@ public class ConsultarSaldoContaAtualView {
                 case 2 :
                     menuContaView.mostrarMenuConta();
                     break;
+                default:
+                    System.out.println("Opçao Invalida");
+                    menuContaView.mostrarMenuConta();
             }
         } else {
             menuContaView.mostrarMenuConta();
