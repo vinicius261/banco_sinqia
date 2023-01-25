@@ -8,10 +8,8 @@ public class Aplicacao {
 
         CriarContasClientesService criarContasClientesService = new CriarContasClientesService();
         criarContasClientesService.CriarContasClientes();
-        System.out.println(BancoDeDados.getContas().get(0).getSaldo());
-        System.out.println(BancoDeDados.getContas().get(0).getSenha());
-        System.out.println(BancoDeDados.getContas().get(0).getNumeroConta());
-        System.out.println(BancoDeDados.getContas().get(1).getSaldo());
+        System.out.println(BancoDeDados.getContas().get(0).getTipoDeConta());
+
 
 
         System.out.println("\n===================================================================");

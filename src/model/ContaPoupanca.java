@@ -7,9 +7,11 @@ public class ContaPoupanca extends Conta  {
 
     private double rendimento;
 
+    private TipoDeConta tipoDeConta;
+
     public ContaPoupanca(String numeroConta, String senha, double saldo, Cliente cliente) {
         super(numeroConta, senha, saldo, cliente);
-        TipoDeConta tipoDeConta = TipoDeConta.CONTA_POUPANCA;
+        this.tipoDeConta = TipoDeConta.CONTA_POUPANCA;
     }
 
     public ContaPoupanca(){

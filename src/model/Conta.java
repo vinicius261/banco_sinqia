@@ -14,6 +14,7 @@ public abstract class Conta {
         this.senha = senha;
         this.saldo = saldo;
         this.cliente = cliente;
+        this.tipoDeConta = tipoDeConta;
     }
 
     public Conta(){

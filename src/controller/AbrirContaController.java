@@ -15,7 +15,7 @@ public class AbrirContaController {
     public void abrirConta(
             String numeroDocumento,
             String Senha,
-            TipoDeConta TipoDeConta
+            TipoDeConta tipoDeConta
     ) {
         String numeroConta = String.valueOf(gerarNumero.nextInt(2000-1000)+1000);
         System.out.println(numeroConta);
@@ -24,7 +24,7 @@ public class AbrirContaController {
         VerificarSeClienteExisteController verificarSeClienteExisteController = new VerificarSeClienteExisteController();
         Cliente cliente = verificarSeClienteExisteController.procurarCliente(numeroDocumento);
 
-        if (TipoDeConta.equals(enums.TipoDeConta.CONTA_CORRENTE)){
+        if (tipoDeConta.equals(TipoDeConta.CONTA_CORRENTE)){
             ContaCorrente contaCorrente = new ContaCorrente(
                     numeroConta,
                     Senha,
@@ -33,7 +33,7 @@ public class AbrirContaController {
             );
             BancoDeDados.addConta(contaCorrente);
 
-        } else if(TipoDeConta.equals(enums.TipoDeConta.CONTA_POUPANCA)){
+        } else if(tipoDeConta.equals(TipoDeConta.CONTA_POUPANCA)){
             ContaPoupanca contaPoupanca = new ContaPoupanca(
                     numeroConta,
                     Senha,
@@ -42,7 +42,7 @@ public class AbrirContaController {
             );
             BancoDeDados.addConta(contaPoupanca);
 
-        } else if(TipoDeConta.equals(enums.TipoDeConta.CONTA_INVESTIMENTO)){
+        } else if(tipoDeConta.equals(TipoDeConta.CONTA_INVESTIMENTO)){
             ContaInvestimento contaInvestimento = new ContaInvestimento(
                     numeroConta,
                     Senha,
