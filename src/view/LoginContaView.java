@@ -11,7 +11,7 @@ public class LoginContaView {
     coloquei atributo userLogado em Banco*/
 
 
-    int i, index = -1, count = 0, option;
+    int index = -1, option;
     private static String clientBankAccount, clientBankPassword;
     private boolean verify;
     private static Scanner entrance = new Scanner(System.in);
@@ -25,7 +25,7 @@ public class LoginContaView {
     }
 
     /**
-     * Método responsável por iniciar o login na conta do cliente.
+     * Método para receber o número da conta em que o Cliente quer logar e direcioná-la para averiguação.
      *
      * @author Rodolfo Lisboa
      */
@@ -35,23 +35,23 @@ public class LoginContaView {
         System.out.println("Olá, para entrar no banco, por favor digite sua conta cadastrada:");
         clientBankAccount = entrance.nextLine();
 
-        index = loginController.verificaContaCadastrada(clientBankAccount);
+        index = loginController.verificaSeContaDigitadaFoiCadastrada(clientBankAccount);
         receberSenhaAConferirView();
     }
 
     /**
-     * Método responsável por receber a senha digitada e testá-la pela primeira vez
+     * Método responsável por receber a senha digitada e direcioná-la para verificação
      *
      * @author Rodolfo Lisboa
      */
     public void receberSenhaAConferirView() {
 
-        System.out.println("Por favor, agora digite sua senha:");
+        System.out.println("\nPor favor, agora digite sua senha:");
 
         clientBankPassword = entrance.nextLine();
 
         LoginController loginController = new LoginController();
-        loginController.verificaSenhaCorreta(clientBankPassword, index, count);
+        loginController.VerificaSeSenhaDigitadaConfere(clientBankPassword, index);
     }
 
     /**
@@ -59,7 +59,7 @@ public class LoginContaView {
      *
      * @outhor Rodolfo Lisboa
      */
-    public void decidirLogarOuMenuView() {
+    public void decidirLogarOuIrParaMenuView() {
         verify = true;
         do {
             System.out.println("\n------------------------------------------------------------");
