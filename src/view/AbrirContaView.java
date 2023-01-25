@@ -69,10 +69,10 @@ public class AbrirContaView {
         }
 
         try {
-            int tipoDeconta = Integer.parseInt(input.nextLine());
-            if (tipoDeconta == 1 || tipoDeconta == 2 || tipoDeconta == 3) {
+            int escolhaConta = Integer.parseInt(input.nextLine());
+            if (escolhaConta == 1 || escolhaConta == 2 || escolhaConta == 3) {
 
-                switch (tipoDeconta) {
+                switch (escolhaConta) {
                     case 1 -> {
                         System.out.println("-----------------------------------------------------");
                         tipoDeConta = TipoDeConta.CONTA_CORRENTE;

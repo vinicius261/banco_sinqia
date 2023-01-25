@@ -6,7 +6,6 @@ import enums.TipoDeCliente;
 import model.Cliente;
 import model.Conta;
 
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Scanner;
 

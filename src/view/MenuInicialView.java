@@ -36,10 +36,9 @@ public class MenuInicialView {
 
                     case 2:
                         System.out.println("-------------------------- LOGIN ---------------------------");
-//                        ConsultarSaldoContaAtualView consultarSaldoContaAtualView = new ConsultarSaldoContaAtualView();
-//                        consultarSaldoContaAtualView.SaldoContaAtual();
 
                         LoginContaView loginContaView = new LoginContaView(bancoDeDados);
+
                         loginContaView.logarContaView();
                         break;
 

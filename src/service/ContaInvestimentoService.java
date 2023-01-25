@@ -19,6 +19,7 @@ public class ContaInvestimentoService implements Investir {
 
     @Override
     public void investir(double investimento) {
+
         if(contaLogada.getCliente().getTipoDeCliente().equals(TipoDeCliente.PESSOA_JURIDICA)){
             contaInvestimento.setRendimento(0.035);
             contaLogada.setSaldo(contaLogada.getSaldo()* contaInvestimento.getRendimento());
@@ -26,7 +27,6 @@ public class ContaInvestimentoService implements Investir {
         } else if (contaLogada.getCliente().getTipoDeCliente().equals(TipoDeCliente.PESSOA_FISICA)){
             contaInvestimento.setRendimento(0.015);
             contaLogada.setSaldo(contaLogada.getSaldo()* contaInvestimento.getRendimento());
-
         }
     }
 }

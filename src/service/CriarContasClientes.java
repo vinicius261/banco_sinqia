@@ -19,7 +19,7 @@ public class CriarContasClientes {
                 ContasDoCLiente);
        bancoDeDados.addCliente(cliente);
 
-        ContaCorrente contaCorrente = new ContaCorrente();
+        ContaCorrente contaCorrente = new ContaCorrente(cliente.getNome(), "1", 100, cliente);
         contaCorrente.setCliente(cliente);
         contaCorrente.setSaldo(100);
         contaCorrente.setTipoDeConta(TipoDeConta.CONTA_CORRENTE);
