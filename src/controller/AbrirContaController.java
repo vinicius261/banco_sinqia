@@ -29,8 +29,7 @@ public class AbrirContaController {
                     numeroConta,
                     Senha,
                     saldo,
-                    cliente
-            );
+                    cliente);
             BancoDeDados.addConta(contaCorrente);
 
         } else if(tipoDeConta.equals(TipoDeConta.CONTA_POUPANCA)){
@@ -38,8 +37,7 @@ public class AbrirContaController {
                     numeroConta,
                     Senha,
                     saldo,
-                    cliente
-            );
+                    cliente);
             BancoDeDados.addConta(contaPoupanca);
 
         } else if(tipoDeConta.equals(TipoDeConta.CONTA_INVESTIMENTO)){
@@ -47,8 +45,7 @@ public class AbrirContaController {
                     numeroConta,
                     Senha,
                     saldo,
-                    cliente
-            );
+                    cliente);
             BancoDeDados.addConta(contaInvestimento);
         }
     }

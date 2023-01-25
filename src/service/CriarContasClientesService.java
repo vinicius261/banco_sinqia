@@ -30,16 +30,14 @@ public class CriarContasClientesService {
                 "2",
                 "2",
                 50,
-                cliente
-        );
+                cliente);
         BancoDeDados.addConta(contaPoupanca);
 
         ContaInvestimento contaInvestimento = new ContaInvestimento(
                 "3",
                 "3",
                 1000,
-                cliente
-        );
+                cliente);
         BancoDeDados.addConta(contaInvestimento);
 
         BancoDeDados.setContaLogada(contaPoupanca);
