@@ -26,7 +26,7 @@ public class LoginController {
      * @throws AccountNotFoundException
      * @author Rodolfo Lisboa
      */
-    public int verificaContaCadastrada(String clientBankAccount) {
+    public int verificaSeContaDigitadaFoiCadastrada(String clientBankAccount) {
         clientBankAccount = getClientBankAccount();
 
         for (int i = 0; i < getContas().size(); i++) {
@@ -38,9 +38,9 @@ public class LoginController {
         }
 
         if (verify) {
-            System.out.println("A conta informada não confere.");
+            System.out.println("A conta informada não confere.\n");
             LoginContaView loginContaView = new LoginContaView();
-            loginContaView.decidirLogarOuMenuView();
+            loginContaView.decidirLogarOuIrParaMenuView();
         }
         return index;
     }
@@ -50,31 +50,21 @@ public class LoginController {
      *
      * @param clientBankPassword
      * @param indexConta
-     * @param count
      * @return boolean
      * @throws PasswordNotFoundException
      * @author Rodolfo Lisboa
      */
-    public void verificaSenhaCorreta(String clientBankPassword, int indexConta, int count) {
+    public void VerificaSeSenhaDigitadaConfere(String clientBankPassword, int indexConta) {
         clientBankPassword = getClientBankPassword();
 
-       /* System.out.println("===================================");
-        System.out.println("O índice da conta e da senha é:  " + indexConta);
-        System.out.println("A conta digitada foi: " + getClientBankAccount());
-        System.out.println("A senha digitada foi: " + getClientBankPassword());
-        System.out.println("A senha cadastrada é: " + getContas().get(indexConta).getSenha());
-        System.out.println("O valor do contador é: " + count);
-        System.out.println("===================================");*/
-
-        if (getClientBankPassword().equals(getContas().get(indexConta).getSenha())) {
-            loginContaController(indexConta);
+        if (clientBankPassword.equals(getContas().get(indexConta).getSenha())) {
+            logarNaConta(indexConta);
             MenuContaView menuContaView = new MenuContaView();
             menuContaView.mostrarMenuConta();
         } else {
-            System.out.println("A senha não confere.");
+            System.out.println("A senha não confere.\n");
             LoginContaView loginContaView = new LoginContaView();
-            loginContaView.decidirLogarOuMenuView();
-
+            loginContaView.decidirLogarOuIrParaMenuView();
         }
     }
 
@@ -84,7 +74,7 @@ public class LoginController {
      * @return String contendo o número da conta que foi logada
      * @author Rodolfo Lisboa
      */
-    public void loginContaController(int indexConta) {
+    public void logarNaConta(int indexConta) {
         Conta contaDigitadaAoLogar = getContas().get(indexConta);
         setContaLogada(contaDigitadaAoLogar);
     }
