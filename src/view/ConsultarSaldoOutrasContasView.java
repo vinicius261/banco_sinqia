@@ -2,9 +2,7 @@ package view;
 
 import controller.ConsultarSaldoController;
 import model.Conta;
-import enums.TipoDeConta;
 import java.util.ArrayList;
-import java.util.Enumeration;
 import java.util.Scanner;
 
 public class ConsultarSaldoOutrasContasView {
