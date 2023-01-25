@@ -17,7 +17,7 @@ public class SacarView {
 
     public SacarView(BancoDeDados bancoDeDados, Conta contaLogada) {
         this.scanner = new Scanner(System.in);
-        this.sacarController = new SacarController();
+        this.sacarController = new SacarController(bancoDeDados, contaLogada);
         this.contaLogada = contaLogada;
         this.bancoDeDados = bancoDeDados;
     }
@@ -38,7 +38,7 @@ public class SacarView {
 
     public boolean validaSenha() {
         System.out.println("Para continuar insira sua senha: ");
-        return sacarController.validaSenha(contaLogada, scanner.nextLine());
+        return sacarController.validaSenha(scanner.nextLine());
     }
 
     public Integer valorDoSaque() {
@@ -49,8 +49,10 @@ public class SacarView {
         Integer valorDoSaque = 0;
 
         try {
-            valorDoSaque = Integer.parseInt(scanner.nextLine());
-            sacarController.validaValorDoSaque(valorDoSaque);
+            Integer inputValorDoSaque = Integer.parseInt(scanner.nextLine());
+            if(sacarController.validaValorDoSaque(inputValorDoSaque)){
+                valorDoSaque = inputValorDoSaque;
+            }
 
         } catch (NumberFormatException ex) {
             System.out.println("Digite apenas números.");
@@ -62,7 +64,7 @@ public class SacarView {
         }
 
         try {
-            if (sacarController.validaSaldo(contaLogada, valorDoSaque)) {
+            if (sacarController.validaSaldo(valorDoSaque)) {
                 return valorDoSaque;
             }
 

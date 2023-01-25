@@ -18,8 +18,8 @@ public class TransferenciaController {
     }
 
     public boolean validaValorDaTransferencia(Double valorDaTransferencia){
-        if (valorDaTransferencia < 0){
-            return false;
+        if (valorDaTransferencia > 0){
+            return true;
         }
         throw new ValorDaTransferenciaInvalidaException("Insira apenas números maiores que zero.");
     }
@@ -43,18 +43,15 @@ public class TransferenciaController {
     }
 
     public Conta buscaContas(String numeroDaConta, ArrayList<Conta> contas, Conta contaLogada) {
-        RuntimeException excecao = new RuntimeException();
 
         for (Conta conta: contas) {
             if (conta.getNumeroConta().equals(numeroDaConta)
                     && (!conta.getNumeroConta().equals(contaLogada.getNumeroConta()))){
                 return conta;
-            }else if (conta.getNumeroConta().equals(contaLogada.getNumeroConta())){
-                excecao = new SameAccountException("Este é o número de sua conta, insira outro número.");
-            }else{
-                excecao = new AccountNotFoundException();
+            }else if (numeroDaConta.equals(contaLogada.getNumeroConta())){
+                throw new SameAccountException("Este é o número de sua conta, insira outro número.");
             }
         }
-        throw excecao;
+        throw new AccountNotFoundException("Essa conta não existe.");
     }
 }

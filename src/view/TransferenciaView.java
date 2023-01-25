@@ -8,7 +8,6 @@ import exceptions.SameAccountException;
 import exceptions.ValorDaTransferenciaInvalidaException;
 import model.Conta;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class TransferenciaView {
@@ -47,21 +46,23 @@ public class TransferenciaView {
     public Double valorDaTransferencia() {
         MenuContaView menuContaView = new MenuContaView(bancoDeDados, contaLogada);
 
-        System.out.println("Digite o valor da transferência: \n");
+        System.out.println("Digite o valor da transferência: ");
 
         Double valorDaTransferencia = 0.0;
 
         try {
-            valorDaTransferencia = Double.parseDouble(scanner.nextLine());
-            transferenciaController.validaValorDaTransferencia(valorDaTransferencia);
+            Double inputDaTransferencia = Double.parseDouble(scanner.nextLine());
+            if(transferenciaController.validaValorDaTransferencia(inputDaTransferencia)){
+                valorDaTransferencia = inputDaTransferencia;
+            }
 
         } catch (NumberFormatException ex) {
             System.out.println("Digite apenas números.");
-            valorDaTransferencia();
+            valorDaTransferencia = valorDaTransferencia();
 
         } catch (ValorDaTransferenciaInvalidaException ex) {
             System.out.println(ex.getMessage());
-            valorDaTransferencia();
+            valorDaTransferencia = valorDaTransferencia();
         }
 
         try {
@@ -79,7 +80,7 @@ public class TransferenciaView {
 
     public void movimentaConta(Double valorDaTransferencia, Conta contaFavorecida){
         transferenciaController.transfereValores(contaLogada, contaFavorecida, valorDaTransferencia);
-        System.out.println("A transferência de " + valorDaTransferencia + "R$ para " + contaFavorecida + " foi feita.");
+        System.out.println("A transferência de " + valorDaTransferencia + "R$ para " + contaFavorecida.getCliente().getNome() + " foi feita.");
     }
 
     public Conta contaFavorecida() {
