@@ -52,22 +52,4 @@ public class DepositoController {
             }
         }
     }
-
-    public double calculaRendimentoDeposito(Conta conta, double valorDeposito, String numeroConta){
-        if (conta.getTipoDeConta().equals(TipoDeConta.CONTA_INVESTIMENTO)) {
-            if (conta.getCliente().getTipoDeCliente().equals(TipoDeCliente.PESSOA_FISICA)) {
-                double valorRendimento = valorDeposito * 0.015;
-                deposita(valorRendimento, numeroConta);
-                return valorRendimento;
-            } else if (conta.getCliente().getTipoDeCliente().equals(TipoDeCliente.PESSOA_JURIDICA)) {
-                double valorRendimento = valorDeposito * 0.035;
-                deposita(valorRendimento, numeroConta);
-                return valorRendimento;
-            }
-        } else if (conta.getTipoDeConta().equals(TipoDeConta.CONTA_POUPANCA)) {
-            double valorRendimento = valorDeposito * 0.01;
-            deposita(valorRendimento, numeroConta);
-            return valorRendimento;
-        } return 0;
-    }
 }

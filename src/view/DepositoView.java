@@ -1,6 +1,7 @@
 package view;
 
 import controller.DepositoController;
+import controller.InvestirController;
 import database.BancoDeDados;
 import enums.TipoDeConta;
 import model.Conta;
@@ -13,14 +14,16 @@ public class DepositoView {
     static final Scanner scan = new Scanner(System.in);
     DepositoController depositoController;
     MenuInicialView menuInicialView;
+    InvestirController investirController;
     private BancoDeDados bancoDeDados;
     private Conta contaLogada;
 
-    public DepositoView(BancoDeDados bancoDeDados, Conta contaLogada){
+    public DepositoView(BancoDeDados bancoDeDados, Conta contaLogada) {
         this.bancoDeDados = bancoDeDados;
         this.contaLogada = contaLogada;
-        this.depositoController = new DepositoController(bancoDeDados,contaLogada);
+        this.depositoController = new DepositoController(bancoDeDados, contaLogada);
         this.menuInicialView = new MenuInicialView(bancoDeDados);
+        this.investirController = new InvestirController(bancoDeDados);
     }
 
     String padrao = "###,##0.00";
@@ -139,16 +142,13 @@ public class DepositoView {
             System.out.println();
             if (conta.getTipoDeConta().equals(TipoDeConta.CONTA_CORRENTE)) {
             } else {
-                rendimentoView(conta);
+                investirController.tipoInvestimento(conta, valorDeposito);
+                System.out.println("O seu depósito rendeu R$" + df.format(investirController.tipoInvestimento(conta, valorDeposito)));
+                System.out.println("O rendimento já está disponível na conta.");
             }
 
         } else {
             contaDeposito();
         }
-    }
-
-    public void rendimentoView(Conta conta) {
-        System.out.println("O seu depósito rendeu R$" + df.format(depositoController.calculaRendimentoDeposito(conta, valorDeposito, numeroConta)) + ".");
-        System.out.println("O rendimento já está disponível na conta.");
     }
 }
