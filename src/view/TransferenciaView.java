@@ -92,8 +92,8 @@ public class TransferenciaView {
         transferenciaController.transfereValores(bancoDeDados, contaLogada, contaFavorecida, valorDaTransferencia);
 
         if (contaFavorecida.getTipoDeConta() == TipoDeConta.CONTA_INVESTIMENTO || contaFavorecida.getTipoDeConta() == TipoDeConta.CONTA_POUPANCA){
-            System.out.println("A transferência de " + valorDaTransferencia + "R$ para a conta " +
-                    contaFavorecida.getTipoDeConta().name() + " de " + contaFavorecida.getCliente().getNome().toLowerCase()
+            System.out.println("A transferência de " + valorDaTransferencia + "R$ para a " +
+                    contaFavorecida.getTipoDeConta().name().toLowerCase() + " de " + contaFavorecida.getCliente().getNome()
                     + " foi feita e já está rendendo.");
         }else {
             System.out.println("A transferência de " + valorDaTransferencia + "R$ para " + contaFavorecida.getCliente().getNome() + " foi feita.");
