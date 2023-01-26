@@ -27,16 +27,23 @@ public class TransferenciaView {
     public void transferir() {
         System.out.println("Olá, " + contaLogada.getCliente().getNome() + ". Você esta na Área de Transferências\n");
 
+        MenuContaView menuContaView = new MenuContaView(bancoDeDados, contaLogada);
+
         if (validaSenha()) {
-            movimentaConta(valorDaTransferencia(), contaFavorecida() );
+            try {
+                movimentaConta(valorDaTransferencia(), contaFavorecida());
+            }catch (AccountNotFoundException | SameAccountException ex){
+                System.out.println(ex.getMessage());
+
+                menuContaView.mostrarMenuConta();
+            }
         } else {
             System.out.println("Senha incorreta.\n");
         }
 
-        MenuContaView menuContaView = new MenuContaView(bancoDeDados, contaLogada);
-
         menuContaView.mostrarMenuConta();
     }
+
 
     public boolean validaSenha() {
         System.out.println("Para continuar insira sua senha: ");
@@ -90,13 +97,10 @@ public class TransferenciaView {
             return contaFavorecida;
         }catch (AccountNotFoundException ex){
             System.out.println(ex.getMessage());
-            MenuContaView menuContaView = new MenuContaView(bancoDeDados, contaLogada);
-            menuContaView.mostrarMenuConta();
+            throw new AccountNotFoundException("Essa conta não existe.");
         }catch (SameAccountException ex){
             System.out.println(ex.getMessage());
-            MenuContaView menuContaView = new MenuContaView(bancoDeDados, contaLogada);
-            menuContaView.mostrarMenuConta();
+            throw new SameAccountException("Este é o número de sua conta, insira outro número.");
         }
-        return null;
     }
 }

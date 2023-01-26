@@ -57,8 +57,8 @@ public class InvestirView {
 
                     case 2:
                         System.out.println("-------------------------- TRANSFERENCIA ---------------------------");
-//                        TransferenciaView transferenciaView = new TransferenciaView(Banco.contaLogada);
-//                        transferenciaView.transferir();
+                        TranferenciaParaInvestimentosView tranferencia = new TranferenciaParaInvestimentosView(bancoDeDados, contaLogada);
+                        tranferencia.transferir();
                         break;
 
                     default:
