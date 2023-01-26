@@ -142,7 +142,6 @@ public class DepositoView {
             System.out.println();
             if (conta.getTipoDeConta().equals(TipoDeConta.CONTA_CORRENTE)) {
             } else {
-                investirController.tipoInvestimento(conta, valorDeposito);
                 System.out.println("O seu depósito rendeu R$" + df.format(investirController.tipoInvestimento(conta, valorDeposito)));
                 System.out.println("O rendimento já está disponível na conta.");
             }
