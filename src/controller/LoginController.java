@@ -36,12 +36,15 @@ public class LoginController {
     public int verificaSeContaDigitadaFoiCadastrada(String clientBankAccount) {
         clientBankAccount = getClientBankAccount();
 
-        for (int i = 0; i < bancoDeDados.getContas().size(); i++) {
-            if (clientBankAccount.equals(bancoDeDados.getContas().get(i).getNumeroConta())) {
-                verify = false;
-                index = i;
-                break;
-            }
+        ValidadorExistenciaDeContaController validador = new ValidadorExistenciaDeContaController();
+        int[] values = validador.verificaSeContaDigitadaFoiCadastrada(clientBankAccount);
+
+        index = values[0];
+
+        if (values[1] == 1) {
+            verify = true;
+        } else {
+            verify = false;
         }
 
         if (verify) {
