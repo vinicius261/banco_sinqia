@@ -21,8 +21,7 @@ public class MenuContaView {
                 "\n1 - SACAR " +
                 "\n2 - SALDO" +
                 "\n3 - TRANSFERIR" +
-                "\n4 - INVESTIR" +
-                "\n5 - DEPOSITAR" +
+                "\n4 - DEPOSITAR" +
                 "\n0 - SAIR");
         try {
             int escolha = Integer.parseInt(input.nextLine());
@@ -46,11 +45,6 @@ public class MenuContaView {
                         transferenciaView.transferir();
                         break;
                     case 4:
-                        System.out.println("-------------------------- INVESTIR ---------------------------");
-                        InvestirView investirView = new InvestirView(bancoDeDados, contaLogada);
-                        investirView.investirView();
-                        break;
-                    case 5:
                         System.out.println("-------------------------- DEPOSITAR ---------------------------");
                         DepositoView depositoView = new DepositoView(bancoDeDados, contaLogada);
                         depositoView.depositoLogadoView();
