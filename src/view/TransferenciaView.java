@@ -2,6 +2,7 @@ package view;
 
 import controller.TransferenciaController;
 import database.BancoDeDados;
+import enums.TipoDeCliente;
 import enums.TipoDeConta;
 import exceptions.AccountNotFoundException;
 import exceptions.SaldoInsuficienteException;
@@ -54,6 +55,16 @@ public class TransferenciaView {
 
     public Double valorDaTransferencia() {
         MenuContaView menuContaView = new MenuContaView(bancoDeDados, contaLogada);
+
+        if(contaLogada.getCliente().getTipoDeCliente() == TipoDeCliente.PESSOA_JURIDICA){
+            System.out.println("Esse tipo movimentação cobra taxas.\n Para realizar a transferência digite 1. Para voltar ao menu digite qualquer valor.");
+        }else{
+            System.out.println("Para realizar a transferência digite 1. Para voltar ao menu digite qualquer valor.");
+        }
+
+        if (transferenciaController.confirmaAcao(scanner.nextLine()) == false){
+            menuContaView.mostrarMenuConta();
+        }
 
         System.out.println("Digite o valor da transferência: ");
 

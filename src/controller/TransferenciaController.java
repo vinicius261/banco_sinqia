@@ -1,6 +1,7 @@
 package controller;
 
 import database.BancoDeDados;
+import enums.TipoDeCliente;
 import exceptions.AccountNotFoundException;
 import exceptions.SameAccountException;
 import exceptions.ValorDaTransferenciaInvalidaException;
@@ -37,11 +38,15 @@ public class TransferenciaController {
         if (valorDaTransferencia > 0) {
             Double saldoFavorecida = contaFavorecida.getSaldo();
             contaFavorecida.setSaldo(saldoFavorecida + valorDaTransferencia);
-            InvestirController investir = new InvestirController(bancoDeDados);
-            investir.tipoInvestimento(contaFavorecida, valorDaTransferencia);
+                InvestirController investir = new InvestirController(bancoDeDados);
+                investir.tipoInvestimento(contaFavorecida, valorDaTransferencia);
 
             Double saldoContaLogada = contaLogada.getSaldo();
-            contaLogada.setSaldo(saldoContaLogada - valorDaTransferencia);
+            if(contaLogada.getCliente().getTipoDeCliente() == TipoDeCliente.PESSOA_JURIDICA) {
+                contaLogada.setSaldo(saldoContaLogada - valorDaTransferencia - valorDaTransferencia*0.005);
+            }else{
+                contaLogada.setSaldo(saldoContaLogada - valorDaTransferencia);
+            }
         }
     }
 
@@ -56,5 +61,21 @@ public class TransferenciaController {
             }
         }
         throw new AccountNotFoundException("Essa conta não existe.");
+    }
+
+    public boolean confirmaAcao(String input) {
+        Integer resposta = 2;
+
+        try {
+            resposta = Integer.parseInt(input);
+        } catch (NumberFormatException ex) {
+            return false;
+        }
+
+        if (resposta == 1) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

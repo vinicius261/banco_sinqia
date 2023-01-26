@@ -2,10 +2,13 @@ package view;
 
 import controller.SacarController;
 import database.BancoDeDados;
+import enums.TipoDeCliente;
 import exceptions.SaldoInsuficienteException;
 import exceptions.ValorDoSaqueInvalidoException;
 import model.Conta;
 
+import javax.xml.transform.sax.SAXSource;
+import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class SacarView {
@@ -44,6 +47,16 @@ public class SacarView {
     public Integer valorDoSaque() {
         MenuContaView menuContaView = new MenuContaView(bancoDeDados, contaLogada);
 
+        if(contaLogada.getCliente().getTipoDeCliente() == TipoDeCliente.PESSOA_JURIDICA){
+            System.out.println("Esse tipo movimentação cobra taxas.\nPara realizar o saque digite 1. Para voltar ao menu digite qualquer valor.");
+        }else{
+            System.out.println("Para realizar o saque digite 1. Para voltar ao menu digite qualquer valor.");
+        }
+
+        if (sacarController.confirmaAcao(scanner.nextLine()) == false){
+            menuContaView.mostrarMenuConta();
+        }
+
         System.out.println("Digite o valor do saque: \n");
 
         Integer valorDoSaque = 0;
@@ -77,7 +90,7 @@ public class SacarView {
     }
 
     public void movimentaConta(Integer valorDoSaque){
-        sacarController.debitaValor(contaLogada, valorDoSaque);
+        sacarController.debitaValor(valorDoSaque);
         System.out.println("O saque de " + valorDoSaque + "R$ foi realizado.");
     }
 }
