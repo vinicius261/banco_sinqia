@@ -9,24 +9,24 @@ import model.ContaInvestimento;
 public class ContaInvestimentoService implements Investir {
     ContaInvestimento contaInvestimento;
     private BancoDeDados bancoDeDados;
-    private Conta contaLogada;
+
 
     public ContaInvestimentoService(BancoDeDados bancoDeDados, Conta contaLogada){
         this.contaInvestimento = new ContaInvestimento();
         this.bancoDeDados = bancoDeDados;
-        this.contaLogada = contaLogada;
     }
 
     @Override
-    public void investir(double investimento) {
-
-        if(contaLogada.getCliente().getTipoDeCliente().equals(TipoDeCliente.PESSOA_JURIDICA)){
-            contaInvestimento.setRendimento(0.035);
-            contaLogada.setSaldo(contaLogada.getSaldo()* contaInvestimento.getRendimento());
-
-        } else if (contaLogada.getCliente().getTipoDeCliente().equals(TipoDeCliente.PESSOA_FISICA)){
-            contaInvestimento.setRendimento(0.015);
-            contaLogada.setSaldo(contaLogada.getSaldo()* contaInvestimento.getRendimento());
+    public double investir(double investimento, Conta conta) {
+        if(conta.getCliente().getTipoDeCliente().equals(TipoDeCliente.PESSOA_JURIDICA)){
+            double rendimento = investimento * 0.035;
+            conta.setSaldo(conta.getSaldo() + investimento * contaInvestimento.getRendimento());
+            return rendimento;
+        } else if (conta.getCliente().getTipoDeCliente().equals(TipoDeCliente.PESSOA_FISICA)){
+            double rendimento = investimento * 0.015;
+            conta.setSaldo(conta.getSaldo() + rendimento);
+            return rendimento;
         }
+        return 0;
     }
 }

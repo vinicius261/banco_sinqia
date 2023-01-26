@@ -8,20 +8,18 @@ import service.ContaPoupancaService;
 
 public class InvestirController {
     private BancoDeDados bancoDeDados;
-    private Conta contaLogada;
 
-    public InvestirController (BancoDeDados bancoDeDados, Conta contaLogada){
+    public InvestirController (BancoDeDados bancoDeDados){
         this.bancoDeDados = bancoDeDados;
-        this.contaLogada = contaLogada;
     }
 
-    public void tipoInvestimento(double investimento){
-        if(contaLogada.getTipoDeConta().equals(TipoDeConta.CONTA_INVESTIMENTO)){
-            ContaInvestimentoService contaInvestimentoService = new ContaInvestimentoService(bancoDeDados, contaLogada);
-            contaInvestimentoService.investir(investimento);
-        } else if(contaLogada.getTipoDeConta().equals(TipoDeConta.CONTA_POUPANCA)){
-            ContaPoupancaService contaPoupancaService = new ContaPoupancaService(bancoDeDados, contaLogada);
-            contaPoupancaService.investir(investimento);
-        }
+    public double tipoInvestimento(Conta conta, double investimento){
+        if(conta.getTipoDeConta().equals(TipoDeConta.CONTA_INVESTIMENTO)){
+            ContaInvestimentoService contaInvestimentoService = new ContaInvestimentoService(bancoDeDados, conta);
+            return (contaInvestimentoService.investir(investimento, conta));
+        } else if(conta.getTipoDeConta().equals(TipoDeConta.CONTA_POUPANCA)){
+            ContaPoupancaService contaPoupancaService = new ContaPoupancaService(bancoDeDados, conta);
+            return (contaPoupancaService.investir(investimento, conta));
+        }return 0;
     }
 }
