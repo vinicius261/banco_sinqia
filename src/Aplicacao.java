@@ -1,6 +1,4 @@
 import database.BancoDeDados;
-
-import service.CriarContasClientes;
 import view.MenuInicialView;
 
 public class Aplicacao {
