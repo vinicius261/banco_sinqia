@@ -23,6 +23,5 @@ public class InvestirController {
             ContaPoupancaService contaPoupancaService = new ContaPoupancaService(bancoDeDados, contaLogada);
             contaPoupancaService.investir(investimento);
         }
-
     }
 }

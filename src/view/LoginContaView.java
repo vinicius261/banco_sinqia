@@ -8,11 +8,6 @@ import java.util.Scanner;
 
 public class LoginContaView {
 
-    /*completar classe-metodo - coloquei um sout pra ver se funcionava
-    seria bom settar um userlogado - para facilitar pegar as infos da Conta em outras classes/metodos
-    coloquei atributo userLogado em Banco*/
-
-
     int index = -1, option;
     private static String clientBankAccount, clientBankPassword;
     private boolean verify;

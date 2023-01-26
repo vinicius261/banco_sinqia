@@ -97,6 +97,6 @@ public class TransferenciaView {
             MenuContaView menuContaView = new MenuContaView(bancoDeDados, contaLogada);
             menuContaView.mostrarMenuConta();
         }
-        return null;
+        return null; // ha como retornar sem ser null?
     }
 }
