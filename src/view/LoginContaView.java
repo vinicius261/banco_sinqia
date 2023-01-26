@@ -11,7 +11,7 @@ public class LoginContaView {
     int index = -1, option;
     private static String clientBankAccount, clientBankPassword;
     private boolean verify;
-    private static Scanner entrance = new Scanner(System.in);
+    private Scanner entrance = new Scanner(System.in);
     private BancoDeDados bancoDeDados;
 
     public LoginContaView(BancoDeDados bancoDeDados){
