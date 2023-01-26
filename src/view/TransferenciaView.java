@@ -2,12 +2,14 @@ package view;
 
 import controller.TransferenciaController;
 import database.BancoDeDados;
+import enums.TipoDeConta;
 import exceptions.AccountNotFoundException;
 import exceptions.SaldoInsuficienteException;
 import exceptions.SameAccountException;
 import exceptions.ValorDaTransferenciaInvalidaException;
 import model.Conta;
 
+import javax.sound.midi.Soundbank;
 import java.util.Scanner;
 
 public class TransferenciaView {
@@ -86,8 +88,16 @@ public class TransferenciaView {
     }
 
     public void movimentaConta(Double valorDaTransferencia, Conta contaFavorecida){
-        transferenciaController.transfereValores(contaLogada, contaFavorecida, valorDaTransferencia);
-        System.out.println("A transferência de " + valorDaTransferencia + "R$ para " + contaFavorecida.getCliente().getNome() + " foi feita.");
+
+        transferenciaController.transfereValores(bancoDeDados, contaLogada, contaFavorecida, valorDaTransferencia);
+
+        if (contaFavorecida.getTipoDeConta() == TipoDeConta.CONTA_INVESTIMENTO || contaFavorecida.getTipoDeConta() == TipoDeConta.CONTA_POUPANCA){
+            System.out.println("A transferência de " + valorDaTransferencia + "R$ para a conta " +
+                    contaFavorecida.getTipoDeConta().name() + " de " + contaFavorecida.getCliente().getNome().toLowerCase()
+                    + " foi feita e já está rendendo.");
+        }else {
+            System.out.println("A transferência de " + valorDaTransferencia + "R$ para " + contaFavorecida.getCliente().getNome() + " foi feita.");
+        }
     }
 
     public Conta contaFavorecida() {

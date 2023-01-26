@@ -1,5 +1,6 @@
 package controller;
 
+import database.BancoDeDados;
 import exceptions.AccountNotFoundException;
 import exceptions.SameAccountException;
 import exceptions.ValorDaTransferenciaInvalidaException;
@@ -32,10 +33,12 @@ public class TransferenciaController {
         }
     }
 
-    public void transfereValores(Conta contaLogada, Conta contafavorecida, Double valorDaTransferencia){
+    public void transfereValores(BancoDeDados bancoDeDados, Conta contaLogada, Conta contaFavorecida, Double valorDaTransferencia){
         if (valorDaTransferencia > 0) {
-            Double saldoFavorecida = contafavorecida.getSaldo();
-            contafavorecida.setSaldo(saldoFavorecida + valorDaTransferencia);
+            Double saldoFavorecida = contaFavorecida.getSaldo();
+            contaFavorecida.setSaldo(saldoFavorecida + valorDaTransferencia);
+            InvestirController investir = new InvestirController(bancoDeDados);
+            investir.tipoInvestimento(contaFavorecida, valorDaTransferencia);
 
             Double saldoContaLogada = contaLogada.getSaldo();
             contaLogada.setSaldo(saldoContaLogada - valorDaTransferencia);
