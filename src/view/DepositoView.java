@@ -14,6 +14,7 @@ public class DepositoView {
     static final Scanner scan = new Scanner(System.in);
     DepositoController depositoController;
     MenuInicialView menuInicialView;
+    MenuContaView menuContaView;
     InvestirController investirController;
     private BancoDeDados bancoDeDados;
     private Conta contaLogada;
@@ -24,6 +25,7 @@ public class DepositoView {
         this.depositoController = new DepositoController(bancoDeDados, contaLogada);
         this.menuInicialView = new MenuInicialView(bancoDeDados);
         this.investirController = new InvestirController(bancoDeDados);
+        this.menuContaView = new MenuContaView(bancoDeDados, contaLogada);
     }
 
     String padrao = "###,##0.00";
@@ -56,10 +58,9 @@ public class DepositoView {
         if (opcao.equals("1")) {
             valorDeposito();
             confirmaDeposito();
-            MenuContaView menuContaView = new MenuContaView(bancoDeDados, contaLogada);
             menuContaView.mostrarMenuConta();
         } else if (opcao.equals("0")) {
-            menuInicialView.mostrarMenuInicial();
+            menuContaView.mostrarMenuConta();
         } else {
             depositoDeslogadoView();
         }
