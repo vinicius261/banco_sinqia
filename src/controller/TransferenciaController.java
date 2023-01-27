@@ -55,12 +55,14 @@ public class TransferenciaController {
         }
     }
 
-    public void transfereValores(Conta contaFavorecida, Double valorDaTransferencia){
+    public Double transfereValores(Conta contaFavorecida, Double valorDaTransferencia){
+        Double rendimento = 0.0;
+
         if (valorDaTransferencia > 0) {
             Double saldoFavorecida = contaFavorecida.getSaldo();
             contaFavorecida.setSaldo(saldoFavorecida + valorDaTransferencia);
             InvestirController investir = new InvestirController(bancoDeDados);
-            investir.tipoInvestimento(contaFavorecida, valorDaTransferencia);
+            rendimento = investir.tipoInvestimento(contaFavorecida, valorDaTransferencia);
 
             Double saldoContaLogada = contaLogada.getSaldo();
             if(contaLogada.getCliente().getTipoDeCliente() == TipoDeCliente.PESSOA_JURIDICA) {
@@ -69,6 +71,8 @@ public class TransferenciaController {
                 contaLogada.setSaldo(saldoContaLogada - valorDaTransferencia);
             }
         }
+
+        return rendimento;
     }
 
     public Conta buscaContas(String numeroDaConta, ArrayList<Conta> contas, Conta contaLogada) {
@@ -98,5 +102,9 @@ public class TransferenciaController {
         } else {
             return false;
         }
+    }
+
+    public Double getTaxaCobrada() {
+        return taxaCobrada;
     }
 }

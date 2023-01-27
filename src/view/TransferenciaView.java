@@ -10,6 +10,7 @@ import exceptions.SameAccountException;
 import exceptions.ValorDaTransferenciaInvalidaException;
 import model.Conta;
 
+import java.text.DecimalFormat;
 import java.util.Scanner;
 
 public class TransferenciaView {
@@ -57,14 +58,48 @@ public class TransferenciaView {
             menuContaView.mostrarMenuConta();
         }
 
-        transferenciaController.transfereValores(contaFavorecida, valorDaTransferencia);
+        Double rendimento =  transferenciaController.transfereValores(contaFavorecida, valorDaTransferencia);
 
         if (contaFavorecida.getTipoDeConta() == TipoDeConta.CONTA_INVESTIMENTO || contaFavorecida.getTipoDeConta() == TipoDeConta.CONTA_POUPANCA){
-            System.out.println("A transferência de " + valorDaTransferencia + "R$ para a " +
-                    contaFavorecida.getTipoDeConta().name().toLowerCase() + " de " + contaFavorecida.getCliente().getNome()
-                    + " foi feita e já está rendendo.");
+            imprimeComprovante(valorDaTransferencia, contaFavorecida, rendimento );
         }else {
-            System.out.println("A transferência de " + valorDaTransferencia + "R$ para " + contaFavorecida.getCliente().getNome() + " foi feita.");
+            imprimeComprovante(valorDaTransferencia, contaFavorecida);
+        }
+    }
+
+    public void imprimeComprovante(Double valorDaTransferencia, Conta contaFavorecida){
+        DecimalFormat df = new DecimalFormat("###,##0.00");
+        if(contaLogada.getCliente().getTipoDeCliente() == TipoDeCliente.PESSOA_FISICA) {
+            System.out.println("COMPROVANTE DE TRANSFERÊNCIA\n" + "Tipo de conta: " + contaFavorecida.getTipoDeConta() +
+                    "\nNúmero da conta: " + contaFavorecida.getNumeroConta() +
+                    "\nNome do beneficiário: " + contaFavorecida.getCliente().getNome() +
+                    "\nValor: R$" + df.format(valorDaTransferencia));
+
+        } else if (contaLogada.getCliente().getTipoDeCliente() == TipoDeCliente.PESSOA_JURIDICA) {
+            System.out.println("COMPROVANTE DE TRANSFERÊNCIA\n" + "Tipo de conta: " +contaFavorecida.getTipoDeConta() +
+                    "\nNúmero da conta: " + contaFavorecida.getNumeroConta() +
+                    "\nNome do beneficiário: " + contaFavorecida.getCliente().getNome() +
+                    "\nValor: R$" + df.format(valorDaTransferencia) +
+                    "\nTaxas: R$" + df.format(valorDaTransferencia*transferenciaController.getTaxaCobrada()));
+        }
+    }
+
+    public void imprimeComprovante(Double valorDaTransferencia, Conta contaFavorecida, Double rendimento){
+        DecimalFormat df = new DecimalFormat("###,##0.00");
+        if(contaLogada.getCliente().getTipoDeCliente() == TipoDeCliente.PESSOA_FISICA) {
+            System.out.println("COMPROVANTE DE TRANSFERÊNCIA\n" + "Tipo de conta: " + contaFavorecida.getTipoDeConta() +
+                    "\nNúmero da conta: " + contaFavorecida.getNumeroConta() +
+                    "\nNome do beneficiário: " + contaFavorecida.getCliente().getNome() +
+                    "\nValor: R$" + df.format(valorDaTransferencia) +
+                    "\nRendimento: R$" + df.format(rendimento));
+
+        }else if (contaLogada.getCliente().getTipoDeCliente() == TipoDeCliente.PESSOA_JURIDICA) {
+            System.out.println("COMPROVANTE DE TRANSFERÊNCIA\n" + "Tipo de conta: " +contaFavorecida.getTipoDeConta() +
+                    "\nNúmero da conta: " + contaFavorecida.getNumeroConta() +
+                    "\nNome do beneficiário: " + contaFavorecida.getCliente().getNome() +
+                    "\nValor: R$" + df.format(valorDaTransferencia) +
+                    "\nRendimento: R$" + df.format(rendimento) +
+                    "\nTaxas: R$" + df.format(valorDaTransferencia*transferenciaController.getTaxaCobrada()));
         }
     }
 
