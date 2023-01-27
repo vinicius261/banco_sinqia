@@ -25,24 +25,21 @@ public class SacarController {
         }
     }
 
-    public boolean validaValorDoSaque(Integer valorDoSaque) {
-        if (valorDoSaque < 0) {
+    public void validaValorDoSaque(Integer valorDoSaque) {
+        if (valorDoSaque <= 0) {
             throw new ValorDoSaqueInvalidoException("Digite apenas valores maiores que zero.");
         }
-
-        return true;
     }
 
-    public boolean validaSaldo(Integer valorDoSaque, boolean taxacao) {
+    public void validaSaldo(Integer valorDoSaque, boolean taxacao) {
         Double taxa = 0.0;
         if (taxacao){
             taxa = valorDoSaque * taxaCobrada;
         }
 
-        if (contaLogada.getSaldo() >= (valorDoSaque + taxa)) {
-            return true;
-        } else {
+        if (contaLogada.getSaldo() < (valorDoSaque + taxa)) {
             if(taxacao){
+                taxa = valorDoSaque * taxaCobrada;
                 throw new SaldoInsuficienteException("Saldo insuficiente para o saque.\n" +
                         " Saldo atual: " + contaLogada.getSaldo() + "\n" + "Taxa: " +valorDoSaque * taxaCobrada + "\n");
             }
@@ -76,5 +73,9 @@ public class SacarController {
         } else {
             return false;
         }
+    }
+
+    public Double getTaxaCobrada() {
+        return taxaCobrada;
     }
 }

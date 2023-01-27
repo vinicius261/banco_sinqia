@@ -3,10 +3,12 @@ package view;
 import controller.SacarController;
 import database.BancoDeDados;
 import enums.TipoDeCliente;
+import enums.TipoDeConta;
 import exceptions.SaldoInsuficienteException;
 import exceptions.ValorDoSaqueInvalidoException;
 import model.Conta;
 
+import java.text.DecimalFormat;
 import java.util.Scanner;
 
 public class SacarView {
@@ -46,7 +48,7 @@ public class SacarView {
         Integer valorDoSaque = valorDoSaque();
         sacarController.debitaValor(valorDoSaque);
 
-        System.out.println("O saque de " + valorDoSaque + "R$ foi realizado.");
+        imprimeComprovante(valorDoSaque);
     }
 
     public Integer valorDoSaque() {
@@ -69,9 +71,9 @@ public class SacarView {
         Integer valorDoSaque = 0;
         try {
             Integer inputValorDoSaque = Integer.parseInt(scanner.nextLine());
-            if(sacarController.validaValorDoSaque(inputValorDoSaque)){
-                valorDoSaque = inputValorDoSaque;
-            }
+            sacarController.validaValorDoSaque(inputValorDoSaque);
+            valorDoSaque = inputValorDoSaque;
+
 
         } catch (NumberFormatException ex) {
             System.out.println("Digite apenas números.");
@@ -83,9 +85,8 @@ public class SacarView {
         }
 
         try {
-            if (sacarController.validaSaldo(valorDoSaque , taxacao)) {
-                return valorDoSaque;
-            }
+            sacarController.validaSaldo(valorDoSaque , taxacao);
+            return valorDoSaque;
 
         } catch (SaldoInsuficienteException ex) {
             System.out.println(ex.getMessage());
@@ -93,5 +94,20 @@ public class SacarView {
         }
 
         return valorDoSaque;
+    }
+
+    public void imprimeComprovante(Integer valorDoSaque){
+        DecimalFormat df = new DecimalFormat("###,##0.00");
+        if(contaLogada.getCliente().getTipoDeCliente() == TipoDeCliente.PESSOA_FISICA) {
+            System.out.println("COMPROVANTE DE SAQUE\n" + "Tipo de conta: " + contaLogada.getTipoDeConta() +
+                    "\nNúmero da conta: " + contaLogada.getNumeroConta() +
+                    "\nValor: R$" + df.format(valorDoSaque));
+
+        } else if (contaLogada.getCliente().getTipoDeCliente() == TipoDeCliente.PESSOA_JURIDICA) {
+            System.out.println("COMPROVANTE DE SAQUE\n" + "Tipo de conta: " +contaLogada.getTipoDeConta() +
+                    "\nNúmero da conta: " + contaLogada.getNumeroConta() +
+                    "\nValor: R$" + df.format(valorDoSaque) +
+                    "\nTaxas: R$" + df.format(valorDoSaque*sacarController.getTaxaCobrada()));
+        }
     }
 }

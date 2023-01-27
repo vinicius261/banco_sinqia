@@ -29,24 +29,21 @@ public class TransferenciaController {
         }
     }
 
-    public boolean validaValorDaTransferencia(Double valorDaTransferencia){
-        if (valorDaTransferencia > 0){
-            return true;
+    public void validaValorDaTransferencia(Double valorDaTransferencia){
+        if (valorDaTransferencia <= 0){
+            throw new ValorDaTransferenciaInvalidaException("Insira apenas números maiores que zero.");
         }
-
-        throw new ValorDaTransferenciaInvalidaException("Insira apenas números maiores que zero.");
     }
 
-    public boolean validaSaldo(Double valorDaTransferencia, boolean taxacao) {
+    public void validaSaldo(Double valorDaTransferencia, boolean taxacao) {
         Double taxa = 0.0;
         if (taxacao){
             taxa = valorDaTransferencia * taxaCobrada;
         }
 
-        if (contaLogada.getSaldo() >= (valorDaTransferencia + taxa)) {
-            return true;
-        } else {
+        if (contaLogada.getSaldo() < (valorDaTransferencia + taxa)) {
             if(taxacao){
+                taxa = valorDaTransferencia * taxaCobrada;
                 throw new SaldoInsuficienteException("Saldo insuficiente para a transferência.\n" +
                         " Saldo atual: " + contaLogada.getSaldo() + "\n" + "Taxa: " +valorDaTransferencia * taxaCobrada + "\n");
             }
