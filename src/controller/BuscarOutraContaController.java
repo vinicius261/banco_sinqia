@@ -5,12 +5,12 @@ import model.Conta;
 
 import java.util.Objects;
 
-public class ProcurarOutraContaController {
+public class BuscarOutraContaController {
 
     private BancoDeDados bancoDeDados;
     private  Conta contaLogada;
 
-    public ProcurarOutraContaController(BancoDeDados bancoDeDados, Conta contaLogada){
+    public BuscarOutraContaController(BancoDeDados bancoDeDados, Conta contaLogada){
         this.bancoDeDados = bancoDeDados;
         this.contaLogada = contaLogada;
     }

@@ -1,7 +1,7 @@
 package view;
 
 import controller.ConsultarSaldoController;
-import controller.ProcurarOutraContaController;
+import controller.BuscarOutraContaController;
 import database.BancoDeDados;
 import model.Conta;
 
@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class ConsultarSaldoContaAtualView {
     static final Scanner input = new Scanner(System.in);
     ConsultarSaldoController consultarSaldoController;
-    ProcurarOutraContaController procurarOutraContaController;
+    BuscarOutraContaController procurarOutraContaController;
     private BancoDeDados bancoDeDados;
     private Conta contaLogada;
 
@@ -18,7 +18,7 @@ public class ConsultarSaldoContaAtualView {
         this.bancoDeDados = bancoDeDados;
         this.contaLogada = contaLogada;
         this.consultarSaldoController = new ConsultarSaldoController(bancoDeDados, contaLogada);
-        this.procurarOutraContaController = new ProcurarOutraContaController(bancoDeDados, contaLogada);
+        this.procurarOutraContaController = new BuscarOutraContaController(bancoDeDados, contaLogada);
     }
 
 

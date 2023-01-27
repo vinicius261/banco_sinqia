@@ -2,7 +2,7 @@ package view;
 
 import controller.DepositoController;
 import controller.InvestirController;
-import controller.ValidadorExistenciaDeContaController;
+import controller.ValidarExistenciaDeContaController;
 import database.BancoDeDados;
 import enums.TipoDeConta;
 import model.Conta;
@@ -17,7 +17,7 @@ public class DepositoView {
     MenuInicialView menuInicialView;
     MenuContaView menuContaView;
     InvestirController investirController;
-    ValidadorExistenciaDeContaController validadorExistenciaDeContaController;
+    ValidarExistenciaDeContaController validadorExistenciaDeContaController;
     private final BancoDeDados bancoDeDados;
     private final Conta contaLogada;
 
@@ -28,7 +28,7 @@ public class DepositoView {
         this.menuInicialView = new MenuInicialView(bancoDeDados);
         this.investirController = new InvestirController(bancoDeDados);
         this.menuContaView = new MenuContaView(bancoDeDados, contaLogada);
-        this.validadorExistenciaDeContaController = new ValidadorExistenciaDeContaController();
+        this.validadorExistenciaDeContaController = new ValidarExistenciaDeContaController();
     }
 
     private final String padrao = "###,##0.00";

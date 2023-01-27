@@ -1,10 +1,9 @@
 package controller;
 
 import database.BancoDeDados;
-import model.Conta;
 import view.MenuInicialView;
 
-public class ValidadorExistenciaDeContaController {
+public class ValidarExistenciaDeContaController {
     private int index = -1;
 
     /**
