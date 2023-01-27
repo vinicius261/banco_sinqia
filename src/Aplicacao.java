@@ -1,6 +1,4 @@
 import database.BancoDeDados;
-
-import service.CriarContasClientes;
 import view.MenuInicialView;
 
 public class Aplicacao {
@@ -9,8 +7,6 @@ public class Aplicacao {
 
         BancoDeDados bancoDeDados = new BancoDeDados();
 
-        CriarContasClientes criarContasClientes = new CriarContasClientes();
-        criarContasClientes.CriarContasClientes(bancoDeDados);
 
         System.out.println("\n===================================================================");
         System.out.println("=                       ADAS BANK                   /)-/)       =");
