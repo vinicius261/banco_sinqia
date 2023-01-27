@@ -1,8 +1,6 @@
 package controller;
 
 import database.BancoDeDados;
-import enums.TipoDeCliente;
-import enums.TipoDeConta;
 import model.Conta;
 
 public class DepositoController {
@@ -21,17 +19,6 @@ public class DepositoController {
         } else {
             return true;
         }
-    }
-
-    public boolean verificaConta(String numeroConta) {
-        boolean verify = false;
-        for (int i = 0; i < bancoDeDados.getContas().size(); i++) {
-            if (bancoDeDados.getContas().get(i).getNumeroConta().equals(numeroConta)) {
-                verify = true;
-                break;
-            }
-        }
-        return verify;
     }
 
     public int retornaPosicaoNoArray(String numeroConta) {

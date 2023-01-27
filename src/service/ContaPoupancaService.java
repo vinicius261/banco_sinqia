@@ -15,7 +15,7 @@ public class ContaPoupancaService implements Investir {
     }
     @Override
     public double investir(double investimento, Conta conta) {
-        double rendimento = investimento * 0.01;
+        double rendimento = investimento * contaPoupanca.getRendimento();
         conta.setSaldo(conta.getSaldo() + rendimento);
         return rendimento;
     }
