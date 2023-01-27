@@ -58,21 +58,6 @@ public class AbrirContaView {
         abrirContaController.abrirConta(numeroDocumento, senhaEscolhida, tipoDeConta);
     }
 
-    /*Sobrecarga do metodo abrirConta para possivel uso  InvestirView caso for mante-lo
-    só precisa fazer com que ele retorne pro menu depois da criaçãoda conta.
-
-    public void abrirConta(Conta contaLogada){
-        TipoDeCliente tipoDeCliente = contaLogada.getCliente().getTipoDeCliente();
-        TipoDeConta tipoDeConta = contaLogada.getTipoDeConta();
-        String senhaEscolhida = contaLogada.getSenha();
-        String numeroDocumento = contaLogada.getCliente().getDocumento();
-
-        AbrirContaController abrirContaController = new AbrirContaController(bancoDeDados, contaLogada);
-        abrirContaController.abrirConta(numeroDocumento, senhaEscolhida, tipoDeConta);
-    }*/
-
-
-
     public TipoDeConta escolherTipoDeConta (TipoDeCliente tipoDeCliente) {
         TipoDeConta tipoDeConta = null;
 

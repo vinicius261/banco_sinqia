@@ -10,56 +10,72 @@ import exceptions.SameAccountException;
 import exceptions.ValorDaTransferenciaInvalidaException;
 import model.Conta;
 
-import javax.sound.midi.Soundbank;
 import java.util.Scanner;
 
 public class TransferenciaView {
-
     private Scanner scanner;
     private TransferenciaController transferenciaController;
     private BancoDeDados bancoDeDados;
     private Conta contaLogada;
+    private  MenuContaView menuContaView;
 
     public TransferenciaView(BancoDeDados bancoDeDados, Conta contaLogada) {
         this.scanner = new Scanner(System.in);
-        this.transferenciaController= new TransferenciaController();
+        this.transferenciaController= new TransferenciaController(bancoDeDados, contaLogada);
         this.bancoDeDados = bancoDeDados;
         this.contaLogada = contaLogada;
+        this.menuContaView = new MenuContaView(bancoDeDados, contaLogada);
     }
 
     public void transferir() {
         System.out.println("Olá, " + contaLogada.getCliente().getNome() + ". Você esta na Área de Transferências\n");
 
-        MenuContaView menuContaView = new MenuContaView(bancoDeDados, contaLogada);
-
         if (validaSenha()) {
-            try {
-                movimentaConta(valorDaTransferencia(), contaFavorecida());
-            }catch (AccountNotFoundException | SameAccountException ex){
-                System.out.println(ex.getMessage());
-
-                menuContaView.mostrarMenuConta();
-            }
+                movimentaConta();
         } else {
-            System.out.println("Senha incorreta.\n");
+            System.out.println("Senha incorreta.\nRetornando ao Menu.");
         }
 
         menuContaView.mostrarMenuConta();
     }
 
-
     public boolean validaSenha() {
         System.out.println("Para continuar insira sua senha: ");
-        return transferenciaController.validaSenha(contaLogada, scanner.nextLine());
+
+        return transferenciaController.validaSenha(scanner.nextLine());
+    }
+
+    public void movimentaConta(){
+        Double valorDaTransferencia = 0.0;
+        Conta contaFavorecida = null;
+
+        try {
+            valorDaTransferencia = valorDaTransferencia();
+            contaFavorecida = contaFavorecida();
+        }catch (AccountNotFoundException | SameAccountException ex){
+            System.out.println(ex.getMessage());
+            menuContaView.mostrarMenuConta();
+        }
+
+        transferenciaController.transfereValores(contaFavorecida, valorDaTransferencia);
+
+        if (contaFavorecida.getTipoDeConta() == TipoDeConta.CONTA_INVESTIMENTO || contaFavorecida.getTipoDeConta() == TipoDeConta.CONTA_POUPANCA){
+            System.out.println("A transferência de " + valorDaTransferencia + "R$ para a " +
+                    contaFavorecida.getTipoDeConta().name().toLowerCase() + " de " + contaFavorecida.getCliente().getNome()
+                    + " foi feita e já está rendendo.");
+        }else {
+            System.out.println("A transferência de " + valorDaTransferencia + "R$ para " + contaFavorecida.getCliente().getNome() + " foi feita.");
+        }
     }
 
     public Double valorDaTransferencia() {
-        MenuContaView menuContaView = new MenuContaView(bancoDeDados, contaLogada);
+        boolean taxacao = false;
 
         if(contaLogada.getCliente().getTipoDeCliente() == TipoDeCliente.PESSOA_JURIDICA){
-            System.out.println("Esse tipo movimentação cobra taxas.\n Para realizar a transferência digite 1. Para voltar ao menu digite qualquer valor.");
+            System.out.println("Esse tipo movimentação cobra taxas.\n Para realizar uma transferência digite 1. Para voltar ao menu digite qualquer valor.");
+            taxacao = true;
         }else{
-            System.out.println("Para realizar a transferência digite 1. Para voltar ao menu digite qualquer valor.");
+            System.out.println("Para realizar uma transferência digite 1. Para voltar ao menu digite qualquer valor.");
         }
 
         if (transferenciaController.confirmaAcao(scanner.nextLine()) == false){
@@ -86,7 +102,7 @@ public class TransferenciaView {
         }
 
         try {
-            if (transferenciaController.validaSaldo(contaLogada, valorDaTransferencia)) {
+            if (transferenciaController.validaSaldo(valorDaTransferencia, taxacao)) {
                 return valorDaTransferencia;
             }
 
@@ -98,29 +114,15 @@ public class TransferenciaView {
         return valorDaTransferencia;
     }
 
-    public void movimentaConta(Double valorDaTransferencia, Conta contaFavorecida){
-
-        transferenciaController.transfereValores(bancoDeDados, contaLogada, contaFavorecida, valorDaTransferencia);
-
-        if (contaFavorecida.getTipoDeConta() == TipoDeConta.CONTA_INVESTIMENTO || contaFavorecida.getTipoDeConta() == TipoDeConta.CONTA_POUPANCA){
-            System.out.println("A transferência de " + valorDaTransferencia + "R$ para a " +
-                    contaFavorecida.getTipoDeConta().name().toLowerCase() + " de " + contaFavorecida.getCliente().getNome()
-                    + " foi feita e já está rendendo.");
-        }else {
-            System.out.println("A transferência de " + valorDaTransferencia + "R$ para " + contaFavorecida.getCliente().getNome() + " foi feita.");
-        }
-    }
-
     public Conta contaFavorecida() {
         System.out.println("Insira o número da conta que vai receber a transferência: ");
+
         try {
             Conta contaFavorecida = transferenciaController.buscaContas(scanner.nextLine(), bancoDeDados.getContas(), contaLogada);
             return contaFavorecida;
         }catch (AccountNotFoundException ex){
-            System.out.println(ex.getMessage());
             throw new AccountNotFoundException("Essa conta não existe.");
         }catch (SameAccountException ex){
-            System.out.println(ex.getMessage());
             throw new SameAccountException("Este é o número de sua conta, insira outro número.");
         }
     }

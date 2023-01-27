@@ -9,10 +9,12 @@ import model.Conta;
 public class SacarController {
     private BancoDeDados bancoDeDados;
     private Conta contaLogada;
+    private Double taxaCobrada;
 
     public SacarController(BancoDeDados bancoDeDados, Conta contaLogada) {
         this.bancoDeDados = bancoDeDados;
         this.contaLogada = contaLogada;
+        this.taxaCobrada = 0.005;
     }
 
     public boolean validaSenha(String senhaDigitada) {
@@ -27,14 +29,25 @@ public class SacarController {
         if (valorDoSaque < 0) {
             throw new ValorDoSaqueInvalidoException("Digite apenas valores maiores que zero.");
         }
+
         return true;
     }
 
-    public boolean validaSaldo(Integer valorDoSaque) {
-        if (contaLogada.getSaldo() >= valorDoSaque) {
+    public boolean validaSaldo(Integer valorDoSaque, boolean taxacao) {
+        Double taxa = 0.0;
+        if (taxacao){
+            taxa = valorDoSaque * taxaCobrada;
+        }
+
+        if (contaLogada.getSaldo() >= (valorDoSaque + taxa)) {
             return true;
         } else {
-            throw new SaldoInsuficienteException("Saldo insuficiente para o saque.\n Saldo atual: " + contaLogada.getSaldo() + "\n");
+            if(taxacao){
+                throw new SaldoInsuficienteException("Saldo insuficiente para o saque.\n" +
+                        " Saldo atual: " + contaLogada.getSaldo() + "\n" + "Taxa: " +valorDoSaque * taxaCobrada + "\n");
+            }
+            throw new SaldoInsuficienteException("Saldo insuficiente para o saque.\n Saldo atual: "
+                    + contaLogada.getSaldo() + "\n");
         }
     }
 
@@ -42,7 +55,7 @@ public class SacarController {
         if (valorDoSaque > 0) {
             Double saldo = contaLogada.getSaldo();
             if (contaLogada.getCliente().getTipoDeCliente() == TipoDeCliente.PESSOA_JURIDICA) {
-                contaLogada.setSaldo(saldo - valorDoSaque - valorDoSaque * 0.005);
+                contaLogada.setSaldo(saldo - valorDoSaque - valorDoSaque * taxaCobrada);
             } else {
                 contaLogada.setSaldo(saldo - valorDoSaque);
             }
