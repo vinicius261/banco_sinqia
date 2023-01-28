@@ -74,14 +74,13 @@ public class SacarView {
             sacarController.validaValorDoSaque(inputValorDoSaque);
             valorDoSaque = inputValorDoSaque;
 
-
         } catch (NumberFormatException ex) {
             System.out.println("Digite apenas números.");
-            valorDoSaque();
+            valorDoSaque = valorDoSaque();
 
         } catch (ValorDoSaqueInvalidoException ex) {
             System.out.println(ex.getMessage());
-            valorDoSaque();
+            valorDoSaque = valorDoSaque();
         }
 
         try {
