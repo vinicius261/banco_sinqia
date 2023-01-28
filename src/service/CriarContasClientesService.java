@@ -10,47 +10,62 @@ import java.util.ArrayList;
 public class CriarContasClientesService {
 
     private BancoDeDados bancoDeDados;
-    private Conta contaLogada;
 
-    public CriarContasClientesService(BancoDeDados bancoDeDados, Conta contaLogada){
+    public CriarContasClientesService(BancoDeDados bancoDeDados){
         this.bancoDeDados = bancoDeDados;
-        this.contaLogada = contaLogada;
     }
     public void CriarContasClientes(){
-        ArrayList<Conta> ContasDoCLiente= new ArrayList<>();
 
-
-
-        Cliente cliente = new Cliente(
-                "Lucas",
-                "38129476843",
-                "lucas@email.com",
+        Cliente clientePf = new Cliente(
+                "José Almeida",
+                "40541055054",
+                "jose@email.com",
                 TipoDeCliente.PESSOA_FISICA,
-                ContasDoCLiente);
-        bancoDeDados.addCliente(cliente);
+                new ArrayList<Conta>());
+        bancoDeDados.addCliente(clientePf);
 
-        ContaCorrente contaCorrente = new ContaCorrente(
+        Cliente clientePj = new Cliente(
+                "Padaria LTDA",
+                "38894678000138",
+                "jose@email.com",
+                TipoDeCliente.PESSOA_JURIDICA,
+                new ArrayList<Conta>());
+        bancoDeDados.addCliente(clientePj);
+
+        ContaCorrente contaCorrentePf = new ContaCorrente(
+                "00011",
                 "1",
-                "1",
-                100,
-                cliente);
-        bancoDeDados.addConta(contaCorrente);
-
-        ContaPoupanca contaPoupanca = new ContaPoupanca(
-                "2",
-                "2",
-                50,
-                cliente);
-        bancoDeDados.addConta(contaPoupanca);
-
-        ContaInvestimento contaInvestimento = new ContaInvestimento(
-                "3",
-                "3",
                 1000,
-                cliente);
-        bancoDeDados.addConta(contaInvestimento);
+                clientePf);
+        bancoDeDados.addConta(contaCorrentePf);
 
-       /* bancoDeDados.setContaLogada(contaPoupanca);*/
+        ContaPoupanca contaPoupancaPf = new ContaPoupanca(
+                "00012",
+                "1",
+                1000,
+                clientePf);
+        bancoDeDados.addConta(contaPoupancaPf);
+
+        ContaInvestimento contaInvestimentoPf = new ContaInvestimento(
+                "00013",
+                "1",
+                1000,
+                clientePf);
+        bancoDeDados.addConta(contaInvestimentoPf);
+
+        ContaCorrente contaCorrentePj = new ContaCorrente(
+                "00021",
+                "2",
+                10000,
+                clientePj);
+        bancoDeDados.addConta(contaCorrentePj);
+
+        ContaInvestimento contaInvestimentoPj = new ContaInvestimento(
+                "00022",
+                "2",
+                10000,
+                clientePj);
+        bancoDeDados.addConta(contaInvestimentoPj);
     }
 }
 
