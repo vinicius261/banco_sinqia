@@ -1,46 +1,40 @@
 package controller;
 
+import database.BancoDeDados;
 import exceptions.AccountNotFoundException;
 import exceptions.PasswordNotFoundException;
 import model.Conta;
+import service.ContaLogadaService;
 import view.LoginContaView;
 import view.MenuContaView;
-
-import static database.BancoDeDados.getContas;
-import static database.BancoDeDados.setContaLogada;
-import static view.LoginContaView.getClientBankAccount;
-import static view.LoginContaView.getClientBankPassword;
 
 public class LoginController {
 
     private int index = -1;
     private boolean verify = true;
 
-    // private LoginContaView loginContaView= new LoginContaView();
+    private BancoDeDados bancoDeDados;
+    private Conta contaLogada;
+
+    public LoginController(BancoDeDados bancoDeDados){
+        this.bancoDeDados = bancoDeDados;
+    }
 
     /**
-     * Método responsável por verificar a existência da conta fornecida para login.
-     *
+     * Método responsável em processar a não existência da conta digitada ao logar.
      * @param clientBankAccount
-     * @return boolean
+     * @return índice relacionado à conta cadastrada.
      * @throws AccountNotFoundException
-     * @author Rodolfo Lisboa
      */
-    public int verificaContaCadastrada(String clientBankAccount) {
-        clientBankAccount = getClientBankAccount();
+    public int verificaSeContaDigitadaFoiCadastrada(String clientBankAccount, BancoDeDados bancoDeDados) {
 
-        for (int i = 0; i < getContas().size(); i++) {
-            if (clientBankAccount.equals(getContas().get(i).getNumeroConta())) {
-                verify = false;
-                index = i;
-                break;
-            }
-        }
+        ValidadorExistenciaDeContaController validador = new ValidadorExistenciaDeContaController();
+        index = validador.verificaSeContaDigitadaFoiCadastrada(clientBankAccount, bancoDeDados);
 
-        if (verify) {
-            System.out.println("A conta informada não confere.");
-            LoginContaView loginContaView = new LoginContaView();
-            loginContaView.decidirLogarOuMenuView();
+        if (index == -1) {
+            System.out.println("A conta informada não confere.\n");
+            LoginContaView loginContaView = new LoginContaView(bancoDeDados);
+            loginContaView.decidirLogarOuIrParaMenuView();
         }
         return index;
     }
@@ -50,43 +44,30 @@ public class LoginController {
      *
      * @param clientBankPassword
      * @param indexConta
-     * @param count
      * @return boolean
      * @throws PasswordNotFoundException
-     * @author Rodolfo Lisboa
      */
-    public void verificaSenhaCorreta(String clientBankPassword, int indexConta, int count) {
-        clientBankPassword = getClientBankPassword();
+    public void VerificaSeSenhaDigitadaConfere(String clientBankPassword, int indexConta) {
 
-       /* System.out.println("===================================");
-        System.out.println("O índice da conta e da senha é:  " + indexConta);
-        System.out.println("A conta digitada foi: " + getClientBankAccount());
-        System.out.println("A senha digitada foi: " + getClientBankPassword());
-        System.out.println("A senha cadastrada é: " + getContas().get(indexConta).getSenha());
-        System.out.println("O valor do contador é: " + count);
-        System.out.println("===================================");*/
-
-        if (getClientBankPassword().equals(getContas().get(indexConta).getSenha())) {
-            loginContaController(indexConta);
-            MenuContaView menuContaView = new MenuContaView();
+        if (clientBankPassword.equals(bancoDeDados.getContas().get(indexConta).getSenha())) {
+            contaLogada = logarNaConta(indexConta);
+            MenuContaView menuContaView = new MenuContaView(bancoDeDados, contaLogada);
             menuContaView.mostrarMenuConta();
         } else {
-            System.out.println("A senha não confere.");
-            LoginContaView loginContaView = new LoginContaView();
-            loginContaView.decidirLogarOuMenuView();
-
+            System.out.println("A senha não confere.\n");
+            LoginContaView loginContaView = new LoginContaView(bancoDeDados);
+            loginContaView.decidirLogarOuIrParaMenuView();
         }
     }
 
     /**
      * Método responsável por informar em qual o número da conta o cliente fez o login
-     *
      * @return String contendo o número da conta que foi logada
-     * @author Rodolfo Lisboa
      */
-    public void loginContaController(int indexConta) {
-        Conta contaDigitadaAoLogar = getContas().get(indexConta);
-        setContaLogada(contaDigitadaAoLogar);
+    public Conta logarNaConta(int indexConta) {
+        Conta contaDigitadaAoLogar = bancoDeDados.getContas().get(indexConta);
+        ContaLogadaService service = new ContaLogadaService(contaDigitadaAoLogar);
+        return service.getContaLogada();
     }
 
 }

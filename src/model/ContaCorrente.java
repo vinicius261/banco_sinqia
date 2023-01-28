@@ -4,5 +4,8 @@ import enums.TipoDeConta;
 
 public class ContaCorrente extends Conta {
 
-    private TipoDeConta tipoDeConta = TipoDeConta.CONTA_CORRENTE;
+    public ContaCorrente(String numeroConta, String senha, double saldo, Cliente cliente) {
+        super(numeroConta, senha, saldo, cliente);
+        setTipoDeConta(TipoDeConta.CONTA_CORRENTE);
+    }
 }

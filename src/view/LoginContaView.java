@@ -1,57 +1,59 @@
 package view;
 
 import controller.LoginController;
+import database.BancoDeDados;
+import model.Conta;
 
 import java.util.Scanner;
 
 public class LoginContaView {
 
-    /*completar classe-metodo - coloquei um sout pra ver se funcionava
-    seria bom settar um userlogado - para facilitar pegar as infos da Conta em outras classes/metodos
-    coloquei atributo userLogado em Banco*/
-
-
-    int i, index = -1, count = 0, option;
-    private static String clientBankAccount, clientBankPassword;
+    int index = -1, option;
+    private String clientBankAccount, clientBankPassword;
     private boolean verify;
-    private static Scanner entrance = new Scanner(System.in);
+    private Scanner entrance = new Scanner(System.in);
+    private BancoDeDados bancoDeDados;
 
-    public static String getClientBankAccount() {
+    public LoginContaView(BancoDeDados bancoDeDados){
+        this.bancoDeDados = bancoDeDados;
+    }
+
+    public String getClientBankAccount() {
         return clientBankAccount;
     }
 
-    public static String getClientBankPassword() {
+    public String getClientBankPassword() {
         return clientBankPassword;
     }
 
     /**
-     * Método responsável por iniciar o login na conta do cliente.
+     * Método para receber o número da conta em que o Cliente quer logar e direcioná-la para averiguação.
      *
      * @author Rodolfo Lisboa
      */
     public void logarContaView() {
-        LoginController loginController = new LoginController();
+        LoginController loginController = new LoginController(bancoDeDados);
 
         System.out.println("Olá, para entrar no banco, por favor digite sua conta cadastrada:");
         clientBankAccount = entrance.nextLine();
 
-        index = loginController.verificaContaCadastrada(clientBankAccount);
+        index = loginController.verificaSeContaDigitadaFoiCadastrada(clientBankAccount, bancoDeDados);
         receberSenhaAConferirView();
     }
 
     /**
-     * Método responsável por receber a senha digitada e testá-la pela primeira vez
+     * Método responsável por receber a senha digitada e direcioná-la para verificação
      *
      * @author Rodolfo Lisboa
      */
     public void receberSenhaAConferirView() {
 
-        System.out.println("Por favor, agora digite sua senha:");
+        System.out.println("\nPor favor, agora digite sua senha:");
 
         clientBankPassword = entrance.nextLine();
 
-        LoginController loginController = new LoginController();
-        loginController.verificaSenhaCorreta(clientBankPassword, index, count);
+        LoginController loginController = new LoginController(bancoDeDados);
+        loginController.VerificaSeSenhaDigitadaConfere(clientBankPassword, index);
     }
 
     /**
@@ -59,7 +61,7 @@ public class LoginContaView {
      *
      * @outhor Rodolfo Lisboa
      */
-    public void decidirLogarOuMenuView() {
+    public void decidirLogarOuIrParaMenuView() {
         verify = true;
         do {
             System.out.println("\n------------------------------------------------------------");
@@ -71,7 +73,7 @@ public class LoginContaView {
                     verify = false;
                     break;
                 case 2:
-                    MenuInicialView menuInicialView = new MenuInicialView();
+                    MenuInicialView menuInicialView = new MenuInicialView(bancoDeDados);
                     menuInicialView.mostrarMenuInicial();
                     verify = false;
                     break;

@@ -9,42 +9,47 @@ public abstract class Conta {
     private Cliente cliente;
     private TipoDeConta tipoDeConta;
 
+    public Conta(
+            String numeroConta,
+            String senha,
+            double saldo,
+            Cliente cliente
+    ){
+        this.numeroConta = numeroConta;
+        this.senha = senha;
+        this.saldo = saldo;
+        this.cliente = cliente;
+    }
+
+    public Conta(){
+
+    }
+
+    public double getSaldo() {
+        return saldo;
+    }
+
+    public String getNumeroConta() {
+        return numeroConta;
+    }
+
     public String getSenha() {
         return senha;
     }
 
-    public void setSenha(String senha) {
-        this.senha = senha;
+    public Cliente getCliente() {
+        return cliente;
     }
 
-    protected Conta() {
+    public TipoDeConta getTipoDeConta() {
+        return tipoDeConta;
     }
 
     public void setSaldo(double saldo) {
         this.saldo = saldo;
     }
-    public double getSaldo() {
-        return saldo;
-    }
 
-    public void setNumeroConta(String numeroConta) {
-        this.numeroConta = numeroConta;
-    }
-    public String getNumeroConta() {
-        return numeroConta;
-    }
-
-    public void setCliente(Cliente cliente){
-        this.cliente = cliente;
-    }
-    public Cliente getCliente() {
-        return cliente;
-    }
-
-    public void setTipoDeConta(TipoDeConta tipoDeConta){
+    protected void setTipoDeConta(TipoDeConta tipoDeConta) {
         this.tipoDeConta = tipoDeConta;
-    }
-    public TipoDeConta getTipoDeConta() {
-        return tipoDeConta;
     }
 }

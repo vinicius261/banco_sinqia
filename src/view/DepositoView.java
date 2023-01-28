@@ -1,108 +1,167 @@
 package view;
 
 import controller.DepositoController;
+import controller.InvestirController;
+import controller.ValidadorExistenciaDeContaController;
+import database.BancoDeDados;
+import enums.TipoDeConta;
 import model.Conta;
 
+import java.text.DecimalFormat;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import static database.BancoDeDados.getContas;
-
 public class DepositoView {
     static final Scanner scan = new Scanner(System.in);
-    DepositoController depositoController = new DepositoController();
-    MenuInicialView menuInicialView = new MenuInicialView();
+    DepositoController depositoController;
+    MenuInicialView menuInicialView;
+    MenuContaView menuContaView;
+    InvestirController investirController;
+    ValidadorExistenciaDeContaController validadorExistenciaDeContaController;
+    private final BancoDeDados bancoDeDados;
+    private final Conta contaLogada;
 
-    public void depositoView() {
-        System.out.println();
-        System.out.println("Bem vindo a area de depósito. Digite 1 para fazer um depósito ou digite 0 para voltar ao menu anterior.");
-        System.out.println();
+    public DepositoView(BancoDeDados bancoDeDados, Conta contaLogada) {
+        this.bancoDeDados = bancoDeDados;
+        this.contaLogada = contaLogada;
+        this.depositoController = new DepositoController(bancoDeDados, contaLogada);
+        this.menuInicialView = new MenuInicialView(bancoDeDados);
+        this.investirController = new InvestirController(bancoDeDados);
+        this.menuContaView = new MenuContaView(bancoDeDados, contaLogada);
+        this.validadorExistenciaDeContaController = new ValidadorExistenciaDeContaController();
+    }
+
+    private final String padrao = "###,##0.00";
+    DecimalFormat df = new DecimalFormat(padrao);
+
+    public void depositoDeslogadoView() {
+        logadoOuDeslogado = "Deslogado";
+        System.out.println("""
+                                
+                Digite 1 para fazer um depósito.
+                Para voltar ao menu inicial digite 0.""");
         String opcao = scan.next();
         if (opcao.equals("1")) {
-            valorDeposito();
+            contaDeposito();
         } else if (opcao.equals("0")) {
             menuInicialView.mostrarMenuInicial();
         } else {
-            depositoView();
+            depositoDeslogadoView();
         }
     }
 
+    public void depositoLogadoView() {
+        logadoOuDeslogado = "Logado";
+        System.out.println("""
+                                
+                Digite 1 para fazer um depósito na sua conta.
+                Para voltar ao menu da conta digite 0.""");
+        String opcao = scan.next();
+        numeroConta = this.contaLogada.getNumeroConta();
+        if (opcao.equals("1")) {
+            valorDeposito();
+        } else if (opcao.equals("0")) {
+            menuContaView.mostrarMenuConta();
+        } else {
+            depositoLogadoView();
+        }
+    }
+
+    private String logadoOuDeslogado;
     private double valorRecebido;
     private double valorDeposito;
     private String numeroConta;
 
-    public void valorDeposito() {
+    private void contaDeposito() {
+        System.out.println("""
+                                
+                Digite o número da conta beneficiária.
+                Para voltar ao menu anterior digite 0.""");
+        numeroConta = scan.next();
+        int verificaConta = validadorExistenciaDeContaController.verificaSeContaDigitadaFoiCadastrada(numeroConta, bancoDeDados);
+        if (numeroConta.equals("0")) {
+            depositoDeslogadoView();
+        } else {
+            if (verificaConta == -1) {
+                System.out.println("""
+                                                
+                        Conta inexistente.""");
+                contaDeposito();
+            } else {
+                valorDeposito();
+            }
+        }
+    }
+
+    private void valorDeposito() {
         System.out.println();
-        System.out.println("Por favor, digite o valor que gostaria de depositar ou digite 0 para retornar ao menu anterior.");
-        System.out.println();
+        System.out.println("""
+                Digite o valor que gostaria de depositar.
+                Para voltar ao menu anterior digite 0.""");
         try {
             valorRecebido = scan.nextDouble();
         } catch (InputMismatchException exception) {
             scan.next();
             valorDeposito();
         }
-
         boolean verificaValor = depositoController.verificaValor(valorRecebido);
         if (valorRecebido == 0) {
-            depositoView();
+            if (logadoOuDeslogado.equals("Deslogado")) {
+                contaDeposito();
+            } else {
+                depositoLogadoView();
+            }
         } else {
             if (verificaValor) {
                 valorDeposito = valorRecebido;
-                contaDeposito();
+                confirmaDeposito();
             } else {
                 System.out.println("Necessario depositar um valor maior que zero.");
                 valorDeposito();
             }
         }
-
     }
 
-    public void contaDeposito() {
-        System.out.println();
-        System.out.println("Por favor, digite o número da conta ou digite 0 para retornar ao menu anterior.");
-        System.out.println();
-        numeroConta = scan.next();
-        boolean verificaConta = depositoController.verificaConta(numeroConta);
-        if (numeroConta.equals("0")) {
-            valorDeposito();
-        } else {
-            if (verificaConta) {
-                confirmaDeposito();
-            } else {
-                System.out.println();
-                System.out.println("Conta inexistente.");
-                contaDeposito();
-            }
-        }
-    }
-
-    public void confirmaDeposito(){
+    private String getDadosDoDeposito() {
         int i = depositoController.retornaPosicaoNoArray(numeroConta);
-        Conta conta = getContas().get(i);
-        System.out.println();
-        System.out.println("CONFIRMAÇÃO DOS DADOS DE DEPÓSITO");
-        System.out.println("Tipo de conta: " + conta.getTipoDeConta());
-        System.out.println("Número da conta: " + conta.getNumeroConta());
-        System.out.println("Nome do beneficiário: " + conta.getCliente().getNome());
-        System.out.println("Valor: R$" + valorDeposito);
-        System.out.println();
-        System.out.println("Digite 1 para confirmar ou digite 0 para cancelar e retornar ao menu anterior");
-        System.out.println();
+        Conta conta = bancoDeDados.getContas().get(i);
+        return "Tipo de conta: " + conta.getTipoDeConta() +
+                "\nNúmero da conta: " + conta.getNumeroConta() +
+                "\nNome do beneficiário: " + conta.getCliente().getNome() +
+                "\nValor: R$" + df.format(valorDeposito);
+    }
+
+    private void confirmaDeposito() {
+        int i = depositoController.retornaPosicaoNoArray(numeroConta);
+        Conta conta = bancoDeDados.getContas().get(i);
+        System.out.println("\n" +
+                "CONFIRMAÇÃO DOS DADOS DE DEPÓSITO");
+        System.out.println(getDadosDoDeposito());
+        System.out.println("\n" +
+                "Digite 1 para confirmar." +
+                "\nPara cancelar e voltar ao menu anterior digite 0.");
         String opcao = scan.next();
         if (opcao.equals("1")) {
             depositoController.deposita(valorDeposito, numeroConta);
-            System.out.println();
-            System.out.println("Depósito efetuado com sucesso.");
-            System.out.println();
-            System.out.println("COMPROVANTE DE DEPÓSITO");
-            System.out.println("Tipo de conta: " + conta.getTipoDeConta());
-            System.out.println("Número da conta: " + conta.getNumeroConta());
-            System.out.println("Nome do beneficiário: " + conta.getCliente().getNome());
-            System.out.println("Valor: R$" + valorDeposito);
-            System.out.println();
-            menuInicialView.mostrarMenuInicial();
+            System.out.println("""
+                                        
+                    Depósito efetuado com sucesso.
+
+                    COMPROVANTE DE DEPÓSITO""");
+            System.out.println(getDadosDoDeposito());
+            if (conta.getTipoDeConta().equals(TipoDeConta.CONTA_CORRENTE)) {
+            } else {
+                System.out.println("\n"+
+                        "O seu depósito rendeu R$" + df.format(investirController.tipoInvestimento(conta, valorDeposito)) +
+                        "\nO rendimento já está disponível na conta.");
+            }
+            if (logadoOuDeslogado.equals("Deslogado")) {
+                menuInicialView.mostrarMenuInicial();
+            } else {
+                menuContaView.mostrarMenuConta();
+            }
         } else {
-            contaDeposito();
+            valorDeposito();
         }
     }
 }

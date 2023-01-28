@@ -2,49 +2,40 @@ package model;
 
 import enums.TipoDeCliente;
 
+import java.util.ArrayList;
+
 public class Cliente {
 
-    private String nome, documento, email, dataDeNascimento;
+    private String nome, documento, email;
     private TipoDeCliente tipoDeCliente;
+    private ArrayList<Conta> contasDoCliente;
+
+    public Cliente(String nome, String documento, String email, TipoDeCliente tipoDeCliente, ArrayList<Conta> contasDoCliente) {
+        this.nome = nome;
+        this.documento = documento;
+        this.email = email;
+        this.tipoDeCliente = tipoDeCliente;
+        this.contasDoCliente = contasDoCliente;
+    }
 
     public String getNome() {
         return nome;
-    }
-
-    public void setNome(String nome){
-        this.nome = nome;
     }
 
     public String getDocumento() {
         return documento;
     }
 
-    public void setDocumento(String nome){
-        this.documento = nome;
-    }
-
     public String getEmail() {
         return email;
-    }
-
-    public void setEmail(String nome){
-        this.email = nome;
-    }
-
-    public String getDataDeNascimento() {
-        return dataDeNascimento;
-    }
-
-    public void setDataDenascimento(String dataDenascimento){
-        this.dataDeNascimento = nome;
     }
 
     public TipoDeCliente getTipoDeCliente() {
         return tipoDeCliente;
     }
 
-    public void setTipoDeCliente(TipoDeCliente tipoDeCliente){
-        this.tipoDeCliente = tipoDeCliente;
+    public ArrayList<Conta> getContasDoCliente() {
+        return contasDoCliente;
     }
 }
 

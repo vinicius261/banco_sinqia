@@ -3,40 +3,31 @@ package service;
 import database.BancoDeDados;
 import enums.TipoDeCliente;
 import enums.TipoDeConta;
-import model.Cliente;
-import model.ContaCorrente;
-import model.ContaPoupanca;
+import model.*;
+
+import java.util.ArrayList;
 
 public class CriarContasClientes {
-    public void CriarContasClientes(){
-        Cliente cliente = new Cliente();
-        cliente.setTipoDeCliente(TipoDeCliente.PESSOA_FISICA);
-        cliente.setDocumento("38129476843");
-        cliente.setNome("Lucas");
-        BancoDeDados.addCliente(cliente);
+    public void CriarContasClientes(BancoDeDados bancoDeDados){
+        ArrayList<Conta> ContasDoCLiente= new ArrayList<>();
 
-        ContaCorrente contaCorrente = new ContaCorrente();
-        contaCorrente.setCliente(cliente);
-        contaCorrente.setSaldo(100);
-        contaCorrente.setTipoDeConta(TipoDeConta.CONTA_CORRENTE);
-        contaCorrente.setNumeroConta("1");
-        contaCorrente.setSenha("1");
-        BancoDeDados.addConta(contaCorrente);
+        Cliente cliente = new Cliente(
+                "Lucas",
+                "38129476843",
+                "lucas@email.com",
+                TipoDeCliente.PESSOA_FISICA,
+                ContasDoCLiente);
+       bancoDeDados.addCliente(cliente);
 
-        ContaPoupanca contaPoupanca = new ContaPoupanca();
-        contaPoupanca.setCliente(cliente);
-        contaPoupanca.setSaldo(50);
-        contaPoupanca.setTipoDeConta(TipoDeConta.CONTA_POUPANCA);
-        contaPoupanca.setNumeroConta("2");
-        BancoDeDados.addConta(contaPoupanca);
+        ContaCorrente contaCorrente = new ContaCorrente("1", "1", 100, cliente);
+        bancoDeDados.addConta(contaCorrente);
 
-//        ContaInvestimento contaInvestimento = new ContaInvestimento();
-//        contaInvestimento.setCliente(cliente);
-//        contaInvestimento.setSaldo(1000);
-//        contaInvestimento.setTipoDeConta((TipoDeConta.CONTA_INVESTIMENTO));
-//        BancoDeDados.addConta(contaInvestimento);
+        ContaPoupanca contaPoupanca = new ContaPoupanca("2", "2", 50, cliente);
+        bancoDeDados.addConta(contaPoupanca);
 
-        BancoDeDados.setContaLogada(contaPoupanca);
+        ContaInvestimento contaInvestimento = new ContaInvestimento("3", "3", 1000, cliente);
+        bancoDeDados.addConta(contaInvestimento);
+
     }
 }
 

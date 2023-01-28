@@ -2,9 +2,9 @@ package controller;
 
 import java.util.regex.Pattern;
 
-public class ValidarSenhaController {
+public class ValidarFormatoSenhaController {
     private static final String PASSWORD_REGEX =
-            "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,16}$";
+            "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&+=])(?=\\S+$).{8,16}$";
 
     private static final Pattern PASSWORD_PATTERN =
             Pattern.compile(PASSWORD_REGEX);
