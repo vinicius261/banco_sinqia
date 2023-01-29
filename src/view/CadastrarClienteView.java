@@ -14,8 +14,9 @@ import java.util.Scanner;
 public class CadastrarClienteView {
     static final Scanner input = new Scanner(System.in);
     CadastrarClienteController controller;
-    ValidarEmailController validarEmailController;
-    BuscarEmailController buscarEmailController;
+    ValidarEmailController validarEmailController = new ValidarEmailController();
+    BuscarEmailController buscarEmailController = new BuscarEmailController();
+
     private String cadastroNome;
     private String cadastroEmail;
     private BancoDeDados bancoDeDados;
@@ -47,7 +48,7 @@ public class CadastrarClienteView {
     private String cadastroEmail() {
         System.out.println("Insira seu login (e-mail):");
         cadastroEmail = input.nextLine();
-        if (validarEmailController.validar(cadastroEmail) == true && buscarEmailController.buscaEmail(cadastroEmail) == false) {
+        if (validarEmailController.validar(cadastroEmail) && buscarEmailController.buscaEmail(cadastroEmail) == false) {
             System.out.println("Email cadastrado.");
         } else {
             System.out.println("E-mail invalido. Tente novamente");
