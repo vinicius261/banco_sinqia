@@ -22,7 +22,7 @@ public class AbrirContaController {
             TipoDeConta tipoDeConta
     ) {
         String numeroConta = String.valueOf(gerarNumero.nextInt(2000-1000)+1000);
-        System.out.println(numeroConta);
+        System.out.println("O numero da sua nova conta e: " + numeroConta);
         double saldo = 0;
 
         VerificarSeClienteExisteController verificarSeClienteExisteController = new VerificarSeClienteExisteController(bancoDeDados, contaLogada);
