@@ -16,12 +16,13 @@ public class LoginController {
     private BancoDeDados bancoDeDados;
     private Conta contaLogada;
 
-    public LoginController(BancoDeDados bancoDeDados){
+    public LoginController(BancoDeDados bancoDeDados) {
         this.bancoDeDados = bancoDeDados;
     }
 
     /**
      * Método responsável em processar a não existência da conta digitada ao logar.
+     *
      * @param clientBankAccount
      * @return índice relacionado à conta cadastrada.
      * @throws AccountNotFoundException
@@ -62,6 +63,7 @@ public class LoginController {
 
     /**
      * Método responsável por informar em qual o número da conta o cliente fez o login
+     *
      * @return String contendo o número da conta que foi logada
      */
     public Conta logarNaConta(int indexConta) {

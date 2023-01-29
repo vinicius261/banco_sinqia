@@ -21,38 +21,38 @@ public class TransferenciaController {
         this.taxaCobrada = 0.005;
     }
 
-    public boolean validaSenha(String senhaDigitada){
-        if (senhaDigitada.equals(contaLogada.getSenha())){
+    public boolean validaSenha(String senhaDigitada) {
+        if (senhaDigitada.equals(contaLogada.getSenha())) {
             return true;
-        }else {
+        } else {
             return false;
         }
     }
 
-    public void validaValorDaTransferencia(Double valorDaTransferencia){
-        if (valorDaTransferencia <= 0){
+    public void validaValorDaTransferencia(Double valorDaTransferencia) {
+        if (valorDaTransferencia <= 0) {
             throw new ValorDaTransferenciaInvalidaException("Insira apenas números maiores que zero.");
         }
     }
 
     public void validaSaldo(Double valorDaTransferencia, boolean taxacao) {
         Double taxa = 0.0;
-        if (taxacao){
+        if (taxacao) {
             taxa = valorDaTransferencia * taxaCobrada;
         }
 
         if (contaLogada.getSaldo() < (valorDaTransferencia + taxa)) {
-            if(taxacao){
+            if (taxacao) {
                 taxa = valorDaTransferencia * taxaCobrada;
                 throw new SaldoInsuficienteException("Saldo insuficiente para a transferência.\n" +
-                        " Saldo atual: " + contaLogada.getSaldo() + "\n" + "Taxa: " +valorDaTransferencia * taxaCobrada + "\n");
+                        " Saldo atual: " + contaLogada.getSaldo() + "\n" + "Taxa: " + valorDaTransferencia * taxaCobrada + "\n");
             }
             throw new SaldoInsuficienteException("Saldo insuficiente para a transferência.\n Saldo atual: "
                     + contaLogada.getSaldo() + "\n");
         }
     }
 
-    public Double transfereValores(Conta contaFavorecida, Double valorDaTransferencia){
+    public Double transfereValores(Conta contaFavorecida, Double valorDaTransferencia) {
         Double rendimento = 0.0;
 
         if (valorDaTransferencia > 0) {
@@ -62,9 +62,9 @@ public class TransferenciaController {
             rendimento = investir.tipoInvestimento(contaFavorecida, valorDaTransferencia);
 
             Double saldoContaLogada = contaLogada.getSaldo();
-            if(contaLogada.getCliente().getTipoDeCliente() == TipoDeCliente.PESSOA_JURIDICA) {
-                contaLogada.setSaldo(saldoContaLogada - valorDaTransferencia - valorDaTransferencia*taxaCobrada);
-            }else{
+            if (contaLogada.getCliente().getTipoDeCliente() == TipoDeCliente.PESSOA_JURIDICA) {
+                contaLogada.setSaldo(saldoContaLogada - valorDaTransferencia - valorDaTransferencia * taxaCobrada);
+            } else {
                 contaLogada.setSaldo(saldoContaLogada - valorDaTransferencia);
             }
         }
@@ -73,11 +73,11 @@ public class TransferenciaController {
     }
 
     public Conta buscaContas(String numeroDaConta, ArrayList<Conta> contas, Conta contaLogada) {
-        for (Conta conta: contas) {
+        for (Conta conta : contas) {
             if (conta.getNumeroConta().equals(numeroDaConta)
-                    && (!conta.getNumeroConta().equals(contaLogada.getNumeroConta()))){
+                    && (!conta.getNumeroConta().equals(contaLogada.getNumeroConta()))) {
                 return conta;
-            }else if (numeroDaConta.equals(contaLogada.getNumeroConta())){
+            } else if (numeroDaConta.equals(contaLogada.getNumeroConta())) {
                 throw new SameAccountException("Este é o número desta conta, insira outro número.");
             }
         }

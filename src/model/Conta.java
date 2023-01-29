@@ -14,14 +14,14 @@ public abstract class Conta {
             String senha,
             double saldo,
             Cliente cliente
-    ){
+    ) {
         this.numeroConta = numeroConta;
         this.senha = senha;
         this.saldo = saldo;
         this.cliente = cliente;
     }
 
-    public Conta(){
+    public Conta() {
 
     }
 

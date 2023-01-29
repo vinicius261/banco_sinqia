@@ -12,7 +12,7 @@ public class CadastrarClienteController {
     private BancoDeDados bancoDeDados;
     private Conta contaLogada;
 
-    public CadastrarClienteController(BancoDeDados bancoDeDados, Conta contaLogada){
+    public CadastrarClienteController(BancoDeDados bancoDeDados, Conta contaLogada) {
         this.bancoDeDados = bancoDeDados;
         this.contaLogada = contaLogada;
     }

@@ -8,7 +8,7 @@ public class DepositoController {
     private BancoDeDados bancoDeDados;
     private Conta contaLogada;
 
-    public DepositoController(BancoDeDados bancoDeDados, Conta contaLogada){
+    public DepositoController(BancoDeDados bancoDeDados, Conta contaLogada) {
         this.bancoDeDados = bancoDeDados;
         this.contaLogada = contaLogada;
     }

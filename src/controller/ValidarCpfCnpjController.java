@@ -90,7 +90,7 @@ public class ValidarCpfCnpjController {
 
 
     public String rg(boolean comPontos) {
-        String  nDigResult;
+        String nDigResult;
         String numerosContatenados;
         String numeroGerado;
         Random numeroAleatorio = new Random();
@@ -106,8 +106,8 @@ public class ValidarCpfCnpjController {
         int n9 = numeroAleatorio.nextInt(10);
 
         //Conctenando os numeros
-        numerosContatenados = String.valueOf(n1) + String.valueOf(n2) + String.valueOf(n3)  + String.valueOf(n4) +
-                String.valueOf(n5) + String.valueOf(n6) + String.valueOf(n7) +String.valueOf(n8)  +
+        numerosContatenados = String.valueOf(n1) + String.valueOf(n2) + String.valueOf(n3) + String.valueOf(n4) +
+                String.valueOf(n5) + String.valueOf(n6) + String.valueOf(n7) + String.valueOf(n8) +
                 String.valueOf(n9);
         numeroGerado = numerosContatenados;
 
@@ -131,7 +131,6 @@ public class ValidarCpfCnpjController {
         String rg = gerador.rg(true);
         System.out.printf("RG: %s", rg);
     }
-
 
 
     public boolean isCPF(String CPF) {
