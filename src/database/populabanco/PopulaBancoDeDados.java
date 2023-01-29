@@ -38,6 +38,7 @@ public class PopulaBancoDeDados {
                 1000,
                 clientePf);
         bancoDeDados.addConta(contaCorrentePf);
+        clientePf.getContasDoCliente().add(contaCorrentePf);
 
         ContaPoupanca contaPoupancaPf = new ContaPoupanca(
                 "00012",
@@ -45,6 +46,7 @@ public class PopulaBancoDeDados {
                 1000,
                 clientePf);
         bancoDeDados.addConta(contaPoupancaPf);
+        clientePf.getContasDoCliente().add(contaPoupancaPf);
 
         ContaInvestimento contaInvestimentoPf = new ContaInvestimento(
                 "00013",
@@ -52,6 +54,7 @@ public class PopulaBancoDeDados {
                 1000,
                 clientePf);
         bancoDeDados.addConta(contaInvestimentoPf);
+        clientePf.getContasDoCliente().add(contaInvestimentoPf);
 
         ContaCorrente contaCorrentePj = new ContaCorrente(
                 "00021",
@@ -59,6 +62,7 @@ public class PopulaBancoDeDados {
                 10000,
                 clientePj);
         bancoDeDados.addConta(contaCorrentePj);
+        clientePj.getContasDoCliente().add(contaCorrentePj);
 
         ContaInvestimento contaInvestimentoPj = new ContaInvestimento(
                 "00022",
@@ -66,6 +70,7 @@ public class PopulaBancoDeDados {
                 10000,
                 clientePj);
         bancoDeDados.addConta(contaInvestimentoPj);
+        clientePj.getContasDoCliente().add(contaInvestimentoPj);
     }
 }
 
