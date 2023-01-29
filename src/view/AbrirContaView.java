@@ -1,7 +1,7 @@
 package view;
 
 import controller.AbrirContaController;
-import controller.ValidarCpfCnpj;
+import controller.ValidarCpfCnpjController;
 import controller.ValidarFormatoSenhaController;
 import controller.VerificarSeClienteExisteController;
 import database.BancoDeDados;
@@ -22,7 +22,7 @@ public class AbrirContaView {
     }
 
     public void abrirConta(){
-        ValidarCpfCnpj validarCpfCnpj = new ValidarCpfCnpj();
+        ValidarCpfCnpjController validarCpfCnpj = new ValidarCpfCnpjController();
         VerificarSeClienteExisteController verificarSeClienteExisteController = new VerificarSeClienteExisteController(bancoDeDados, contaLogada);
 
         TipoDeCliente tipoDeCliente = null;

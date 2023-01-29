@@ -28,7 +28,7 @@ public class LoginController {
      */
     public int verificaSeContaDigitadaFoiCadastrada(String clientBankAccount, BancoDeDados bancoDeDados) {
 
-        ValidadorExistenciaDeContaController validador = new ValidadorExistenciaDeContaController();
+        ValidarExistenciaDeContaController validador = new ValidarExistenciaDeContaController();
         index = validador.verificaSeContaDigitadaFoiCadastrada(clientBankAccount, bancoDeDados);
 
         if (index == -1) {
