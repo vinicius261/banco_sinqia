@@ -21,45 +21,51 @@ public class AbrirContaView {
         this.contaLogada = contaLogada;
     }
 
+    ValidarCpfCnpjController validarCpfCnpj = new ValidarCpfCnpjController();
+
     public void abrirConta() {
-        ValidarCpfCnpjController validarCpfCnpj = new ValidarCpfCnpjController();
         VerificarSeClienteExisteController verificarSeClienteExisteController = new VerificarSeClienteExisteController(bancoDeDados, contaLogada);
 
-        TipoDeCliente tipoDeCliente = null;
-        TipoDeConta tipoDeConta;
-        String senhaEscolhida;
+        String numeroDocumentoInformado = informarDocumento();
+        TipoDeCliente tipoDeCliente = escolherTipoDeCliente(numeroDocumentoInformado);
+        TipoDeConta tipoDeConta = escolherTipoDeConta(tipoDeCliente);
+        String senhaEscolhida = escolherSenha();
 
+        if (!verificarSeClienteExisteController.verificarSeClienteExiste(numeroDocumentoInformado)) {
+            CadastrarClienteView cadastrarClienteView = new CadastrarClienteView(bancoDeDados, contaLogada);
+            cadastrarClienteView.cadastrarCliente(numeroDocumentoInformado, tipoDeCliente);
+        }
+
+        AbrirContaController abrirContaController = new AbrirContaController(bancoDeDados, contaLogada);
+        abrirContaController.abrirConta(numeroDocumentoInformado, senhaEscolhida, tipoDeConta);
+    }
+
+    public String informarDocumento(){
         System.out.println("Escolha o tipo de conta que deseja abrir (FISICA ou JURIDICA)" +
                 "\ndigitando seu CPF ou CNPJ");
-
         String numeroDocumento = input.nextLine();
 
         if (validarCpfCnpj.isCPF(numeroDocumento) || validarCpfCnpj.isCNPJ(numeroDocumento)) {
-            if (validarCpfCnpj.isCPF(numeroDocumento)) {
-                tipoDeCliente = TipoDeCliente.PESSOA_FISICA;
-            } else if (validarCpfCnpj.isCNPJ(numeroDocumento)) {
-                tipoDeCliente = TipoDeCliente.PESSOA_JURIDICA;
-            }
-        } else {
+            return numeroDocumento;
+        }
+        else {
             System.out.println("Documento invalido");
-            MenuInicialView menuInicialView = new MenuInicialView(bancoDeDados);
-            menuInicialView.mostrarMenuInicial();
         }
+        return informarDocumento();
+    }
 
-        if (!verificarSeClienteExisteController.verificarSeClienteExiste(numeroDocumento)) {
-            CadastrarClienteView cadastrarClienteView = new CadastrarClienteView(bancoDeDados, contaLogada);
-            cadastrarClienteView.cadastrarCliente(numeroDocumento, tipoDeCliente);
+    public TipoDeCliente escolherTipoDeCliente(String numeroDocumento){
+        if (validarCpfCnpj.isCPF(numeroDocumento) || validarCpfCnpj.isCNPJ(numeroDocumento)) {
+            if (validarCpfCnpj.isCPF(numeroDocumento)) {
+                return TipoDeCliente.PESSOA_FISICA;
+            } else if (validarCpfCnpj.isCNPJ(numeroDocumento)) {
+                return TipoDeCliente.PESSOA_JURIDICA;
+            }
         }
-
-        tipoDeConta = escolherTipoDeConta(tipoDeCliente);
-        senhaEscolhida = escolherSenha();
-
-        AbrirContaController abrirContaController = new AbrirContaController(bancoDeDados, contaLogada);
-        abrirContaController.abrirConta(numeroDocumento, senhaEscolhida, tipoDeConta);
+        return escolherTipoDeCliente(numeroDocumento);
     }
 
     public TipoDeConta escolherTipoDeConta(TipoDeCliente tipoDeCliente) {
-        TipoDeConta tipoDeConta = null;
 
         System.out.println("Deseja abrir uma conta:" +
                 "\n1 - CORRENTE");
@@ -75,41 +81,36 @@ public class AbrirContaView {
                 switch (escolhaConta) {
                     case 1 -> {
                         System.out.println("-----------------------------------------------------");
-                        tipoDeConta = TipoDeConta.CONTA_CORRENTE;
+                        return TipoDeConta.CONTA_CORRENTE;
                     }
                     case 2 -> {
                         System.out.println("-----------------------------------------------------");
-                        tipoDeConta = TipoDeConta.CONTA_INVESTIMENTO;
+                        return TipoDeConta.CONTA_INVESTIMENTO;
                     }
                     case 3 -> {
                         if (tipoDeCliente.equals(TipoDeCliente.PESSOA_FISICA)) {
                             System.out.println("-----------------------------------------------------");
-                            tipoDeConta = TipoDeConta.CONTA_POUPANCA;
+                            return TipoDeConta.CONTA_POUPANCA;
                         } else {
                             System.out.println("Opcao invalida. Tente novamente.");
-                            escolherTipoDeConta(tipoDeCliente);
                         }
                     }
                     default -> {
                         System.out.println("Opcao invalida. Tente novamente.");
-                        escolherTipoDeConta(tipoDeCliente);
                     }
                 }
             } else {
                 System.out.println("Opcao invalida. Tente novamente.");
-                escolherTipoDeConta(tipoDeCliente);
             }
         } catch (NumberFormatException e) {
             System.out.println("Por favor, digite um numero.");
-            escolherTipoDeConta(tipoDeCliente);
         }
-        return tipoDeConta;
+        return escolherTipoDeConta(tipoDeCliente);
     }
 
     public String escolherSenha() {
 
         ValidarFormatoSenhaController validarFormatoSenhaController = new ValidarFormatoSenhaController();
-        String senhaValidada = null;
 
         System.out.println("Digite uma senha para sua conta" +
                 "\nA senha deve conte pelo menos:" +
@@ -122,10 +123,9 @@ public class AbrirContaView {
 
         if (!validarFormatoSenhaController.validarSenha(senhaDigitada)) {
             System.out.println("Digite uma senha valida");
-            escolherSenha();
         } else {
-            senhaValidada = senhaDigitada;
+            return senhaDigitada;
         }
-        return senhaValidada;
+        return escolherSenha();
     }
 }
