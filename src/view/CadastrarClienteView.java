@@ -15,7 +15,7 @@ public class CadastrarClienteView {
     static final Scanner input = new Scanner(System.in);
     CadastrarClienteController controller;
     ValidarEmailController validarEmailController = new ValidarEmailController();
-    BuscarEmailController buscarEmailController = new BuscarEmailController();
+    BuscarEmailController buscarEmailController;
 
     private String cadastroNome;
     private String cadastroEmail;
@@ -26,6 +26,7 @@ public class CadastrarClienteView {
         this.controller = new CadastrarClienteController(bancoDeDados, contaLogada);
         this.bancoDeDados = bancoDeDados;
         this.contaLogada = contaLogada;
+        this.buscarEmailController = new BuscarEmailController(bancoDeDados);
     }
 
     public void cadastrarCliente(String documento, TipoDeCliente tipoDeCliente){
@@ -44,6 +45,7 @@ public class CadastrarClienteView {
         }
         return cadastroNome;
     }
+
 
     private String cadastroEmail() {
         System.out.println("Insira seu login (e-mail):");
