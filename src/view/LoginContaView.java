@@ -8,26 +8,21 @@ import java.util.Scanner;
 
 public class LoginContaView {
 
-    /*completar classe-metodo - coloquei um sout pra ver se funcionava
-    seria bom settar um userlogado - para facilitar pegar as infos da Conta em outras classes/metodos
-    coloquei atributo userLogado em Banco*/
-
-
     int index = -1, option;
-    private static String clientBankAccount, clientBankPassword;
+    private String clientBankAccount, clientBankPassword;
     private boolean verify;
-    private static Scanner entrance = new Scanner(System.in);
+    private Scanner entrance = new Scanner(System.in);
     private BancoDeDados bancoDeDados;
 
     public LoginContaView(BancoDeDados bancoDeDados){
         this.bancoDeDados = bancoDeDados;
     }
 
-    public static String getClientBankAccount() {
+    public String getClientBankAccount() {
         return clientBankAccount;
     }
 
-    public static String getClientBankPassword() {
+    public String getClientBankPassword() {
         return clientBankPassword;
     }
 
@@ -42,7 +37,7 @@ public class LoginContaView {
         System.out.println("Olá, para entrar no banco, por favor digite sua conta cadastrada:");
         clientBankAccount = entrance.nextLine();
 
-        index = loginController.verificaSeContaDigitadaFoiCadastrada(clientBankAccount);
+        index = loginController.verificaSeContaDigitadaFoiCadastrada(clientBankAccount, bancoDeDados);
         receberSenhaAConferirView();
     }
 

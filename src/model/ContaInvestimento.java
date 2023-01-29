@@ -1,18 +1,25 @@
 package model;
 
 import enums.TipoDeConta;
-import interfaces.Investir;
 
 public class ContaInvestimento extends Conta  {
+    private final double rendimentoPessoaJuridica = 0.035;
+    private final double rendimentoPessoaFisica = 0.015;
 
-    private TipoDeConta tipoDeConta = TipoDeConta.CONTA_INVESTIMENTO;
-    private double rendimento;
-
-    public double getRendimento() {
-        return rendimento;
+    public ContaInvestimento(String numeroConta, String senha, double saldo, Cliente cliente) {
+        super(numeroConta, senha, saldo, cliente);
+        setTipoDeConta(TipoDeConta.CONTA_INVESTIMENTO);
     }
 
-    public void setRendimento(double rendimento) {
-        this.rendimento = rendimento;
+    public ContaInvestimento(){
+
+    }
+
+    public double getRendimentoPessoaJuridica() {
+        return rendimentoPessoaJuridica;
+    }
+
+    public double getRendimentoPessoaFisica() {
+        return rendimentoPessoaFisica;
     }
 }

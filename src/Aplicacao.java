@@ -1,5 +1,5 @@
 import database.BancoDeDados;
-import service.CriarContasClientes;
+import service.CriarContasClientesService;
 import view.MenuInicialView;
 
 public class Aplicacao {
@@ -8,13 +8,8 @@ public class Aplicacao {
 
         BancoDeDados bancoDeDados = new BancoDeDados();
 
-        CriarContasClientes criarContasClientes = new CriarContasClientes();
-        criarContasClientes.CriarContasClientes(bancoDeDados);
-        System.out.println(bancoDeDados.getContas().get(0).getSaldo());
-        System.out.println(bancoDeDados.getContas().get(0).getSenha());
-        System.out.println(bancoDeDados.getContas().get(0).getNumeroConta());
-        System.out.println(bancoDeDados.getContas().get(1).getSaldo());
-
+        CriarContasClientesService criarContasClientesService = new CriarContasClientesService(bancoDeDados);
+        criarContasClientesService.CriarContasClientes();
 
         System.out.println("\n===================================================================");
         System.out.println("=                       ADAS BANK                   /)-/)       =");

@@ -1,6 +1,8 @@
 package interfaces;
 
+import model.Conta;
+
 public interface Investir {
 
-    public void investir(double investimento);
+    double investir(double investimento, Conta conta);
 }

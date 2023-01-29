@@ -1,7 +1,7 @@
 package view;
 
 import controller.AbrirContaController;
-import controller.ValidarCpfCnpj;
+import controller.ValidarCpfCnpjController;
 import controller.ValidarFormatoSenhaController;
 import controller.VerificarSeClienteExisteController;
 import database.BancoDeDados;
@@ -22,7 +22,7 @@ public class AbrirContaView {
     }
 
     public void abrirConta(){
-        ValidarCpfCnpj validarCpfCnpj = new ValidarCpfCnpj();
+        ValidarCpfCnpjController validarCpfCnpj = new ValidarCpfCnpjController();
         VerificarSeClienteExisteController verificarSeClienteExisteController = new VerificarSeClienteExisteController(bancoDeDados, contaLogada);
 
         TipoDeCliente tipoDeCliente = null;
@@ -69,10 +69,10 @@ public class AbrirContaView {
         }
 
         try {
-            int tipoDeconta = Integer.parseInt(input.nextLine());
-            if (tipoDeconta == 1 || tipoDeconta == 2 || tipoDeconta == 3) {
+            int escolhaConta = Integer.parseInt(input.nextLine());
+            if (escolhaConta == 1 || escolhaConta == 2 || escolhaConta == 3) {
 
-                switch (tipoDeconta) {
+                switch (escolhaConta) {
                     case 1 -> {
                         System.out.println("-----------------------------------------------------");
                         tipoDeConta = TipoDeConta.CONTA_CORRENTE;

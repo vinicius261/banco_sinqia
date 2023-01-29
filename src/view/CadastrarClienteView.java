@@ -1,18 +1,21 @@
 package view;
 
+import controller.BuscarEmailController;
 import controller.CadastrarClienteController;
+import controller.ValidarEmailController;
 import database.BancoDeDados;
 import enums.TipoDeCliente;
 import model.Cliente;
 import model.Conta;
 
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class CadastrarClienteView {
     static final Scanner input = new Scanner(System.in);
     CadastrarClienteController controller;
+    ValidarEmailController validarEmailController;
+    BuscarEmailController buscarEmailController;
     private String cadastroNome;
     private String cadastroEmail;
     private BancoDeDados bancoDeDados;
@@ -23,7 +26,6 @@ public class CadastrarClienteView {
         this.bancoDeDados = bancoDeDados;
         this.contaLogada = contaLogada;
     }
-
 
     public void cadastrarCliente(String documento, TipoDeCliente tipoDeCliente){
         ArrayList<Conta> contasDoCliente = new ArrayList<>();
@@ -45,7 +47,7 @@ public class CadastrarClienteView {
     private String cadastroEmail() {
         System.out.println("Insira seu login (e-mail):");
         cadastroEmail = input.nextLine();
-        if (controller.validaEmail(cadastroEmail) == true && controller.buscaEmail(cadastroEmail) == false) {
+        if (validarEmailController.validar(cadastroEmail) == true && buscarEmailController.buscaEmail(cadastroEmail) == false) {
             System.out.println("Email cadastrado.");
         } else {
             System.out.println("E-mail invalido. Tente novamente");
