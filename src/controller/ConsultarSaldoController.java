@@ -20,15 +20,12 @@ public class ConsultarSaldoController {
     }
 
     public ArrayList<Conta> SaldoOutraConta(){
-        ArrayList<Conta> contasDoCliente = new ArrayList<>();
-        Conta contaLogada = this.contaLogada;
+        ArrayList<Conta> contasDoCliente = contaLogada.getCliente().getContasDoCliente();
 
-        for (Conta conta : this.bancoDeDados.getContas()){
-            if(Objects.equals(contaLogada.getCliente(), conta.getCliente())){
+        for (Conta conta : contasDoCliente){
                 if(!Objects.equals(conta, contaLogada)){
                     contasDoCliente.add(conta);
                 }
-            }
         }
         return contasDoCliente;
     }

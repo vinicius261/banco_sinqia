@@ -29,8 +29,7 @@ public class VerificarSeClienteExisteController {
     }
 
     public Cliente procurarCliente(String numeroDocumento){
-        List<Cliente> listaDeClientes = new ArrayList<>();
-        listaDeClientes = bancoDeDados.getClientes();
+        List<Cliente> listaDeClientes = bancoDeDados.getClientes();
         Cliente clienteEncontrado = null;
 
         for(Cliente cliente : listaDeClientes){

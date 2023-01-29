@@ -35,7 +35,8 @@ public class AbrirContaController {
                     saldo,
                     cliente
             );
-            bancoDeDados.addConta(contaCorrente);
+            contaLogada.getCliente().getContasDoCliente().add(contaCorrente);
+            bancoDeDados. addConta(contaCorrente);
 
         } else if(tipoDeConta.equals(TipoDeConta.CONTA_POUPANCA)){
             ContaPoupanca contaPoupanca = new ContaPoupanca(
@@ -44,6 +45,7 @@ public class AbrirContaController {
                     saldo,
                     cliente
             );
+            contaLogada.getCliente().getContasDoCliente().add(contaPoupanca);
             bancoDeDados.addConta(contaPoupanca);
 
         } else if(tipoDeConta.equals(TipoDeConta.CONTA_INVESTIMENTO)){
@@ -53,6 +55,7 @@ public class AbrirContaController {
                     saldo,
                     cliente
             );
+            contaLogada.getCliente().getContasDoCliente().add(contaInvestimento);
             bancoDeDados.addConta(contaInvestimento);
         }
     }
