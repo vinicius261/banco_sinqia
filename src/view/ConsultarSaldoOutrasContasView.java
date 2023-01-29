@@ -3,6 +3,7 @@ package view;
 import controller.ConsultarSaldoController;
 import database.BancoDeDados;
 import model.Conta;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -12,43 +13,44 @@ public class ConsultarSaldoOutrasContasView {
     private BancoDeDados bancoDeDados;
     private Conta contaLogada;
 
-    public ConsultarSaldoOutrasContasView(BancoDeDados bancoDeDados, Conta contaLogada){
-        this. consultarSaldoController = new ConsultarSaldoController(bancoDeDados, contaLogada);
+    public ConsultarSaldoOutrasContasView(BancoDeDados bancoDeDados, Conta contaLogada) {
+        this.consultarSaldoController = new ConsultarSaldoController(bancoDeDados, contaLogada);
         this.bancoDeDados = bancoDeDados;
         this.contaLogada = contaLogada;
     }
+
     public void SaldoOutraConta() {
         String opcao;
         ArrayList<Conta> contas = consultarSaldoController.SaldoOutraConta();
 
-            System.out.println("Digite o numero da conta de que deseja consultar o saldo");
-            for(int i = 0; i < contas.size(); i++){
-                switch (contas.get(i).getTipoDeConta()) {
-                    case CONTA_POUPANCA -> {
-                        System.out.println(contas.get(i).getNumeroConta() + " - POUPANCA");
-                    }
-                    case CONTA_CORRENTE -> {
-                        System.out.println(contas.get(i).getNumeroConta() + " - CORRENTE");
-                    }
-                    case CONTA_INVESTIMENTO -> {
-                        System.out.println(contas.get(i).getNumeroConta() + " - INVESTIMENTO");
-                    }
+        System.out.println("Digite o numero da conta de que deseja consultar o saldo");
+        for (int i = 0; i < contas.size(); i++) {
+            switch (contas.get(i).getTipoDeConta()) {
+                case CONTA_POUPANCA -> {
+                    System.out.println(contas.get(i).getNumeroConta() + " - POUPANCA");
+                }
+                case CONTA_CORRENTE -> {
+                    System.out.println(contas.get(i).getNumeroConta() + " - CORRENTE");
+                }
+                case CONTA_INVESTIMENTO -> {
+                    System.out.println(contas.get(i).getNumeroConta() + " - INVESTIMENTO");
                 }
             }
+        }
 
-            opcao = input.nextLine();
-            boolean numeroValido = false;
+        opcao = input.nextLine();
+        boolean numeroValido = false;
 
-            for(Conta conta : contas){
-                if(conta.getNumeroConta().equals(opcao)){
-                    numeroValido = true;
-                    System.out.println("O saldo da conta é: R$" + conta.getSaldo());
-                    break;
-                }
+        for (Conta conta : contas) {
+            if (conta.getNumeroConta().equals(opcao)) {
+                numeroValido = true;
+                System.out.println("O saldo da conta é: R$" + conta.getSaldo());
+                break;
             }
-            if(!numeroValido){
-                System.out.println("Numero invalido");
-                SaldoOutraConta();
-            }
+        }
+        if (!numeroValido) {
+            System.out.println("Numero invalido");
+            SaldoOutraConta();
+        }
     }
 }

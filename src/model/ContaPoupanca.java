@@ -3,7 +3,7 @@ package model;
 import enums.TipoDeConta;
 import interfaces.Investir;
 
-public class ContaPoupanca extends Conta  {
+public class ContaPoupanca extends Conta {
 
     private double rendimento = 0.01;
 
@@ -12,7 +12,7 @@ public class ContaPoupanca extends Conta  {
         setTipoDeConta(TipoDeConta.CONTA_POUPANCA);
     }
 
-    public ContaPoupanca(){
+    public ContaPoupanca() {
 
     }
 

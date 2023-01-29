@@ -2,7 +2,7 @@ package model;
 
 import enums.TipoDeConta;
 
-public class ContaInvestimento extends Conta  {
+public class ContaInvestimento extends Conta {
     private final double rendimentoPessoaJuridica = 0.035;
     private final double rendimentoPessoaFisica = 0.015;
 
@@ -11,7 +11,7 @@ public class ContaInvestimento extends Conta  {
         setTipoDeConta(TipoDeConta.CONTA_INVESTIMENTO);
     }
 
-    public ContaInvestimento(){
+    public ContaInvestimento() {
 
     }
 

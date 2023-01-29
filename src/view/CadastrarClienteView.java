@@ -22,17 +22,17 @@ public class CadastrarClienteView {
     private BancoDeDados bancoDeDados;
     private Conta contaLogada;
 
-    public CadastrarClienteView(BancoDeDados bancoDeDados, Conta contaLogada){
+    public CadastrarClienteView(BancoDeDados bancoDeDados, Conta contaLogada) {
         this.controller = new CadastrarClienteController(bancoDeDados, contaLogada);
         this.bancoDeDados = bancoDeDados;
         this.contaLogada = contaLogada;
         this.buscarEmailController = new BuscarEmailController(bancoDeDados);
     }
 
-    public void cadastrarCliente(String documento, TipoDeCliente tipoDeCliente){
+    public void cadastrarCliente(String documento, TipoDeCliente tipoDeCliente) {
         ArrayList<Conta> contasDoCliente = new ArrayList<>();
         Cliente c = controller.cadastrarCliente(cadastroNome(), documento, cadastroEmail(), tipoDeCliente, contasDoCliente);
-        }
+    }
 
     private String cadastroNome() {
         System.out.println("Por favor, digite seu NOME: ");

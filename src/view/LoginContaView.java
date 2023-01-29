@@ -14,7 +14,7 @@ public class LoginContaView {
     private Scanner entrance = new Scanner(System.in);
     private BancoDeDados bancoDeDados;
 
-    public LoginContaView(BancoDeDados bancoDeDados){
+    public LoginContaView(BancoDeDados bancoDeDados) {
         this.bancoDeDados = bancoDeDados;
     }
 

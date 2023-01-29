@@ -6,9 +6,10 @@ import interfaces.Validar;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class ValidarEmailController implements Validar<String , Boolean> {
+public class ValidarEmailController implements Validar<String, Boolean> {
 
     private BancoDeDados bancoDeDados;
+
     public Boolean validar(String email) {
         boolean validacaoEmail = false;
         if (email != null && email.length() > 0) {

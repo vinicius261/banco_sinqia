@@ -8,6 +8,7 @@ public class ValidarExistenciaDeContaController {
 
     /**
      * Método responsável em verificar a existência da conta digitada pelo usuário
+     *
      * @param clientBankAccount
      * @return Array contendo índice da conta e verificador (1: true ou 2: false)
      * @author Rodolfo Lisboa

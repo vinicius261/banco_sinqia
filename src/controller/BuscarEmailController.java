@@ -4,7 +4,8 @@ import database.BancoDeDados;
 
 public class BuscarEmailController {
     private BancoDeDados bancoDeDados;
-    public BuscarEmailController(BancoDeDados bancoDeDados){
+
+    public BuscarEmailController(BancoDeDados bancoDeDados) {
         this.bancoDeDados = bancoDeDados;
     }
 

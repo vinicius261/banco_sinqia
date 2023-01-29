@@ -16,12 +16,12 @@ public class AbrirContaView {
     private BancoDeDados bancoDeDados;
     private Conta contaLogada;
 
-    public AbrirContaView(BancoDeDados bancoDeDados, Conta contaLogada){
+    public AbrirContaView(BancoDeDados bancoDeDados, Conta contaLogada) {
         this.bancoDeDados = bancoDeDados;
         this.contaLogada = contaLogada;
     }
 
-    public void abrirConta(){
+    public void abrirConta() {
         ValidarCpfCnpjController validarCpfCnpj = new ValidarCpfCnpjController();
         VerificarSeClienteExisteController verificarSeClienteExisteController = new VerificarSeClienteExisteController(bancoDeDados, contaLogada);
 
@@ -34,10 +34,10 @@ public class AbrirContaView {
 
         String numeroDocumento = input.nextLine();
 
-        if(validarCpfCnpj.isCPF(numeroDocumento) || validarCpfCnpj.isCNPJ(numeroDocumento)){
-            if(validarCpfCnpj.isCPF(numeroDocumento)){
+        if (validarCpfCnpj.isCPF(numeroDocumento) || validarCpfCnpj.isCNPJ(numeroDocumento)) {
+            if (validarCpfCnpj.isCPF(numeroDocumento)) {
                 tipoDeCliente = TipoDeCliente.PESSOA_FISICA;
-            } else if(validarCpfCnpj.isCNPJ(numeroDocumento)){
+            } else if (validarCpfCnpj.isCNPJ(numeroDocumento)) {
                 tipoDeCliente = TipoDeCliente.PESSOA_JURIDICA;
             }
         } else {
@@ -46,7 +46,7 @@ public class AbrirContaView {
             menuInicialView.mostrarMenuInicial();
         }
 
-        if(!verificarSeClienteExisteController.verificarSeClienteExiste(numeroDocumento)) {
+        if (!verificarSeClienteExisteController.verificarSeClienteExiste(numeroDocumento)) {
             CadastrarClienteView cadastrarClienteView = new CadastrarClienteView(bancoDeDados, contaLogada);
             cadastrarClienteView.cadastrarCliente(numeroDocumento, tipoDeCliente);
         }
@@ -58,13 +58,13 @@ public class AbrirContaView {
         abrirContaController.abrirConta(numeroDocumento, senhaEscolhida, tipoDeConta);
     }
 
-    public TipoDeConta escolherTipoDeConta (TipoDeCliente tipoDeCliente) {
+    public TipoDeConta escolherTipoDeConta(TipoDeCliente tipoDeCliente) {
         TipoDeConta tipoDeConta = null;
 
         System.out.println("Deseja abrir uma conta:" +
                 "\n1 - CORRENTE");
         System.out.println("2 - INVESTIMENTO");
-        if(tipoDeCliente.equals(TipoDeCliente.PESSOA_FISICA)){
+        if (tipoDeCliente.equals(TipoDeCliente.PESSOA_FISICA)) {
             System.out.println("3 - POUPANCA");
         }
 
@@ -82,7 +82,7 @@ public class AbrirContaView {
                         tipoDeConta = TipoDeConta.CONTA_INVESTIMENTO;
                     }
                     case 3 -> {
-                        if(tipoDeCliente.equals(TipoDeCliente.PESSOA_FISICA)){
+                        if (tipoDeCliente.equals(TipoDeCliente.PESSOA_FISICA)) {
                             System.out.println("-----------------------------------------------------");
                             tipoDeConta = TipoDeConta.CONTA_POUPANCA;
                         } else {
@@ -105,6 +105,7 @@ public class AbrirContaView {
         }
         return tipoDeConta;
     }
+
     public String escolherSenha() {
 
         ValidarFormatoSenhaController validarFormatoSenhaController = new ValidarFormatoSenhaController();

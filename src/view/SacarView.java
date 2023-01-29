@@ -23,7 +23,7 @@ public class SacarView {
         this.sacarController = new SacarController(bancoDeDados, contaLogada);
         this.contaLogada = contaLogada;
         this.bancoDeDados = bancoDeDados;
-        this.menuContaView = new MenuContaView(bancoDeDados ,contaLogada);
+        this.menuContaView = new MenuContaView(bancoDeDados, contaLogada);
     }
 
     public void sacar() {
@@ -44,7 +44,7 @@ public class SacarView {
         return sacarController.validaSenha(scanner.nextLine());
     }
 
-    public void movimentaConta(){
+    public void movimentaConta() {
         Integer valorDoSaque = valorDoSaque();
         sacarController.debitaValor(valorDoSaque);
 
@@ -54,15 +54,15 @@ public class SacarView {
     public Integer valorDoSaque() {
         boolean taxacao = false;
 
-        if(contaLogada.getCliente().getTipoDeCliente() == TipoDeCliente.PESSOA_JURIDICA){
+        if (contaLogada.getCliente().getTipoDeCliente() == TipoDeCliente.PESSOA_JURIDICA) {
             System.out.println("Esse tipo movimentação cobra taxas.\n" +
                     "Para realizar um saque digite 1. Para voltar ao menu digite qualquer valor.");
             taxacao = true;
-        }else{
+        } else {
             System.out.println("Para realizar um saque digite 1. Para voltar ao menu digite qualquer valor.");
         }
 
-        if (sacarController.confirmaAcao(scanner.nextLine()) == false){
+        if (sacarController.confirmaAcao(scanner.nextLine()) == false) {
             menuContaView.mostrarMenuConta();
         }
 
@@ -84,7 +84,7 @@ public class SacarView {
         }
 
         try {
-            sacarController.validaSaldo(valorDoSaque , taxacao);
+            sacarController.validaSaldo(valorDoSaque, taxacao);
             return valorDoSaque;
 
         } catch (SaldoInsuficienteException ex) {
@@ -95,18 +95,18 @@ public class SacarView {
         return valorDoSaque;
     }
 
-    public void imprimeComprovante(Integer valorDoSaque){
+    public void imprimeComprovante(Integer valorDoSaque) {
         DecimalFormat df = new DecimalFormat("###,##0.00");
-        if(contaLogada.getCliente().getTipoDeCliente() == TipoDeCliente.PESSOA_FISICA) {
+        if (contaLogada.getCliente().getTipoDeCliente() == TipoDeCliente.PESSOA_FISICA) {
             System.out.println("COMPROVANTE DE SAQUE\n" + "Tipo de conta: " + contaLogada.getTipoDeConta() +
                     "\nNúmero da conta: " + contaLogada.getNumeroConta() +
                     "\nValor: R$" + df.format(valorDoSaque));
 
         } else if (contaLogada.getCliente().getTipoDeCliente() == TipoDeCliente.PESSOA_JURIDICA) {
-            System.out.println("COMPROVANTE DE SAQUE\n" + "Tipo de conta: " +contaLogada.getTipoDeConta() +
+            System.out.println("COMPROVANTE DE SAQUE\n" + "Tipo de conta: " + contaLogada.getTipoDeConta() +
                     "\nNúmero da conta: " + contaLogada.getNumeroConta() +
                     "\nValor: R$" + df.format(valorDoSaque) +
-                    "\nTaxas: R$" + df.format(valorDoSaque*sacarController.getTaxaCobrada()));
+                    "\nTaxas: R$" + df.format(valorDoSaque * sacarController.getTaxaCobrada()));
         }
     }
 }

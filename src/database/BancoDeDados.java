@@ -14,12 +14,11 @@ public class BancoDeDados {
         this.clientes = new ArrayList<>();
     }
 
-
     public ArrayList<Conta> getContas() {
         return this.contas;
     }
 
-    public void addConta(Conta conta){
+    public void addConta(Conta conta) {
         this.contas.add(conta);
     }
 

@@ -1,20 +1,20 @@
-package service;
+package database.populabanco;
 
 import database.BancoDeDados;
 import enums.TipoDeCliente;
-import enums.TipoDeConta;
 import model.*;
 
 import java.util.ArrayList;
 
-public class CriarContasClientesService {
+public class PopulaBancoDeDados {
 
     private BancoDeDados bancoDeDados;
 
-    public CriarContasClientesService(BancoDeDados bancoDeDados){
+    public PopulaBancoDeDados(BancoDeDados bancoDeDados) {
         this.bancoDeDados = bancoDeDados;
     }
-    public void CriarContasClientes(){
+
+    public void CriarContasClientes() {
 
         Cliente clientePf = new Cliente(
                 "José Almeida",

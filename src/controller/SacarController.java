@@ -33,15 +33,15 @@ public class SacarController {
 
     public void validaSaldo(Integer valorDoSaque, boolean taxacao) {
         Double taxa = 0.0;
-        if (taxacao){
+        if (taxacao) {
             taxa = valorDoSaque * taxaCobrada;
         }
 
         if (contaLogada.getSaldo() < (valorDoSaque + taxa)) {
-            if(taxacao){
+            if (taxacao) {
                 taxa = valorDoSaque * taxaCobrada;
                 throw new SaldoInsuficienteException("Saldo insuficiente para o saque.\n" +
-                        " Saldo atual: " + contaLogada.getSaldo() + "\n" + "Taxa: " +valorDoSaque * taxaCobrada + "\n");
+                        " Saldo atual: " + contaLogada.getSaldo() + "\n" + "Taxa: " + valorDoSaque * taxaCobrada + "\n");
             }
             throw new SaldoInsuficienteException("Saldo insuficiente para o saque.\n Saldo atual: "
                     + contaLogada.getSaldo() + "\n");
